@@ -3,16 +3,72 @@
     <title>Blog Site</title>
     <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
+    <%
+    var actives = { home: "", register: "", blog: "" };
+    var stylesheet = "";
+    var showStylesheet = false;
+
+    // Check if page is defined, and if so, apply the "active" class to the menu links
+    if (typeof page !== "undefined")
+    {
+      stylesheet = '<link rel="stylesheet" type="text/css" href="/stylesheets/'+page+'.css">';
+
+      if (page === "home")
+      {
+        actives.home = " active"; 
+      }
+
+      if (page === "register")
+      {
+        actives.register = " active";
+        showStylesheet = true;
+      }
+
+      if (page === "blog")
+      {
+        actives.blog = " active";
+      }
+    }
+
+    if (showStylesheet) { %>
+      <%- stylesheet %>
+    <% } %>
   </head>
   <body>
-      
-  <div class="ui fixed inverted menu">
+
+  <div class="ui inverted menu">
     <div class="ui container">
-      <div href="#" class="header item">
+      <div class="header item">
         <i class="code icon"></i>
         Blog Site
       </div>
-      <a href="/" class="item">Home</a>
-      <a href="/blogs/new" class="item">New Post</a>
+      <a href="/" class="item<%= actives.home %>">Home</a>
+      <a href="/blogs" class="item<%= actives.blog %>">Blog</a>
+
+      <div class="right menu">
+        <% if (!currentUser) { %>
+          <a href="/register" class="item<%= actives.register %>">Register</a>
+          <a href="/login" class="item">Log In</a>
+        <% } else { %>
+          <a href="/blogs/new" class="item">New Post</a>
+          <a href="/logout" class="item">Logout</a>
+        <% } %>
+      </div>
     </div>
+  </div>
+
+
+  <div class="ui container">
+     <% if(error && error.length > 0) { %>
+      <div class="ui negative message">
+        <%=error %>
+      </div>
+     <% } %>
+     
+     <% if(success && success.length > 0) { %>
+      <div class="ui positive message">
+        <%= success %>
+      </div>
+     <% } %>
   </div>

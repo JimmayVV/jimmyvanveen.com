@@ -8,6 +8,7 @@ var express               = require("express"),
     methodOverride        = require('method-override'),
     session               = require("express-session"),
     flash                 = require("connect-flash"),
+    sass                  = require("node-sass-middleware"),
     Blog                  = require("./models/blog"),
     User                  = require("./models/user"),
     LocalStrategy         = require("passport-local");
@@ -27,7 +28,15 @@ app.use(flash());               // Enable the flash module to be used by the app
 app.use(expressSanitizer());    // Sanitize the input from HTML forms, so no scripts can be injected
 // Configure body parser, so that we can get passed in parameters with req.body
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + "/public"));  // Configure the "public" folder to contain static files such as CSS & JS (or images)
+// Configure sass files to compile into the public folder
+app.use('/stylesheets', sass(
+{
+  src:    __dirname + '/sass', 
+  dest:   __dirname + '/public/stylesheets',
+  debug:  true,       
+})); 
+// Configure the "public" folder to contain static files such as CSS & JS (or images)
+app.use(express.static(__dirname + "/public"));
 // Reads the '_method' GET parameter to determine if a HTTP request should be interpretted as something else (ie, PUT)
 app.use(methodOverride('_method'));
 // Set up cookieParser
