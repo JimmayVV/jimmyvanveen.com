@@ -1,0 +1,19 @@
+<% page = "blog" %>
+<% include ../partials/header %>
+
+<div class="ui main text container">
+  <h1 class="ui header">Jimmy's Blog</h1>
+  
+    <div class="ui top attached segment">
+      <div class="item">
+        <h2 class="ui header"><%= blog.title %></h2>
+        <div class="content">
+          <div class="description"><%- blog.content %></div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<% include ../partials/js/default %>
+<% include ../partials/footer %>

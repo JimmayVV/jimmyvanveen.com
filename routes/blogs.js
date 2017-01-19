@@ -56,13 +56,13 @@ router.post("/", middleware.isLoggedIn, function(req, res)
 
 // SHOW ROUTE
 router.get("/:id", function(req, res){
-   Blog.findById(req.params.id, function(err, foundBlog){
-       if(err){
-           res.redirect("/blogs");
-       } else {
-           res.render("show", {blog: foundBlog});
-       }
-   })
+  Blog.findById(req.params.id, function(err, foundBlog)
+  {
+    if(err)
+       res.redirect("/blogs");
+    else
+       res.render("blogs/show", {blog: foundBlog});
+  })
 });
 
 // EDIT ROUTE
