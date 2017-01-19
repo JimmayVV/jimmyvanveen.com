@@ -2,7 +2,7 @@ var mongoose  = require("mongoose");
 
 var blogSchema = new mongoose.Schema({
     title: String,
-    body: String,
+    content: String,
     created:  {type: Date, default: Date.now},
     author:
     {

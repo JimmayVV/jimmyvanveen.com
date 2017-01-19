@@ -15,28 +15,43 @@ router.get("/", function(req, res)
      if(err)
          console.log("ERROR!");
      else
-        res.render("blogs/index", {blogs: allBlogs});
+        res.render("blogs/index", {allBlogs: allBlogs});
    });
 });
 
 // NEW ROUTE
-router.get("/new", function(req, res)
+router.get("/new", middleware.isLoggedIn, function(req, res)
 {
   res.render("blogs/new");
 });
 
 // CREATE ROUTE
-router.post("/", function(req, res)
+router.post("/", middleware.isLoggedIn, function(req, res)
 {
   var title = req.body.title;
-    Blog.create(req.body.blog, function(err, newBlog){
-        if(err){
-            res.render("new");
-        } else {
-            //then, redirect to the index
-            res.redirect("/blogs");
-        }
-    });
+  var content = req.sanitize(req.body.content);
+  var author =
+  {
+    id: req.user._id,
+    username: req.user.username
+  };
+
+  var newBlog = {title: title, content: content, author: author};
+
+  //console.log("Title:\n" + title + "\n\nContent:" + content);
+
+  Blog.create(newBlog, function(err, createdBlog)
+  {
+    if (err)
+    {
+      console.log(err);
+    }
+    else
+    {
+      console.log(createdBlog);
+    }
+    res.redirect("/blogs");
+  });
 });
 
 // SHOW ROUTE

@@ -6,24 +6,26 @@
   
     <div class="ui top attached segment">
 
-      <form action="" class="ui form">
+      <form action="/blogs" method="post" class="ui form" id="newBlogForm">
         <h3 class="ui header">Make New Blog Post</h3>
         
         <div class="field">
           <label>Blog Title</label>
-          <input type="text" name="blogTitle" placeholder="Blog Title">
+          <input type="text" name="title" placeholder="Blog Title" required autofocus>
         </div>
         
         <div class="field">
           <label>Blog Content</label>
-          <textarea></textarea>
+          <textarea name="content" id="newBlogContent" required></textarea>
         </div>
         
-        <button class="ui button" type="submit" onclick="return false;">Submit</button>
+        <button class="ui button" type="submit">Submit</button>
       </form>
 
     </div>
 
 </div>
 
+<% include ../partials/js/default %>
+<% include ../partials/js/newBlog %>
 <% include ../partials/footer %>
