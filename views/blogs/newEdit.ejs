@@ -1,0 +1,45 @@
+<% page = "blog" %>
+<% include ../partials/header %>
+<%
+var h2tag = 'Make New Blog Post';
+var formAction = '/blogs';
+
+if (typeof blog === 'undefined')
+{
+  var blog = {title: '', content: ''};
+}
+else
+{
+  h2tag = "Edit Post: " + blog.title;
+  formAction = '/blogs/' + blog.shortId + '?_method=PUT'
+}
+%>
+
+<div class="ui main text container">
+  <h1 class="ui header">Jimmy's Blog</h1>
+  
+    <div class="ui top attached segment">
+
+      <form action="<%= formAction %>" method="post" class="ui form" id="newBlogForm">
+        <h3 class="ui header"><%= h2tag %></h3>
+        
+        <div class="field">
+          <label>Blog Title</label>
+          <input type="text" name="title" placeholder="Blog Title" value="<%= blog.title %>" required autofocus>
+        </div>
+        
+        <div class="field">
+          <label>Blog Content</label>
+          <textarea name="content" id="newBlogContent" required><%= blog.content %></textarea>
+        </div>
+        
+        <button class="ui button" type="submit">Submit</button>
+      </form>
+
+    </div>
+
+</div>
+
+<% include ../partials/js/default %>
+<% include ../partials/js/newBlog %>
+<% include ../partials/footer %>

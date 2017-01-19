@@ -7,15 +7,20 @@
     <div class="ui top attached segment">
       <div class="ui divided items">
       
-        <% if (typeof allBlogs !== "undefined") allBlogs.forEach(function(blog){ %>
-          <a class="header" href="/blogs/<%= blog._id%>"><%- blog.title %></a>
+        <% if (typeof allBlogs !== "undefined" && allBlogs.length > 0) { allBlogs.forEach(function(blog){ %>
+          <h3><a class="header" href="/blogs/<%= blog.shortId%>"><%- blog.title %></a></h3>
           <div class="description">
             <%- blog.content %>
           </div>
+          <% if (typeof blog.uri !== "undefined") { %>
+            <%= blog.uri %>
+          <% } %>
+          <div class="ui divider"></div>
         <%
         });
+        }
         else
-        { %>
+        { console.log("no blogs"); %>
           No Blogs
         <% } %>
 

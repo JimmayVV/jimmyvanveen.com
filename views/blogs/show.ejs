@@ -8,6 +8,24 @@
       <div class="item">
         <h2 class="ui header"><%= blog.title %></h2>
         <div class="content">
+          <div class="meta">
+            <p>Posted on <%= blog.created.toDateString() %> by <strong><%= blog.author.username %></strong></p>
+
+          <% if(currentUser && blog.author.id.equals(currentUser._id)) { %>
+            <a class="ui primary button" href="/blogs/<%= blog.shortId %>/edit">Edit Blog</a>
+            <form
+              style="display: inline"
+              class="ui form"
+              action="/blogs/<%= blog.shortId %>?_method=DELETE"
+              method="POST"
+              onsubmit="return confirm('Do you really want to delete this blog?')"
+            >
+              <button class="ui danger button">Delete Blog</button>
+            </form>
+          <% } %>
+
+          </div>
+          <div class="ui divider"></div>
           <div class="description"><%- blog.content %></div>
         </div>
       </div>

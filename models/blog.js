@@ -1,8 +1,10 @@
-var mongoose  = require("mongoose");
+var mongoose  = require("mongoose"),
+    shortId   = require("shortid");
 
 var blogSchema = new mongoose.Schema({
-    title: String,
-    content: String,
+    shortId:  {type: String, unique: true, default: shortId.generate},
+    title:    String,
+    content:  String,
     created:  {type: Date, default: Date.now},
     author:
     {
