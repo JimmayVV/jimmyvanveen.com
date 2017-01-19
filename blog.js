@@ -17,7 +17,8 @@ var express               = require("express"),
 //requiring routes
 //var commentRoutes    = require("./routes/comments");
 //var campgroundRoutes = require("./routes/campgrounds");
-var indexRoutes      = require("./routes/index");
+var indexRoutes = require("./routes/index");
+var blogRoutes  = require("./routes/blogs");
 
 // Connect to mongo using mongoose
 mongoose.connect("mongodb://localhost/jimmy_blog_app");
@@ -72,6 +73,7 @@ app.use(function(req, res, next)
 // ROUTES
 //============
 app.use("/", indexRoutes);
+app.use("/blogs", blogRoutes);
 //app.use("/campgrounds", campgroundRoutes);
 //app.use("/campgrounds/:id/comments", commentRoutes);
 

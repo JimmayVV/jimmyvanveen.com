@@ -1,0 +1,29 @@
+<% page = "blog" %>
+<% include ../partials/header %>
+
+<div class="ui main text container">
+  <h1 class="ui header">Jimmy's Blog</h1>
+  
+    <div class="ui top attached segment">
+
+      <form action="" class="ui form">
+        <h3 class="ui header">Make New Blog Post</h3>
+        
+        <div class="field">
+          <label>Blog Title</label>
+          <input type="text" name="blogTitle" placeholder="Blog Title">
+        </div>
+        
+        <div class="field">
+          <label>Blog Content</label>
+          <textarea></textarea>
+        </div>
+        
+        <button class="ui button" type="submit" onclick="return false;">Submit</button>
+      </form>
+
+    </div>
+
+</div>
+
+<% include ../partials/footer %>

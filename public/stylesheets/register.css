@@ -1,8 +1,5 @@
-body {
-  background: #DADADA; }
-
-body > .grid {
+body .pusher, .grid {
   height: 100%; }
 
 .column {
-  max-width: 450px; }
+  max-width: 400px; }
