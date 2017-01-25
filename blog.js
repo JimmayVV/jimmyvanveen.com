@@ -17,8 +17,19 @@ var express               = require("express"),
 //requiring routes
 //var commentRoutes    = require("./routes/comments");
 //var campgroundRoutes = require("./routes/campgrounds");
-var indexRoutes = require("./routes/index");
-var blogRoutes  = require("./routes/blogs");
+var indexRoutes = require('./routes/index');
+var blogRoutes  = require('./routes/blogs');
+var imageUpload = require('./routes/imageUpload');
+
+/*
+//allow cross origin requests
+app.use(function(req, res, next)
+{
+  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
+  res.header("Access-Control-Allow-Origin", "http://localhost");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});*/
 
 // Connect to mongo using mongoose
 mongoose.connect("mongodb://localhost/jimmy_blog_app");
@@ -74,8 +85,9 @@ app.use(function(req, res, next)
 //============
 // ROUTES
 //============
-app.use("/", indexRoutes);
-app.use("/blogs", blogRoutes);
+app.use('/', indexRoutes);
+app.use('/blogs', blogRoutes);
+app.use('/images', imageUpload);
 
 
 // Start server
