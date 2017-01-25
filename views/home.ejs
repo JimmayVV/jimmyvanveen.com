@@ -2,9 +2,50 @@
 <% include ./partials/header %>
 
 <div class="ui main text container">
-  <h1 class="ui header">Home Route</h1>
-  <p>Display home page content here</p>
-</div>
+
+  <div class="ui stackable vertically divided grid">
+
+    <div class="row middle aligned">
+      <div class="six wide center aligned column">
+        <img class="ui small centered circular image" src="/images/jimmy.vanveen.jpg">
+      </div>
+      <div class="ten wide center aligned column">
+        <h1 class="ui header" id="name">Jimmy Van Veen</h1>
+        <h2 class="ui header" id="tagline">Full stack Web Developer</h2>
+        <p>Jimmy is a passionate full stack web developer. He works primarily with Node.js, Express, MongoDB, jQuery, as well as Vanilla CSS, &amp; JavaScript</p>
+      </div>
+    </div>
+
+    <div class="row">
+      
+      <div class="six wide column">
+
+        <div class="ui vertical fluid menu">
+          <div class="header item">
+            Associated Resources
+          </div>
+          <a class="item" href="https://bitbucket.org/JimmayVV/" target="_blank"><i class="bitbucket icon"></i> Bitbucket</a>
+          <a class="item" href="https://github.com/JimmayVV" target="_blank"><i class="github icon"></i> GitHub</a>
+          <a class="item" href="https://www.linkedin.com/in/JimmyVanVeen" target="_blank"><i class="linkedin icon"></i> LinkedIn</a>
+        </div><!-- ui large vertical menu -->
+
+      </div>
+      
+      <div class="ten wide column">
+        <h3 class="ui header">How to get in contact with me?</h3>
+        <ul class="ui list">
+          <li>Email</li>
+          <li>Cell: <a href="tel:6038011131">(603) 801-1131</a></li>
+          <li>Contact Page</li>
+        </ul>
+      </div>
+      
+    </div><!-- row -->
+
+  </div><!-- ui stackable vertically divided grid -->
+
+</div><!-- ui main text container -->
 
 <% include ./partials/js/default %>
+<% include ./partials/js/main %>
 <% include ./partials/footer %>

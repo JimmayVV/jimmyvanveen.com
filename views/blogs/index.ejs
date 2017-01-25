@@ -4,11 +4,11 @@
 <div class="ui main text container">
   <h1 class="ui header">Jimmy's Blog</h1>
   
-    <div class="ui top attached segment">
+    <div class="ui segment">
       <div class="ui divided items">
       
         <% if (typeof allBlogs !== "undefined" && allBlogs.length > 0) { allBlogs.forEach(function(blog){ %>
-          <h3><a class="header" href="/blogs/<%= blog.shortId%>"><%- blog.title %></a></h3>
+          <h2 class="ui header"><a href="/blogs/<%= blog.shortId%>"><%- blog.title %></a></h2>
           <div class="description">
             <%- blog.content %>
           </div>

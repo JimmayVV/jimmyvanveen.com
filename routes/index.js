@@ -9,36 +9,41 @@ router.get("/", function(req, res)
     res.render("home");
 });
 
+// REGISTER is now disabled, but commented out code will work if you want to enable registration again
 // show register form
 router.get("/register", function(req, res)
 {
-   res.render("register"); 
+  res.redirect("/login");
+  //res.render("register");
 });
 
 //handle sign up logic
 router.post("/register", function(req, res)
 {
-    var newUser = new User({username: req.body.username});
-    User.register(newUser, req.body.password, function(err, user)
+  res.redirect("/login");
+  /*
+  var newUser = new User({username: req.body.username});
+  User.register(newUser, req.body.password, function(err, user)
+  {
+    if(err)
     {
-        if(err)
-        {
-            console.log(err);
-            req.flash("error", err.message);
-            return res.render("register");
-        }
-      
-        passport.authenticate("local")(req, res, function()
-        {
-           req.flash("success", "Successfully Signed Up! Nice to meet you " + req.body.username);
-           res.redirect("/"); 
-        });
+      console.log(err);
+      req.flash("error", err.message);
+      return res.render("register");
+    }
+
+    passport.authenticate("local")(req, res, function()
+    {
+      req.flash("success", "Successfully Signed Up! Nice to meet you " + req.body.username);
+      res.redirect("/");
     });
+  });*/
 });
 
 //show login form
-router.get("/login", function(req, res){
-   res.render("login"); 
+router.get("/login", function(req, res)
+{
+  res.render("login"); 
 });
 
 //handling login logic

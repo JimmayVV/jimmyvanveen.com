@@ -1,38 +1,62 @@
 $font-stack: 'Architects Daughter', cursive;
+$std-font-size: 17px;
+$bg-style: #DADADA;
 
 body
 {
-  background: #DADADA;
+  min-height: 100%;
+  background: $bg-style;
+  .pusher
+  {
+    padding-top: 70px;
+    padding-bottom: 70px;
+    margin-bottom: -42px;
+    min-height: 100%;
+  }
+}
+
+h1#name
+{
+  margin-bottom: 0px;
+}
+
+h2#tagLine
+{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 .ui.main.container
 {
   padding-top: 1rem;
-  font-family: $font-stack
+  font-family: $font-stack;
+  p, div.column, .menu
+  {
+    font-size: $std-font-size;
+  }
 }
 
-.ui.menu
+.main.menu, .ui.main.menu
 {
   height: 3.5rem;
-  font-family: $font-stack
-}
-
-.ui.main.menu .header.item
-{
-  font-size: 1.2em;
-  letter-spacing: 0.1em;
+  font-family: $font-stack;
+  .header.item
+  {
+    font-size: 1.2em;
+    letter-spacing: 0.1em;
+  }
 }
 
 .ui.container .ui.grid, .pusher
 {
-  .button, .ui.header, *
+  .button, .ui.header, .ui.vertical.menu
   {
     font-family: $font-stack
   }
 }
 
-
-body .pusher
+.ui.footer
 {
-  padding-top: 70px;
+  font-family: $font-stack;
+  margin-top: -70px;
 }

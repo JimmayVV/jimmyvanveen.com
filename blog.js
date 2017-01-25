@@ -29,6 +29,7 @@ app.use(flash());               // Enable the flash module to be used by the app
 app.use(expressSanitizer());    // Sanitize the input from HTML forms, so no scripts can be injected
 // Configure body parser, so that we can get passed in parameters with req.body
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 // Configure sass files to compile into the public folder
 app.use('/stylesheets', sass(
 {
@@ -44,10 +45,11 @@ app.use(methodOverride('_method'));
 app.use(cookieParser('secret'));
 
 // Session middleware, so that we can keep track of logged in users
-app.use(require("express-session")({
-    secret: "Charlie and Tucker are the best dogs",
-    resave: false,
-    saveUninitialized: false
+app.use(require("express-session")(
+{
+  secret: "Charlie and Tucker are the best dogs",
+  resave: false,
+  saveUninitialized: false
 }));
 
 // Configure passport
@@ -74,8 +76,6 @@ app.use(function(req, res, next)
 //============
 app.use("/", indexRoutes);
 app.use("/blogs", blogRoutes);
-//app.use("/campgrounds", campgroundRoutes);
-//app.use("/campgrounds/:id/comments", commentRoutes);
 
 
 // Start server
