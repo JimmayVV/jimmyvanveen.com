@@ -3,27 +3,51 @@
   <body ng-app="fileUpload">
     
     <% include ./partials/menu %>
-    <br><br>
     
-    <h1>Upload an Image to the server</h1>
+  <div class="pusher">
     
-    <form ng-controller="MyCtrl as up" name="up.upload_form">
-      <input 
-         type="file" 
-         ngf-select 
-         ng-model="up.file" 
-         name="file" 
-         ngf-pattern="'image/*'"
-         accept="image/*" 
-         ngf-max-size="20MB" 
-         />
-      Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-      <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-      <i ng-show="up.upload_form.file.$error.maxSize">File too large 
-      {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-      <button type="submit" ng-click="up.submit()">submit</button>
-      <p>{{up.progress}}</p>
-    </form>
+    <div class="ui main text container">
+      <div class="ui stackable grid">
+        
+        <h1>Upload an Image to the server</h1>
+        <form class="ui form segment" ng-controller="MyCtrl as up" name="up.upload_form">
+          <input 
+             type="file" 
+             ngf-select 
+             ng-model="up.file" 
+             name="file" 
+             ngf-pattern="'image/*'"
+             accept="image/*" 
+             ngf-max-size="20MB" 
+             />
+          <div class="field">
+            <label>Image thumbnail: </label><img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+          </div>
+
+          <div ng-show="up.upload_form.file.$error.required || up.upload_form.file.$error.maxSize" class="ui error message">
+            <div class="header">Action Failed</div>
+            <p>
+              <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+              <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+            </p>
+          </div>
+
+          <button class="ui submit button" type="submit" ng-click="up.submit()">Submit</button>
+
+          <p>
+            Progress:
+          </p>
+
+          <div class="ui progress" data-percent="{{up.progress}}" id="uploadProgress">
+            <div class="bar">
+              <div class="progress"></div>
+            </div>
+            <div class="label">{{up.progress}}%</div>
+          </div>
+        </form>
+        
+      </div><!-- ui stackable grid -->
+    </div><!-- ui main text container -->
     
     <% include ./partials/angular %>
     <script type="text/javascript" src="/scripts/libraries/ng-file-upload.min.js"></script>

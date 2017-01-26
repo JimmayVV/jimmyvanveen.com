@@ -5,7 +5,7 @@ angular.module('fileUpload', ['ngFileUpload'])
             if (vm.upload_form.file.$valid && vm.file) { //check if from is valid
                 vm.upload(vm.file); //call upload function
             }
-        }
+        };
         vm.upload = function (file) {
             Upload.upload({
                 url: '/images/upload', //webAPI exposed to upload the file
@@ -23,7 +23,17 @@ angular.module('fileUpload', ['ngFileUpload'])
                 //console.log(evt);
                 var progressPercentage = parseInt(100.0 * evt.loaded / evt.total);
                 //console.log('progress: ' + progressPercentage + '% ' + evt.config.data.file.name);
-                vm.progress = 'progress: ' + progressPercentage + '% '; // capture upload progress
+                vm.progress = progressPercentage; // capture upload progress
             });
         };
     }]);
+
+/*
+TODO: get this or something similar to work so that we can update the progress bar
+I need to learn Angular better
+function update()
+{
+  $('#uploadProgress').progress();
+  console.log($('#uploadProgress').attr('data-value'));
+  setTimeout(update, 200);
+}*/
