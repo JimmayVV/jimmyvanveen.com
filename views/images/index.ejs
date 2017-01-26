@@ -21,6 +21,19 @@
                 Copy
               </button>
             </div>
+            
+            <div class="ui action fluid input">
+              <form
+                style="display: inline"
+                class="ui form"
+                action="{{ '/images/' + image.shortId + '?_method=DELETE' }}"
+                method="POST"
+                onsubmit="return confirm('Do you really want to delete this image?')"
+              >
+                <button class="ui negative button">Delete Image</button>
+              </form>
+            </div>
+            
           </div>
         </div>
       </div>

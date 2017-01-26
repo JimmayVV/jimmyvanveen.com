@@ -1,11 +1,12 @@
-var express     = require("express");
+var express     = require('express');
 var router      = express.Router();
-var passport    = require("passport");
+var passport    = require('passport');
 var multer      = require('multer');
-var middleware  = require("../middleware");
 var shortid     = require('shortid');
-var User        = require("../models/user");
-var Image       = require("../models/image");
+var fs          = require('fs');
+var middleware  = require('../middleware');
+var User        = require('../models/user');
+var Image       = require('../models/image');
 
 
 // Set up multer variables
@@ -33,7 +34,7 @@ var upload = multer(
 
 // Path prefix '/images'
 
-// Index route - will list all of the images we have stored
+// INDEX route - will list all of the images we have stored
 router.get('/', middleware.isLoggedIn, function(req, res)
 {
   // Show the index of all the uploaded images, as well as the form to upload them
@@ -41,7 +42,7 @@ router.get('/', middleware.isLoggedIn, function(req, res)
 });
 
 
-// New route - will list all of the images we have stored
+// NEW route - will list all of the images we have stored
 router.get('/upload', middleware.isLoggedIn, function(req, res)
 {
   // Show the index of all the uploaded images, as well as the form to upload them
@@ -49,7 +50,7 @@ router.get('/upload', middleware.isLoggedIn, function(req, res)
 });
 
 
-// Show the json of all the stored images
+// SHOW the json of all the stored images
 router.get('/json', middleware.isLoggedIn, function(req, res)
 {
   Image.find({}, function(err, allImages)
@@ -63,7 +64,7 @@ router.get('/json', middleware.isLoggedIn, function(req, res)
 
 
 // Simple post function to complete the upload
-router.post('/upload', function(req, res)
+router.post('/upload', middleware.isLoggedIn, function(req, res)
 {
   var imageId = shortid.generate();
   req.shortId = imageId;
@@ -98,12 +99,29 @@ router.post('/upload', function(req, res)
   });
 });
 
-/*
-// TODO: Allow deletes
-router.delete('/:id', function(req, res)
+
+// DELETE route - to delete an image from the server & DB
+router.delete('/:id', middleware.isLoggedIn, function(req, res)
 {
-  // Delete the image
+  // Find the image details from the server
+  Image.findOne({shortId: req.params.id}, function(err, foundImage)
+  {
+    if (err)
+      return res.redirect('/images');
+    
+    // Delete the file from the server using the URL
+    fs.unlink('./public/uploads/' + foundImage.filename, function(err)
+    {
+      if (err) console.log("There was a problem deleting the file");
+    });
+    
+    // Now remove the entry from the DB
+    foundImage.remove();
+    
+    // Redirect to the images page
+    return res.redirect('/images');
+  });
 });
-*/
+
 
 module.exports = router;
