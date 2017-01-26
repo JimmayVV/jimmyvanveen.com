@@ -1,6 +1,7 @@
 var express = require("express");
 var router  = express.Router();
 var passport = require("passport");
+var sanitizeHtml = require("sanitize-html")
 var middleware = require("../middleware");
 var User = require("../models/user");
 var Blog = require("../models/blog");
@@ -10,13 +11,13 @@ var Blog = require("../models/blog");
 router.get("/", function(req, res)
 {
   // Get all blogs from the server, then render it
-   Blog.find({}, function(err, allBlogs)
-   {
-     if(err)
-         console.log("ERROR!\n" + err);
-     else
-        res.render("blogs/index", {allBlogs: allBlogs});
-   });
+  Blog.find({}, function(err, allBlogs)
+  {
+   if(err)
+       console.log("ERROR!\n" + err);
+   else
+      res.render("blogs/index", {allBlogs: allBlogs});
+  });
 });
 
 
@@ -33,7 +34,9 @@ router.post("/", middleware.isLoggedIn, function(req, res)
 {
   // Get all the title & content from the passed in parameters
   var title = req.body.title;
-  var content = req.sanitize(req.body.content);
+  var content = sanitizeHtml(req.body.content, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+  });
   // Set author to the current id (and username)
   var author =
   {
@@ -88,7 +91,9 @@ router.get("/:id/edit", middleware.checkUserBlog, function(req, res)
 router.put("/:id", middleware.checkUserBlog, function(req, res)
 {
   var title = req.body.title;
-  var content = req.sanitize(req.body.content);
+  var content = sanitizeHtml(req.body.content, {
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ])
+  });
 
   Blog.findOneAndUpdate(
     {shortId: req.params.id}, // Find the blog by id

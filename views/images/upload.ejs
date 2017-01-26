@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+  
+  <body ng-app="fileUpload">
+    
+    <% include ./partials/menu %>
+    <br><br>
+    
+    <h1>Upload an Image to the server</h1>
+    
+    <form ng-controller="MyCtrl as up" name="up.upload_form">
+      <input 
+         type="file" 
+         ngf-select 
+         ng-model="up.file" 
+         name="file" 
+         ngf-pattern="'image/*'"
+         accept="image/*" 
+         ngf-max-size="20MB" 
+         />
+      Image thumbnail: <img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+      <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+      <i ng-show="up.upload_form.file.$error.maxSize">File too large 
+      {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+      <button type="submit" ng-click="up.submit()">submit</button>
+      <p>{{up.progress}}</p>
+    </form>
+    
+    <% include ./partials/angular %>
+    <script type="text/javascript" src="/scripts/libraries/ng-file-upload.min.js"></script>
+    <script type="text/javascript" src="/scripts/libraries/ng-file-upload-shim.min.js"></script>
+    <script type="text/javascript" src="/scripts/imgUpload.js"></script>
+
+ <% include ./partials/footer %>

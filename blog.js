@@ -1,17 +1,17 @@
-var express               = require("express"),
-    app                   = express(),
-    bodyParser            = require("body-parser"),
-    mongoose              = require("mongoose"),
-    passport              = require("passport"),
-    cookieParser          = require("cookie-parser"),
-    expressSanitizer      = require("express-sanitizer"),
-    methodOverride        = require('method-override'),
-    session               = require("express-session"),
-    flash                 = require("connect-flash"),
-    sass                  = require("node-sass-middleware"),
-    Blog                  = require("./models/blog"),
-    User                  = require("./models/user"),
-    LocalStrategy         = require("passport-local");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose"),
+    passport        = require("passport"),
+    cookieParser    = require("cookie-parser"),
+    sanitizeHtml    = require("sanitize-html"),
+    methodOverride  = require('method-override'),
+    session         = require("express-session"),
+    flash           = require("connect-flash"),
+    sass            = require("node-sass-middleware"),
+    Blog            = require("./models/blog"),
+    User            = require("./models/user"),
+    LocalStrategy   = require("passport-local");
     
 
 //requiring routes
@@ -19,7 +19,7 @@ var express               = require("express"),
 //var campgroundRoutes = require("./routes/campgrounds");
 var indexRoutes = require('./routes/index');
 var blogRoutes  = require('./routes/blogs');
-var imageUpload = require('./routes/imageUpload');
+var imageUpload = require('./routes/images');
 
 /*
 //allow cross origin requests
@@ -37,7 +37,6 @@ mongoose.connect("mongodb://localhost/jimmy_blog_app");
 // Add/configure each of the above modules to the express app
 app.set('view engine', 'ejs');  // Don't need to provide 'ejs' extensions to those files
 app.use(flash());               // Enable the flash module to be used by the app
-app.use(expressSanitizer());    // Sanitize the input from HTML forms, so no scripts can be injected
 // Configure body parser, so that we can get passed in parameters with req.body
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

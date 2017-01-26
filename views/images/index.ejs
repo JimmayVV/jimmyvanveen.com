@@ -1,10 +1,31 @@
-<!doctype html>
-<html>
-  <head>
+<% include ./partials/header %>
   
-  </head>
-  
-  <body>
+  <body ng-app="imageGallery" ng-controller="imageCtrl">
     
-  </body>
-</html>
+    <% include ./partials/menu %>
+    <br><br>
+    <h1>View All Images</h1>
+    
+    <div class="ui container">
+      <div class="ui one column grid" ng-repeat="image in images">
+        <div class="ui horizontal divider">
+          {{ image.filename }}
+        </div>
+        <div class="row">
+          <div class="column">
+            <p>
+              <img class="ui bordered image" ng-src='/uploads/{{ image.filename }}' />
+            </p>
+            <p>
+              <input class="" type="text" value="/uploads/{{image.filename}}"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <% include ./partials/angular %>
+    
+    <script type="text/javascript" src="/scripts/imgGallery.js"></script>
+    
+<% include ./partials/footer %>
