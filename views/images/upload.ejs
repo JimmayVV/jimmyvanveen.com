@@ -4,12 +4,11 @@
     
     <% include ./partials/menu %>
     
-  <div class="pusher">
-    
-    <div class="ui main text container">
-      <div class="ui stackable grid">
+    <div class="pusher">
+      <div class="ui main text container">
         
-        <h1>Upload an Image to the server</h1>
+        <h1 class="ui header">Upload an Image to the server</h1>
+        
         <form class="ui form segment" ng-controller="MyCtrl as up" name="up.upload_form">
           <input 
              type="file" 
@@ -32,7 +31,7 @@
             </p>
           </div>
 
-          <button class="ui submit button" type="submit" ng-click="up.submit()">Submit</button>
+          <button class="ui submit primary button" type="submit" ng-click="up.submit()">Submit</button>
 
           <p>
             Progress:
@@ -46,8 +45,7 @@
           </div>
         </form>
         
-      </div><!-- ui stackable grid -->
-    </div><!-- ui main text container -->
+      </div><!-- ui main text container -->
     
     <% include ./partials/angular %>
     <script type="text/javascript" src="/scripts/libraries/ng-file-upload.min.js"></script>

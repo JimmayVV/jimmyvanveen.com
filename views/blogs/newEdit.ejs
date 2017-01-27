@@ -16,29 +16,28 @@ else
 %>
 
 <div class="ui main text container">
-  <h1 class="ui header">Jimmy's Blog</h1>
   
-    <div class="ui segment">
+  <h1 class="ui header">Jimmy's Blog</h1>
+  <div class="ui segment">
+    
+    <form action="<%= formAction %>" method="post" class="ui form" id="newBlogForm">
+      <h3 class="ui header"><%= h2tag %></h3>
 
-      <form action="<%= formAction %>" method="post" class="ui form" id="newBlogForm">
-        <h3 class="ui header"><%= h2tag %></h3>
-        
-        <div class="field">
-          <label>Blog Title</label>
-          <input type="text" name="title" placeholder="Blog Title" value="<%= blog.title %>" required autofocus>
-        </div>
-        
-        <div class="field">
-          <label>Blog Content</label>
-          <textarea name="content" id="newBlogContent" required><%= blog.content %></textarea>
-        </div>
-        
-        <button class="ui button" type="submit">Submit</button><a href="javascript:openImageWindow()" class="ui blue button">Images</a>
-      </form>
+      <div class="field">
+        <label>Blog Title</label>
+        <input type="text" name="title" placeholder="Blog Title" value="<%= blog.title %>" required autofocus>
+      </div>
 
-    </div>
+      <div class="field">
+        <label>Blog Content</label>
+        <textarea name="content" id="newBlogContent" required><%= blog.content %></textarea>
+      </div>
 
-</div>
+      <button class="ui primary button" type="submit">Submit</button>
+      <a href="javascript:openImageWindow()" class="ui right floated secondary button">Images</a>
+    </form>
+  </div><!-- ui segment -->
+</div><!-- ui main text container -->
 
 <% include ../partials/js/default %>
 <% include ../partials/js/newBlog %>

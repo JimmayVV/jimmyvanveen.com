@@ -17,7 +17,7 @@ h2#tagLine {
 .ui.main.container {
   padding-top: 1rem;
   font-family: "Architects Daughter", cursive; }
-  .ui.main.container p, .ui.main.container div.column, .ui.main.container .menu {
+  .ui.main.container p, .ui.main.container div.column, .ui.main.container .menu, .ui.main.container ol, .ui.main.container ul {
     font-size: 17px; }
 
 .main.menu, .ui.main.menu {

@@ -30,7 +30,7 @@ h2#tagLine
 {
   padding-top: 1rem;
   font-family: $font-stack;
-  p, div.column, .menu
+  p, div.column, .menu, ol, ul
   {
     font-size: $std-font-size;
   }

@@ -53,7 +53,7 @@ router.get('/upload', middleware.isLoggedIn, function(req, res)
 // SHOW the json of all the stored images
 router.get('/json', middleware.isLoggedIn, function(req, res)
 {
-  Image.find({}, function(err, allImages)
+  Image.find({}, null, {sort: {created: -1}}, function(err, allImages)
   {
     if(err)
       res.status(400).json({error: err});
