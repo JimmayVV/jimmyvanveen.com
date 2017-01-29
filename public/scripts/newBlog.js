@@ -10,5 +10,5 @@ $("#newBlogContent").ckeditor(function() {}, {stylesSet: 'jimmys_styles' });
 
 function openImageWindow()
 {
-  window.open("/images", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=150,left=350,width=600,height=600");
+  window.open("/images", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,top=50,left=50,width=1000,height=650");
 }

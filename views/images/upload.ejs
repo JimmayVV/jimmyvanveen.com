@@ -1,6 +1,6 @@
 <% include ./partials/header %>
   
-  <body ng-app="fileUpload">
+  <body>
     
     <% include ./partials/menu %>
     
@@ -9,17 +9,15 @@
         
         <h1 class="ui header">Upload an Image to the server</h1>
         
-        <form class="ui form segment" ng-controller="MyCtrl as up" name="up.upload_form">
+        <form class="ui form segment">
           <input 
-             type="file" 
-             ngf-select 
-             ng-model="up.file" 
-             name="file" 
-             ngf-pattern="'image/*'"
-             accept="image/*" 
-             ngf-max-size="20MB" 
+             type="file"
+             name="file"
+             accept="image/*"
+             id="upload-input"
+             style="display: none"
              />
-          <div class="field">
+          <!--<div class="field">
             <label>Image thumbnail: </label><img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
           </div>
 
@@ -29,27 +27,25 @@
               <i ng-show="up.upload_form.file.$error.required">*required</i><br>
               <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
             </p>
-          </div>
+          </div>-->
 
-          <button class="ui submit primary button" type="submit" ng-click="up.submit()">Submit</button>
+          <a class="ui submit primary button" id="upload-btn">Upload Image</a>
 
           <p>
             Progress:
           </p>
 
-          <div class="ui progress" data-percent="{{up.progress}}" id="uploadProgress">
+          <div class="ui progress" data-percent="0" id="uploadProgress">
             <div class="bar">
               <div class="progress"></div>
             </div>
-            <div class="label">{{up.progress}}%</div>
+            <div class="label">0%</div>
           </div>
         </form>
         
       </div><!-- ui main text container -->
     
-    <% include ./partials/angular %>
-    <script type="text/javascript" src="/scripts/libraries/ng-file-upload.min.js"></script>
-    <script type="text/javascript" src="/scripts/libraries/ng-file-upload-shim.min.js"></script>
+    <% include ../partials/js/default %>
     <script type="text/javascript" src="/scripts/imgUpload.js"></script>
 
  <% include ./partials/footer %>

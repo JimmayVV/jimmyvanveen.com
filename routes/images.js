@@ -37,8 +37,13 @@ var upload = multer(
 // INDEX route - will list all of the images we have stored
 router.get('/', middleware.isLoggedIn, function(req, res)
 {
-  // Show the index of all the uploaded images, as well as the form to upload them
-  res.render('images/index');
+  Image.find({}, null, {sort: {created: -1}}, function(err, allImages)
+  {
+    if(err)
+      console.log(err);
+    else
+      res.render('images/index', {images: allImages});
+  });
 });
 
 
@@ -50,29 +55,22 @@ router.get('/upload', middleware.isLoggedIn, function(req, res)
 });
 
 
-// SHOW the json of all the stored images
-router.get('/json', middleware.isLoggedIn, function(req, res)
-{
-  Image.find({}, null, {sort: {created: -1}}, function(err, allImages)
-  {
-    if(err)
-      res.status(400).json({error: err});
-    else
-      res.status(200).json({images: allImages});
-  });
-});
-
-
 // Simple post function to complete the upload
 router.post('/upload', middleware.isLoggedIn, function(req, res)
 {
   var imageId = shortid.generate();
   req.shortId = imageId;
+
+  console.log("Trying to upload a file");
   
   upload(req,res,function(err)
   {
-    if(err) // If err, return out of function with error json
+    if(err)
+    {
+      console.log(err);
+      // If err, return out of function with error json
       return res.json({error_code:1,err_desc:err});
+    }
      
     // If successful upload, then save data to mongo, and pass successful json
     console.log(req.file);

@@ -38,7 +38,7 @@ mongoose.connect("mongodb://localhost/jimmy_blog_app");
 app.set('view engine', 'ejs');  // Don't need to provide 'ejs' extensions to those files
 app.use(flash());               // Enable the flash module to be used by the app
 // Configure body parser, so that we can get passed in parameters with req.body
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({extended: true, limit: "10mb", parameterLimit: 50000}));
 app.use(bodyParser.json());
 // Configure sass files to compile into the public folder
 app.use('/stylesheets', sass(

@@ -1,4 +1,88 @@
-angular.module('fileUpload', ['ngFileUpload'])
+$('#upload-btn').on('click', function ()
+{
+    $('#upload-input').click();
+    $('#uploadProgress .label').text('0%');
+    $('#uploadProgress').progress({
+      percent: 0
+    });
+});
+
+
+// Process the image upload
+$('#upload-input').on('change', function()
+{
+  var files = $(this).get(0).files;
+
+  // We are not allowing multiple files, so make sure only 1 file was detected 
+  if (files.length == 1)
+  {
+    // Make a FormData object, to be used with ajax
+    var formData = new FormData();
+
+    // Add the file to the formData object using the 1st element of the files array
+    formData.append('file', files[0], files[0].name);
+
+    // Upload the file using jquery ajax
+    uploadFile(formData);
+
+  } // End if files.length ==1
+});
+
+
+// This is the function that will be called to process the ajax request
+var uploadFile = function(formData)
+{
+    $.ajax(
+    {
+      url: '/images/upload',
+      type: 'POST',
+      data: formData,
+      processData: false,
+      contentType: false,
+      success: function(data)
+      {
+        console.log('upload successful!\n' + data);
+      },
+      error: function(data)
+      {
+        console.log("Error\n\n" + JSON.stringify(data));
+      },
+      xhr: function()
+      {
+        // create an XMLHttpRequest
+        var xhr = new XMLHttpRequest();
+
+        // listen to the 'progress' event
+        xhr.upload.addEventListener('progress', function(evt)
+        {
+          if (evt.lengthComputable)
+          {
+            // calculate the percentage of upload completed
+            var percentComplete = evt.loaded / evt.total;
+            percentComplete = parseInt(percentComplete * 100);
+
+            // update the Bootstrap progress bar with the new percentage
+            $('#uploadProgress').progress({
+              percent: percentComplete
+            });
+
+            // once the upload reaches 100%, set the progress bar text to done
+            if (percentComplete === 100)
+            {
+              $('#uploadProgress .label').text('Done');
+            }
+
+          }
+
+        }, false);
+
+        return xhr;
+      }
+    });
+};
+
+
+/*angular.module('fileUpload', ['ngFileUpload'])
     .controller('MyCtrl',['Upload','$window',function(Upload,$window){
         var vm = this;
         vm.submit = function(){ //function to call on form submit
@@ -26,7 +110,7 @@ angular.module('fileUpload', ['ngFileUpload'])
                 vm.progress = progressPercentage; // capture upload progress
             });
         };
-    }]);
+    }]);*/
 
 /*
 TODO: get this or something similar to work so that we can update the progress bar

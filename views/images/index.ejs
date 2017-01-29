@@ -1,6 +1,6 @@
 <% include ./partials/header %>
   
-  <body ng-app="imageGallery" ng-controller="imageCtrl">
+  <body>
     
     <% include ./partials/menu %>
     
@@ -8,16 +8,18 @@
     
     <div class="ui main text container">
       <h1 class="ui header">View All Images</h1>
+
       <div class="ui one column grid" ng-repeat="image in images">
+        <% images.forEach(function(image, index, array) { %>
         <div class="ui horizontal divider">
-          {{ image.filename }}
+          <%= image.filename %>
         </div>
         <div class="row">
           <div class="column">
-            <img class="ui bordered image" ng-src='/uploads/{{ image.filename }}' />
+            <img class="ui bordered image" src='/uploads/<%= image.filename %>' />
             
             <div class="ui action fluid input">
-              <input type="text" value="/uploads/{{image.filename}}" onclick="this.focus();this.select()" />
+              <input type="text" value="/uploads/<%= image.filename %>" onclick="this.focus();this.select()" />
               <button class="ui blue right labeled icon copy button" onclick="copy(this)">
                 <i class="copy icon"></i>
                 Copy
@@ -28,7 +30,7 @@
               <form
                 style="display: inline"
                 class="ui form"
-                action="{{ '/images/' + image.shortId + '?_method=DELETE' }}"
+                action="/images/<%= image.shortId %>?_method=DELETE"
                 method="POST"
                 onsubmit="return confirm('Do you really want to delete this image?')"
               >
@@ -36,14 +38,12 @@
               </form>
             </div>
             
-          </div>
-        </div>
-      </div>
+          </div><!-- column -->
+        </div><!-- row -->
+        <% }); %>
+      </div><!-- ui one column grid -->
     </div>
     
     <% include ../partials/js/default %>
-    <% include ./partials/angular %>
-    
-    <script type="text/javascript" src="/scripts/imgGallery.js"></script>
     
 <% include ./partials/footer %>
