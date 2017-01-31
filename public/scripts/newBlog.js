@@ -1,5 +1,5 @@
 // Set the styles of the CKEditor
-CKEDITOR.stylesSet.add( 'jimmys_styles',
+CKEDITOR.stylesSet.add( 'default',
 [
   { name: 'Fluid Image', element: 'img', attributes: { 'class': 'ui fluid image' } },
   { name: 'Bordered Image', element: 'img', attributes: { 'class': 'ui bordered image' } },
@@ -11,7 +11,8 @@ CKEDITOR.stylesSet.add( 'jimmys_styles',
 // Add the CKEditor to the page
 CKEDITOR.replace('newBlogContent',
 {
-  stylesSet: 'jimmys_styles',
+  //stylesSet: ['default', 'jimmys_styles'],
+  customConfig: '/scripts/libraries/ckeditor/config.js',
   filebrowserImageBrowseUrl: '/images',
   filebrowserUploadUrl: '/images/upload'
 });

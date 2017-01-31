@@ -16,9 +16,7 @@
             <img class="image" src='/uploads/<%= image.filename %>' />
           </div>
           
-          <div class="content">
-            
-            <!--<div class="title"><%= image.filename %></div>-->
+          <!--<div class="content">
             
             <div class="description">
               
@@ -29,11 +27,11 @@
                   Copy
                 </button>
               </div><!-- ui action fluid input -->
-            </div><!-- description -->
-          </div><!-- content -->
+            <!--</div><!-- description -->
+          <!--</div><!-- content -->
           
           <div class="ui two bottom attached buttons">
-            <button class="ui button" onclick="returnFileUrl('/uploads/<%= image.filename %>')">
+            <button class="ui primary button" onclick="returnFileUrl('/uploads/<%= image.filename %>')">
               Select This Image
             </button>
             <form

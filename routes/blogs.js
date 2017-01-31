@@ -10,10 +10,11 @@ var Blog = require("../models/blog");
 var sanitize = function(doc)
 {
   return sanitizeHtml(doc, {
-    allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img' ]),
+    allowedTags: sanitizeHtml.defaults.allowedTags.concat([ 'img', 'pre', 'code' ]),
     allowedAttributes: {
       a: [ 'href', 'name', 'target' ],
       img: [ 'src' ],
+      code: ['class'],
       '*' : [ 'class' ]
     },
   });

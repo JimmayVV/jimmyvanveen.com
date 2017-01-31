@@ -92,7 +92,7 @@ router.post('/upload', middleware.isLoggedIn, function(req, res)
       if (err)
         console.log(err);
       console.log(req.body);
-      res.render('images/upload', {image: createdImage, funcNum: req.body.CKEditorFuncNum });
+      res.render('images/upload', {image: createdImage});
     });
   });
 });
