@@ -1,27 +1,3 @@
-var app = angular.module('imageGallery', []);
-
-var imageController = function($scope, $http)
-{
-  $scope.images = {};
-  
-  // Now get the JSON 
-  $http.get('/images/json')
-  .then(
-    function successCallback(data)
-    {
-      $scope.images = data.data.images;
-      console.log(data.data.images);
-    },
-    function errorCallback(data)
-    {
-      console.log('Error: ' + data);
-    }
-  );
-};
-
-app.controller('imageCtrl', imageController);
-
-
 // Function to copy the contents of the image URL displayed in a text input
 function copy(node)
 {
@@ -40,4 +16,23 @@ function copy(node)
   {
     console.log('Oops, unable to copy');
   }
+}
+
+
+// Helper function to get a parameter from the query string.
+function getUrlParam( paramName )
+{
+  var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+  var match = window.location.search.match( reParam );
+
+  return ( match && match.length > 1 ) ? match[1] : null;
+}
+
+
+// Function to pass the filename of the selected image back to the CKEditor
+function returnFileUrl(fileUrl)
+{
+  var funcNum = getUrlParam( 'CKEditorFuncNum' );
+  window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+  window.close();
 }

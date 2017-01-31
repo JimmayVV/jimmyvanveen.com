@@ -28,7 +28,7 @@ var storage = multer.diskStorage(
 var upload = multer(
 {
   storage: storage
-}).single('file');
+}).single('upload');
 
 
 
@@ -51,7 +51,7 @@ router.get('/', middleware.isLoggedIn, function(req, res)
 router.get('/upload', middleware.isLoggedIn, function(req, res)
 {
   // Show the index of all the uploaded images, as well as the form to upload them
-  res.render('images/upload');
+  res.render('images/new');
 });
 
 
@@ -69,7 +69,7 @@ router.post('/upload', middleware.isLoggedIn, function(req, res)
     {
       console.log(err);
       // If err, return out of function with error json
-      return res.json({error_code:1,err_desc:err});
+      return res.redirect('/images');
     }
      
     // If successful upload, then save data to mongo, and pass successful json
@@ -86,14 +86,14 @@ router.post('/upload', middleware.isLoggedIn, function(req, res)
       }
     };
     
-    // Make the blog, then redirect to the blogs index
+    // Make the image in mongodb
     Image.create(newImage, function(err, createdImage)
     {
       if (err)
         console.log(err);
+      console.log(req.body);
+      res.render('images/upload', {image: createdImage, funcNum: req.body.CKEditorFuncNum });
     });
-    
-    res.json({error_code:0,err_desc:null});
   });
 });
 

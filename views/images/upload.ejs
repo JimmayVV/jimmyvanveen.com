@@ -7,45 +7,51 @@
     <div class="pusher">
       <div class="ui main text container">
         
-        <h1 class="ui header">Upload an Image to the server</h1>
+        <h1 class="ui header">Image uploaded:</h1>
         
-        <form class="ui form segment">
-          <input 
-             type="file"
-             name="file"
-             accept="image/*"
-             id="upload-input"
-             style="display: none"
-             />
-          <!--<div class="field">
-            <label>Image thumbnail: </label><img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-          </div>
-
-          <div ng-show="up.upload_form.file.$error.required || up.upload_form.file.$error.maxSize" class="ui error message">
-            <div class="header">Action Failed</div>
-            <p>
-              <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-              <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-            </p>
-          </div>-->
-
-          <a class="ui submit primary button" id="upload-btn">Upload Image</a>
-
-          <p>
-            Progress:
-          </p>
-
-          <div class="ui progress" data-percent="0" id="uploadProgress">
-            <div class="bar">
-              <div class="progress"></div>
+        <div class="ui divided items">
+          <div class="item">
+            <div class="ui tiny image">
+              <img src="/uploads/<%= image.filename %>" alt="<%= image.filename %>">
             </div>
-            <div class="label">0%</div>
-          </div>
-        </form>
+            <div class="middle aligned content">
+              <p>
+                <strong>File Name: </strong> <%= image.filename %>
+              </p>
+              <p>
+                <strong>Created: </strong> <%= image.created %>
+              </p>
+            </div>
+          </div><!-- item -->
+        </div><!-- ui divided items -->
         
       </div><!-- ui main text container -->
     
     <% include ../partials/js/default %>
-    <script type="text/javascript" src="/scripts/imgUpload.js"></script>
+      
+    <script>
+    // Helper function to get a parameter from the query string.
+    function getUrlParam( paramName )
+    {
+      var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+      var match = window.location.search.match( reParam );
+
+      return ( match && match.length > 1 ) ? match[1] : null;
+    }
+
+
+    // Function to pass the filename of the selected image back to the CKEditor
+    function returnFileUrl(fileUrl)
+    {
+      var funcNum = getUrlParam( 'CKEditorFuncNum' );
+      window.parent.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+      window.close();
+    }
+    
+    returnFileUrl('/uploads/<%= image.filename %>');
+                  
+    /*alert(window.location.href);
+    window.parent.CKEDITOR.tools.callFunction(<%= funcNum %>, '/uploads/<%= image.filename %>');*/
+    </script>
 
  <% include ./partials/footer %>
