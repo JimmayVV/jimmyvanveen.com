@@ -1,0 +1,51 @@
+<% include ./partials/header %>
+  
+  <body>
+    
+    <% include ./partials/menu %>
+    
+    <div class="pusher">
+      <div class="ui main text container">
+        
+        <h1 class="ui header">Upload an Image to the server</h1>
+        
+        <form class="ui form segment">
+          <input 
+             type="file"
+             name="upload"
+             accept="image/*"
+             id="upload-input"
+             style="display: none"
+             />
+          <!--<div class="field">
+            <label>Image thumbnail: </label><img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
+          </div>
+
+          <div ng-show="up.upload_form.file.$error.required || up.upload_form.file.$error.maxSize" class="ui error message">
+            <div class="header">Action Failed</div>
+            <p>
+              <i ng-show="up.upload_form.file.$error.required">*required</i><br>
+              <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
+            </p>
+          </div>-->
+
+          <a class="ui submit primary button" id="upload-btn">Upload Image</a>
+
+          <p>
+            Progress:
+          </p>
+
+          <div class="ui progress" data-percent="0" id="uploadProgress">
+            <div class="bar">
+              <div class="progress"></div>
+            </div>
+            <div class="label">0%</div>
+          </div>
+        </form>
+        
+      </div><!-- ui main text container -->
+    
+    <% include ../partials/js/default %>
+    <script type="text/javascript" src="/scripts/imgUpload.js"></script>
+
+ <% include ./partials/footer %>

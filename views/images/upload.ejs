@@ -1,55 +1,54 @@
 <% include ./partials/header %>
   
-  <body ng-app="fileUpload">
+  <body>
     
     <% include ./partials/menu %>
     
     <div class="pusher">
       <div class="ui main text container">
         
-        <h1 class="ui header">Upload an Image to the server</h1>
+        <h1 class="ui header">Image uploaded:</h1>
         
-        <form class="ui form segment" ng-controller="MyCtrl as up" name="up.upload_form">
-          <input 
-             type="file" 
-             ngf-select 
-             ng-model="up.file" 
-             name="file" 
-             ngf-pattern="'image/*'"
-             accept="image/*" 
-             ngf-max-size="20MB" 
-             />
-          <div class="field">
-            <label>Image thumbnail: </label><img style="width:100px;" ngf-thumbnail="up.file || '/thumb.jpg'"/>
-          </div>
-
-          <div ng-show="up.upload_form.file.$error.required || up.upload_form.file.$error.maxSize" class="ui error message">
-            <div class="header">Action Failed</div>
-            <p>
-              <i ng-show="up.upload_form.file.$error.required">*required</i><br>
-              <i ng-show="up.upload_form.file.$error.maxSize">File too large {{up.file.size / 1000000|number:1}}MB: max 20M</i>
-            </p>
-          </div>
-
-          <button class="ui submit primary button" type="submit" ng-click="up.submit()">Submit</button>
-
-          <p>
-            Progress:
-          </p>
-
-          <div class="ui progress" data-percent="{{up.progress}}" id="uploadProgress">
-            <div class="bar">
-              <div class="progress"></div>
+        <div class="ui divided items">
+          <div class="item">
+            <div class="ui tiny image">
+              <img src="/uploads/<%= image.filename %>" alt="<%= image.filename %>">
             </div>
-            <div class="label">{{up.progress}}%</div>
-          </div>
-        </form>
+            <div class="middle aligned content">
+              <p>
+                <strong>File Name: </strong> <%= image.filename %>
+              </p>
+              <p>
+                <strong>Created: </strong> <%= image.created %>
+              </p>
+            </div>
+          </div><!-- item -->
+        </div><!-- ui divided items -->
         
       </div><!-- ui main text container -->
     
-    <% include ./partials/angular %>
-    <script type="text/javascript" src="/scripts/libraries/ng-file-upload.min.js"></script>
-    <script type="text/javascript" src="/scripts/libraries/ng-file-upload-shim.min.js"></script>
-    <script type="text/javascript" src="/scripts/imgUpload.js"></script>
+    <% include ../partials/js/default %>
+      
+    <script>
+    // Helper function to get a parameter from the query string.
+    function getUrlParam( paramName )
+    {
+      var reParam = new RegExp( '(?:[\?&]|&)' + paramName + '=([^&]+)', 'i' );
+      var match = window.location.search.match( reParam );
+
+      return ( match && match.length > 1 ) ? match[1] : null;
+    }
+
+
+    // Function to pass the filename of the selected image back to the CKEditor
+    function returnFileUrl(fileUrl)
+    {
+      var funcNum = getUrlParam( 'CKEditorFuncNum' );
+      window.parent.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+      window.close();
+    }
+    
+    returnFileUrl('/uploads/<%= image.filename %>');
+    </script>
 
  <% include ./partials/footer %>

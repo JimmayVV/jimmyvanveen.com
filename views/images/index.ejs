@@ -1,6 +1,6 @@
 <% include ./partials/header %>
   
-  <body ng-app="imageGallery" ng-controller="imageCtrl">
+  <body>
     
     <% include ./partials/menu %>
     
@@ -8,42 +8,49 @@
     
     <div class="ui main text container">
       <h1 class="ui header">View All Images</h1>
-      <div class="ui one column grid" ng-repeat="image in images">
-        <div class="ui horizontal divider">
-          {{ image.filename }}
-        </div>
-        <div class="row">
-          <div class="column">
-            <img class="ui bordered image" ng-src='/uploads/{{ image.filename }}' />
+
+        <% images.forEach(function(image, index, array) { %>
+      
+        <div class="ui card">
+          <div class="image">
+            <img class="image" src='/uploads/<%= image.filename %>' />
+          </div>
+          
+          <!--<div class="content">
             
-            <div class="ui action fluid input">
-              <input type="text" value="/uploads/{{image.filename}}" onclick="this.focus();this.select()" />
-              <button class="ui blue right labeled icon copy button" onclick="copy(this)">
-                <i class="copy icon"></i>
-                Copy
-              </button>
-            </div>
-            
-            <div class="ui action fluid input">
-              <form
+            <div class="description">
+              
+              <div class="ui action fluid input">
+                <input type="text" value="/uploads/<%= image.filename %>" onclick="this.focus();this.select()" />
+                <button class="ui blue right labeled icon copy button" onclick="copy(this)">
+                  <i class="copy icon"></i>
+                  Copy
+                </button>
+              </div><!-- ui action fluid input -->
+            <!--</div><!-- description -->
+          <!--</div><!-- content -->
+          
+          <div class="ui two bottom attached buttons">
+            <button class="ui primary button" onclick="returnFileUrl('/uploads/<%= image.filename %>')">
+              Select This Image
+            </button>
+            <form
                 style="display: inline"
-                class="ui form"
-                action="{{ '/images/' + image.shortId + '?_method=DELETE' }}"
+                class=""
+                action="/images/<%= image.shortId %>?_method=DELETE"
                 method="POST"
                 onsubmit="return confirm('Do you really want to delete this image?')"
               >
                 <button class="ui negative button">Delete Image</button>
               </form>
-            </div>
-            
-          </div>
-        </div>
-      </div>
-    </div>
+          </div><!-- ui two bottom attached buttons -->
+        </div><!-- ui card -->
+        <% }); %>
+      
+    </div><!-- ui main text container -->
     
     <% include ../partials/js/default %>
-    <% include ./partials/angular %>
     
-    <script type="text/javascript" src="/scripts/imgGallery.js"></script>
+    <script src="/scripts/imgGallery.js"></script>
     
 <% include ./partials/footer %>
