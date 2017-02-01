@@ -17,9 +17,10 @@ var express         = require("express"),
 //requiring routes
 //var commentRoutes    = require("./routes/comments");
 //var campgroundRoutes = require("./routes/campgrounds");
-var indexRoutes = require('./routes/index');
-var blogRoutes  = require('./routes/blogs');
-var imageUpload = require('./routes/images');
+var indexRoutes   = require('./routes/index');
+var blogRoutes    = require('./routes/blogs');
+var imageUpload   = require('./routes/images');
+var projectRoutes = require('./routes/projects');
 
 /*
 //allow cross origin requests
@@ -87,6 +88,7 @@ app.use(function(req, res, next)
 app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
 app.use('/images', imageUpload);
+app.use('/projects', projectRoutes);
 
 
 // Start server

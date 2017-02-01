@@ -1,18 +1,17 @@
-<% page = "blog" %>
+<% page = "projects" %>
 <% include ../partials/header %>
 
 <div class="ui main text container">
-  <h1 class="ui header">Jimmy's Blog</h1>
+  <h1 class="ui header">Jimmy's Projects</h1>
   
     <div class="ui segment">
       <div class="ui divided items">
       
-        <% if (typeof allBlogs !== "undefined" && allBlogs.length > 0) { allBlogs.forEach(function(blog, index, array) { %>
-          <h2 class="ui header"><a href="/blogs/<%= blog.shortId%>"><%- blog.title %></a></h2>
+        <% if (typeof allProjects !== "undefined" && allProjects.length > 0) { allProjects.forEach(function(project, index, array) { %>
+          <h2 class="ui header"><a href="/projects/<%= project.shortId%>"><%- project.title %></a></h2>
           <div class="description">
-            <%- blog.content %>
+            <%- project.content %>
           </div>
-        
           <%
           if (index < array.length - 1)
           {
@@ -24,7 +23,7 @@
         }
         else
         { console.log("no blogs"); %>
-          <div class="description"><p>No Blogs</p></div>
+          <div class="description"><p>No Projects</p></div>
         <% } %>
 
       </div>

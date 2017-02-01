@@ -30,7 +30,7 @@ else
 
       <div class="field">
         <label>Blog Content</label>
-        <textarea name="content" id="newBlogContent" required><%= blog.content %></textarea>
+        <textarea name="content" id="editContent" required><%= blog.content %></textarea>
       </div>
 
       <button class="ui primary button" type="submit">Submit</button>
@@ -39,5 +39,5 @@ else
 </div><!-- ui main text container -->
 
 <% include ../partials/js/default %>
-<% include ../partials/js/newBlog %>
+<% include ../partials/js/richTextarea %>
 <% include ../partials/footer %>

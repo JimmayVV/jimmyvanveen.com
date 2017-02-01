@@ -1,19 +1,20 @@
+// PROJECTS routes (controller)
+
 var express = require("express");
 var router  = express.Router();
 var middleware = require("../middleware");
-var Blog = require("../models/blog");
+var Project = require("../models/project");
 
 
 // INDEX ROUTE
 router.get("/", function(req, res)
 {
-  // Get all blogs from the server, then render it
-  Blog.find({}, null, {sort: {created: -1}}, function(err, allBlogs)
+  Project.find({}, null, {sort: {started: -1}}, function(err, allProjects)
   {
     if(err)
-      console.log("ERROR!\n" + err);
-
-    res.render("blogs/index", {allBlogs: allBlogs});
+      console.log("ERROR with projects:\n" + err);
+    
+    res.render('projects/index', {allProjects: allProjects});
   });
 });
 
@@ -22,13 +23,14 @@ router.get("/", function(req, res)
 router.get("/new", middleware.isLoggedIn, function(req, res)
 {
   // Simply render the blog entry view
-  res.render("blogs/newEdit");
+  res.render("projects/newEdit");
 });
 
 
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
+  /*
   // Get all the title & content from the passed in parameters
   var title = req.body.title;
   var content = middleware.sanitize(req.body.content);
@@ -49,13 +51,14 @@ router.post("/", middleware.isLoggedIn, function(req, res)
       console.log(err);
 
     res.redirect("/blogs");
-  });
+  });*/
 });
 
 
 // SHOW ROUTE
 router.get("/:id", function(req, res)
 {
+  /*
   // Get the blog
   Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
   {
@@ -64,13 +67,14 @@ router.get("/:id", function(req, res)
        res.redirect("/blogs");
     else
        res.render("blogs/show", {blog: foundBlog});
-  });
+  });*/
 });
 
 
 // EDIT ROUTE
-router.get("/:id/edit", middleware.checkUserBlog, function(req, res)
+router.get("/:id/edit", middleware.checkUserProject, function(req, res)
 {
+  /*
   // Find the blog based on id, then send it to the edit page to be rendered for editing
   Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
   {
@@ -78,13 +82,14 @@ router.get("/:id/edit", middleware.checkUserBlog, function(req, res)
         res.redirect("/blogs");
     else
         res.render("blogs/newEdit", {blog: foundBlog});
-  });
+  });*/
 })
 
 
 // UPDATE ROUTE
-router.put("/:id", middleware.checkUserBlog, function(req, res)
+router.put("/:id", middleware.checkUserProject, function(req, res)
 {
+  /*
   var title = req.body.title;
   var content = middleware.sanitize(req.body.content);
 
@@ -101,13 +106,14 @@ router.put("/:id", middleware.checkUserBlog, function(req, res)
       res.redirect("/blogs");
     else
       res.redirect("/blogs/" + req.params.id);  // Send the user to the show page
-  });
+  });*/
 });
 
 
 // DELETE ROUTE
-router.delete("/:id", middleware.checkUserBlog, function(req, res)
+router.delete("/:id", middleware.checkUserProject, function(req, res)
 {
+  /*
   //Destroy the blog
   Blog.findOneAndRemove({shortId: req.params.id}, function(err)
   {
@@ -115,7 +121,7 @@ router.delete("/:id", middleware.checkUserBlog, function(req, res)
       console.log(err);
 
     res.redirect("/blogs");
-  });
+  });*/
 });
 
 

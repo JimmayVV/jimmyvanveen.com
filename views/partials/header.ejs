@@ -12,10 +12,11 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="/stylesheets/main.css">
     <%
-    var actives = { home: "", register: "", blog: "", login: "" };
+    var actives = { home: "", register: "", blog: "", login: "", projects: "" };
     var stylesheet = "";
     var showStylesheet = false;
     var blogDropDown = "";
+    var active = " active";
 
     // Check if page is defined, and if so, apply the "active" class to the menu links
     if (typeof page !== "undefined")
@@ -23,24 +24,23 @@
       stylesheet = '<link rel="stylesheet" type="text/css" href="/stylesheets/'+page+'.css">';
 
       if (page === "home")
-      {
-        actives.home = " active"; 
-      }
+        actives.home = active; 
+      
+      if (page === "blog")
+        actives.blog = active;
+      
+      if (page === "projects")
+        actives.projects = active;
 
       if (page === "register")
       {
-        actives.register = " active";
+        actives.register = active;
         showStylesheet = true;
       }
-
-      if (page === "blog")
-      {
-        actives.blog = " active";
-      }
-
+      
       if (page === "login")
       {
-        actives.login = " active";
+        actives.login = active;
         showStylesheet = true;
         stylesheet = '<link rel="stylesheet" type="text/css" href="/stylesheets/register.css">';
       }
@@ -63,6 +63,7 @@
       <a href="/" class="item<%= actives.home %>">Home</a>
       <% if (!currentUser) { %>
         <a href="/blogs" class="item<%= actives.blog %>">Blog</a>
+        <a href="/projects" class="item<%= actives.projects %>">Projects</a>
       <% } else { %>
         <div class="ui simple dropdown item">
           Blog <i class="dropdown icon"></i>
@@ -71,17 +72,14 @@
             <a class="item" href="/blogs/new">New Blog Post</a>
           </div>
         </div>
-      <% } %>
-      <div class="ui simple dropdown item">
-        Projects <i class="dropdown icon"></i>
-        <div class="menu">
-          <a class="item" href="#">Project 1</a>
-          <a class="item" href="#">Project 2</a>
-          <a class="item" href="#">Project 3</a>
-          <a class="item" href="#">Project 4</a>
+        <div class="ui simple dropdown item">
+          Projects <i class="dropdown icon"></i>
+          <div class="menu">
+            <a class="item" href="/projects">List All Projects</a>
+            <a class="item" href="/projects/new">Make New Project</a>
+          </div>
         </div>
-      </div>
-
+      <% } %>
     </div>
   </div>
 

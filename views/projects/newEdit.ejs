@@ -1,0 +1,122 @@
+<% page = "projects" %>
+<% include ../partials/header %>
+<%
+var h2tag = 'Make New Project';
+var formAction = '/projects';
+
+if (typeof project === 'undefined')
+{
+  var project = {title: '', content: ''};
+}
+else
+{
+  h2tag = "Edit Post: " + project.title;
+  formAction = '/projects/' + project.shortId + '?_method=PUT'
+}
+%>
+
+<div class="ui main text container">
+  
+  <h1 class="ui header">Jimmy's Projects</h1>
+  <div class="ui segment">
+    
+    <form action="<%= formAction %>" method="post" class="ui form" id="newProjectForm">
+      <h3 class="ui header"><%= h2tag %></h3>
+
+      <div class="field">
+        <label>Project Title</label>
+        <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus>
+      </div>
+      
+      <div class="field">
+        <label>Date(s) of Project</label>
+        
+        <div class="two fields">
+          <div class="field">
+            <label>Start Date:</label>
+            <div class="fields">
+              <div class="eight wide field">
+                <select class="ui search dropdown">
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+              <div class="three wide field">
+                <select class="ui search dropdown">
+                  <% for(var i = 1; i <= 31; i++) { %>
+                  <option value="<%= i %>"><%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="five wide field">
+                <select class="ui search dropdown">
+                  <% for(var i = 2017; i >= 2000; i--) { %>
+                  <option value="<%= i %>"><%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="field">
+            <label>End Date:</label>
+            <div class="fields">
+              <div class="eight wide field">
+                <select class="ui search dropdown">
+                  <option value="1">January</option>
+                  <option value="2">February</option>
+                  <option value="3">March</option>
+                  <option value="4">April</option>
+                  <option value="5">May</option>
+                  <option value="6">June</option>
+                  <option value="7">July</option>
+                  <option value="8">August</option>
+                  <option value="9">September</option>
+                  <option value="10">October</option>
+                  <option value="11">November</option>
+                  <option value="12">December</option>
+                </select>
+              </div>
+              <div class="three wide field">
+                <select class="ui search dropdown">
+                  <% for(var i = 1; i <= 31; i++) { %>
+                  <option value="<%= i %>"><%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+              <div class="five wide field">
+                <select class="ui search dropdown">
+                  <% for(var i = 2017; i >= 2000; i--) { %>
+                  <option value="<%= i %>"><%= i %></option>
+                  <% } %>
+                </select>
+              </div>
+            </div>
+          </div>
+        
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Project Content</label>
+        <textarea name="content" id="editContent" required><%= project.content %></textarea>
+      </div>
+
+      <button class="ui primary button" type="submit">Submit</button>
+    </form>
+  </div><!-- ui segment -->
+</div><!-- ui main text container -->
+
+<% include ../partials/js/default %>
+<% include ../partials/js/richTextarea %>
+<% include ../partials/footer %>
