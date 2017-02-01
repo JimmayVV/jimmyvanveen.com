@@ -1,11 +1,11 @@
 // Set the styles of the CKEditor
-CKEDITOR.stylesSet.add( 'default',
+/*CKEDITOR.stylesSet.add( 'default',
 [
   { name: 'Fluid Image', element: 'img', attributes: { 'class': 'ui fluid image' } },
   { name: 'Bordered Image', element: 'img', attributes: { 'class': 'ui bordered image' } },
   { name: 'Rounded Image', element: 'img', attributes: { 'class': 'ui rounded image' } },
   { name: 'Centered Image', element: 'img', attributes: { 'class': 'ui centered image' } }
-]);
+]);*/
 
 
 // Add the CKEditor to the page

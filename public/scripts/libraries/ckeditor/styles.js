@@ -1,4 +1,4 @@
-﻿/**
+/**
  * Copyright (c) 2003-2017, CKSource - Frederico Knabben. All rights reserved.
  * For licensing, see LICENSE.md or http://ckeditor.com/license
  */
@@ -111,9 +111,11 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Square Bulleted List',	element: 'ul',		styles: { 'list-style-type': 'square' } },
 
 	/* Widget styles */
-
-	{ name: 'Clean Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-clean' } },
-	{ name: 'Grayscale Image', type: 'widget', widget: 'image', attributes: { 'class': 'image-grayscale' } },
+	
+	{ name: 'Fluid Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui fluid image' } },
+  { name: 'Bordered Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui bordered image' } },
+  { name: 'Rounded Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui rounded image' } },
+  { name: 'Centered Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui centered image' } },
 
 	{ name: 'Featured Snippet', type: 'widget', widget: 'codeSnippet', attributes: { 'class': 'code-featured' } },
 
