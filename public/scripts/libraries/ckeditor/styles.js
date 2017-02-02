@@ -113,7 +113,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	/* Widget styles */
 	
 	{ name: 'Fluid Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui fluid image' } },
-  { name: 'Bordered Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui bordered image' } },
+  { name: 'Full Main Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui image full-main-image' } },
   { name: 'Rounded Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui rounded image' } },
   { name: 'Centered Image', type: 'widget', widget: 'image', attributes: { 'class': 'ui centered image' } },
 
