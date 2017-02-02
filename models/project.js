@@ -10,6 +10,7 @@ var projectSchema = new mongoose.Schema(
   content:  String,
   started:  Date,
   finished: Date,
+  current:  Boolean,
   created:  {type: Date, default: Date.now},
   author:
   {

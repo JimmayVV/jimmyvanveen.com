@@ -30,6 +30,7 @@ router.get("/new", middleware.isLoggedIn, function(req, res)
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
+  res.send(JSON.stringify(req.body.project) + "\n\n" + JSON.stringify(req.body.startDate) + "\n\n" + JSON.stringify(req.body.endDate));
   /*
   // Get all the title & content from the passed in parameters
   var title = req.body.title;

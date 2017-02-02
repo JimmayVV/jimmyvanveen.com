@@ -3,6 +3,8 @@
 <%
 var h2tag = 'Make New Project';
 var formAction = '/projects';
+var months = ["January", "February", "March", "April", "May", "June",
+              "July", "August", "September", "October", "November", "December"];
 
 if (typeof project === 'undefined')
 {
@@ -25,41 +27,38 @@ else
 
       <div class="field">
         <label>Project Title</label>
-        <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus>
+        <input type="text" name="project[title]" placeholder="Project Title" value="<%= project.title %>" required autofocus>
       </div>
       
       <div class="field">
         <label>Date(s) of Project</label>
+        <div class="ui checkbox" id="currentProject">
+          <input name="project[current]" value="false" id="currentVal" type="hidden">
+          <input tabindex="0" class="hidden" type="checkbox">
+          <label>Is this project still current?</label>
+        </div>
         
+
         <div class="two fields">
           <div class="field">
             <label>Start Date:</label>
             <div class="fields">
               <div class="eight wide field">
-                <select class="ui search dropdown">
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                <select name="startDate[month]" class="ui search dropdown">
+                  <% for (var i = 1; i <= months.length; i++) { %>
+                  <option value="<%= i %>"><%= months[i - 1] %></option>
+                  <% } %>
                 </select>
               </div>
               <div class="three wide field">
-                <select class="ui search dropdown">
+                <select name="startDate[day]" class="ui search dropdown">
                   <% for(var i = 1; i <= 31; i++) { %>
                   <option value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </div>
               <div class="five wide field">
-                <select class="ui search dropdown">
+                <select name="startDate[year]" class="ui search dropdown">
                   <% for(var i = 2017; i >= 2000; i--) { %>
                   <option value="<%= i %>"><%= i %></option>
                   <% } %>
@@ -70,32 +69,23 @@ else
 
           <div class="field">
             <label>End Date:</label>
-            <div class="fields">
+            <div class="fields" id="endDate">
               <div class="eight wide field">
-                <select class="ui search dropdown">
-                  <option value="1">January</option>
-                  <option value="2">February</option>
-                  <option value="3">March</option>
-                  <option value="4">April</option>
-                  <option value="5">May</option>
-                  <option value="6">June</option>
-                  <option value="7">July</option>
-                  <option value="8">August</option>
-                  <option value="9">September</option>
-                  <option value="10">October</option>
-                  <option value="11">November</option>
-                  <option value="12">December</option>
+                <select name="endDate[month]" class="ui search dropdown">
+                  <% for (var i = 1; i <= months.length; i++) { %>
+                  <option value="<%= i %>"><%= months[i - 1] %></option>
+                  <% } %>
                 </select>
               </div>
               <div class="three wide field">
-                <select class="ui search dropdown">
+                <select name="endDate[day]" class="ui search dropdown">
                   <% for(var i = 1; i <= 31; i++) { %>
                   <option value="<%= i %>"><%= i %></option>
                   <% } %>
                 </select>
               </div>
               <div class="five wide field">
-                <select class="ui search dropdown">
+                <select name="endDate[year]" class="ui search dropdown">
                   <% for(var i = 2017; i >= 2000; i--) { %>
                   <option value="<%= i %>"><%= i %></option>
                   <% } %>
@@ -109,7 +99,7 @@ else
 
       <div class="field">
         <label>Project Content</label>
-        <textarea name="content" id="editContent" required><%= project.content %></textarea>
+        <textarea name="project[content]" id="editContent" required><%= project.content %></textarea>
       </div>
 
       <button class="ui primary button" type="submit">Submit</button>
@@ -118,5 +108,32 @@ else
 </div><!-- ui main text container -->
 
 <% include ../partials/js/default %>
+
+<!-- Date JavaScript -->
+<script>
+$('#currentProject').checkbox(
+{
+  onChecked: function()
+  {
+    // Hide the end date
+    $('#endDate').hide();
+    $('#currentVal').val('true');
+  },
+  onUnchecked: function()
+  {
+    $('#endDate').show();
+    $('#currentVal').val('false');
+  }
+});
+
+
+function verifyDate()
+{
+
+  // Return true if start date is less than or equal to end date, else return false
+
+  return false;
+}
+</script>
 <% include ../partials/js/richTextarea %>
 <% include ../partials/footer %>
