@@ -8,12 +8,12 @@ var months = ["January", "February", "March", "April", "May", "June",
 
 if (typeof project === 'undefined')
 {
-  var project = {title: '', content: ''};
+  var project = {title: '', content: '', started: new Date(2017, 1, 1), finished: new Date(2017, 1, 1)};
 }
 else
 {
-  h2tag = "Edit Post: " + project.title;
-  formAction = '/projects/' + project.shortId + '?_method=PUT'
+  h2tag = "Edit Project: " + project.title;
+  formAction = '/projects/' + project.shortId + '?_method=PUT';
 }
 %>
 
@@ -22,18 +22,18 @@ else
   <h1 class="ui header">Jimmy's Projects</h1>
   <div class="ui segment">
     
-    <form action="<%= formAction %>" method="post" class="ui form" id="newProjectForm">
+    <form action="<%= formAction %>" method="post" class="ui form" onsubmit="return verifyDate()" id="newProjectForm">
       <h3 class="ui header"><%= h2tag %></h3>
 
       <div class="field">
         <label>Project Title</label>
-        <input type="text" name="project[title]" placeholder="Project Title" value="<%= project.title %>" required autofocus>
+        <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus>
       </div>
       
       <div class="field">
         <label>Date(s) of Project</label>
         <div class="ui checkbox" id="currentProject">
-          <input name="project[current]" value="false" id="currentVal" type="hidden">
+          <input name="current" value="false" id="currentVal" type="hidden">
           <input tabindex="0" class="hidden" type="checkbox">
           <label>Is this project still current?</label>
         </div>
@@ -45,8 +45,9 @@ else
             <div class="fields">
               <div class="eight wide field">
                 <select name="startDate[month]" class="ui search dropdown">
-                  <% for (var i = 1; i <= months.length; i++) { %>
-                  <option value="<%= i %>"><%= months[i - 1] %></option>
+                  <!-- Months are zero-based in JavaScript Date object, so this is factored into this select -->
+                  <% for (var i = 0; i < months.length; i++) { %>
+                  <option value="<%= i %>"><%= months[i] %></option>
                   <% } %>
                 </select>
               </div>
@@ -72,8 +73,9 @@ else
             <div class="fields" id="endDate">
               <div class="eight wide field">
                 <select name="endDate[month]" class="ui search dropdown">
-                  <% for (var i = 1; i <= months.length; i++) { %>
-                  <option value="<%= i %>"><%= months[i - 1] %></option>
+                  <!-- Months are zero-based in JavaScript Date object, so this is factored into this select -->
+                  <% for (var i = 0; i < months.length; i++) { %>
+                  <option value="<%= i %>"><%= months[i] %></option>
                   <% } %>
                 </select>
               </div>
@@ -99,7 +101,7 @@ else
 
       <div class="field">
         <label>Project Content</label>
-        <textarea name="project[content]" id="editContent" required><%= project.content %></textarea>
+        <textarea name="content" id="editContent" required><%= project.content %></textarea>
       </div>
 
       <button class="ui primary button" type="submit">Submit</button>
@@ -110,30 +112,7 @@ else
 <% include ../partials/js/default %>
 
 <!-- Date JavaScript -->
-<script>
-$('#currentProject').checkbox(
-{
-  onChecked: function()
-  {
-    // Hide the end date
-    $('#endDate').hide();
-    $('#currentVal').val('true');
-  },
-  onUnchecked: function()
-  {
-    $('#endDate').show();
-    $('#currentVal').val('false');
-  }
-});
+<script type="text/javascript" src="/scripts/newEditProject.js"></script>
 
-
-function verifyDate()
-{
-
-  // Return true if start date is less than or equal to end date, else return false
-
-  return false;
-}
-</script>
 <% include ../partials/js/richTextarea %>
 <% include ../partials/footer %>

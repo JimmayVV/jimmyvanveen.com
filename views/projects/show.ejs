@@ -1,0 +1,47 @@
+<% page = "projects" %>
+<% include ../partials/header %>
+
+<div class="ui main text container">
+  <h1 class="ui header">Jimmy's Projects</h1>
+  
+    <div class="ui segment">
+      <div class="item">
+        <h2 class="ui header"><%= project.title %></h2>
+        <div class="content">
+          <div class="meta">
+            <p>
+              <% if (project.current) { %>
+                Current project started on <%= project.started.toDateString() %>
+              <%
+              } else { %>
+                Project run from <%= project.started.toDateString() + " to " + project.finished.toDateString() %>
+              <% } %>
+              by <strong><%= project.author.username %></strong>
+            </p>
+
+          <% if(currentUser && project.author.id.equals(currentUser._id)) { %>
+            <a class="ui primary button" href="/projects/<%= project.shortId %>/edit">Edit Project</a>
+            <form
+              style="display: inline"
+              class="ui form"
+              action="/projects/<%= project.shortId %>?_method=DELETE"
+              method="POST"
+              onsubmit="return confirm('Do you really want to delete this project?')"
+            >
+              <button class="ui negative button">Delete Project</button>
+            </form>
+          <% } %>
+
+          </div>
+          <div class="ui divider"></div>
+          <div class="description"><%- project.content %></div>
+        </div>
+      </div>
+    </div>
+
+</div>
+
+<script>hljs.initHighlightingOnLoad();</script>
+
+<% include ../partials/js/default %>
+<% include ../partials/footer %>

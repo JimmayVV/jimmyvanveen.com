@@ -30,60 +30,64 @@ router.get("/new", middleware.isLoggedIn, function(req, res)
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
-  res.send(JSON.stringify(req.body.project) + "\n\n" + JSON.stringify(req.body.startDate) + "\n\n" + JSON.stringify(req.body.endDate));
-  /*
-  // Get all the title & content from the passed in parameters
-  var title = req.body.title;
+  var title   = middleware.sanitize(req.body.title);
   var content = middleware.sanitize(req.body.content);
-  // Set author to the current id (and username)
-  var author =
+  var current = (req.body.current === 'true') ? true : false;
+  var started = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
+  var finished = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
+  var author  = { id: req.user._id, username: req.user.username };
+  
+  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to started
+  finished = (current || (finished.getTime() < started.getTime())) ? started : finished;
+  
+  console.log("Start Date: " + started.toDateString() + "   " + req.body.startDate.month + "\nEnd Date: " + finished.toDateString() + "    " + req.body.endDate.month);
+  
+  var newProject =
   {
-    id: req.user._id,
-    username: req.user.username
+    title:    title,
+    content:  content,
+    started:  started,
+    finished: finished,
+    current:  current,
+    author:   author
   };
-
-  // JSON to be passed into Blog.create()
-  var newBlog = {title: title, content: content, author: author};
-
-  // Make the blog, then redirect to the blogs index
-  Blog.create(newBlog, function(err, createdBlog)
+  
+  Project.create(newProject, function(err, createdProject)
   {
     if (err)
       console.log(err);
 
-    res.redirect("/blogs");
-  });*/
+    res.redirect("/projects");
+  });
 });
 
 
 // SHOW ROUTE
 router.get("/:id", function(req, res)
 {
-  /*
-  // Get the blog
-  Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
+  // Get the project
+  Project.findOne({shortId: req.params.id}, function(err, foundProject)
   {
-    // If one doesn't exist, redirect to the main blogs page, otherwise, show it
+    // If one doesn't exist, redirect to the main projects page, otherwise, show it
     if(err)
-       res.redirect("/blogs");
+       res.redirect("/projects");
     else
-       res.render("blogs/show", {blog: foundBlog});
-  });*/
+       res.render("projects/show", {project: foundProject});
+  });
 });
 
 
 // EDIT ROUTE
 router.get("/:id/edit", middleware.checkUserProject, function(req, res)
 {
-  /*
   // Find the blog based on id, then send it to the edit page to be rendered for editing
-  Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
+  Project.findOne({shortId: req.params.id}, function(err, foundProject)
   {
     if(err)
-        res.redirect("/blogs");
+        res.redirect("/projects");
     else
-        res.render("blogs/newEdit", {blog: foundBlog});
-  });*/
+        res.render("projects/newEdit", {project: foundProject});
+  });
 })
 
 
@@ -114,15 +118,14 @@ router.put("/:id", middleware.checkUserProject, function(req, res)
 // DELETE ROUTE
 router.delete("/:id", middleware.checkUserProject, function(req, res)
 {
-  /*
   //Destroy the blog
-  Blog.findOneAndRemove({shortId: req.params.id}, function(err)
+  Project.findOneAndRemove({shortId: req.params.id}, function(err)
   {
     if(err)
       console.log(err);
 
-    res.redirect("/blogs");
-  });*/
+    res.redirect("/projects");
+  });
 });
 
 
