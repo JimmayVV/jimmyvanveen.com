@@ -1,15 +1,22 @@
 <% page = "home" %>
 <% include ./partials/header %>
+<%
 
-<div class="ui main text container">
+if (typeof allProjects === "undefined")
+{
+  allProjects = {};
+}
 
-  <div class="ui stackable vertically divided grid">
+%>
+<!--<div class="ui main text container">-->
+
+  <div class="ui main stackable vertically divided grid container">
 
     <div class="row middle aligned">
-      <div class="six wide center aligned column">
+      <div class="four wide center aligned column">
         <img class="ui small centered circular image" src="/images/jimmy.vanveen.jpg">
       </div>
-      <div class="ten wide center aligned column">
+      <div class="twelve wide center aligned column">
         <h1 class="ui header" id="name">Jimmy Van Veen</h1>
         <h2 class="ui header" id="tagline">Full stack Web Developer</h2>
         <p>Jimmy is a passionate full stack web developer. He works primarily with Node.js, Express, MongoDB, jQuery, as well as Vanilla CSS, &amp; JavaScript</p>
@@ -20,7 +27,7 @@
       
       <div class="six wide column">
 
-        <div class="ui vertical fluid menu">
+        <div class="ui vertical raised fluid menu">
           <div class="header item">
             Associated Resources
           </div>
@@ -41,10 +48,46 @@
       </div>
       
     </div><!-- row -->
+    
+    
+    <div class="row">
+      <div class="one fluid column">
+        
+        <h2 class="ui header">Jimmy's Projects:</h2>
+        
+        <div class="ui three stackable cards">
+          <% allProjects.forEach( function(project, index, array) { %>
+            <a class="ui raised card" href="/projects/<%= project.shortId%>">
+              <div class="image">
+                <img src="<%- project.image %>" />
+              </div><!-- image -->
+              <div class="content">
+                <div class="header"><%- project.title %></div>
+                <div class="meta">
+                  <p>
+                    <% if (project.current) { %>
+                      This project is <strong>Current</strong> and was started on <%= project.started.toDateString() %>
+                    <%
+                    } else { %>
+                      Project ran from <%= project.started.toDateString() + " to " + project.finished.toDateString() %>
+                    <% } %>
+                    by <strong><%= project.author.username %></strong>
+                  </p>
+                </div><!-- meta -->
+                <div class="description">
+                  <%- project.content %>
+                </div><!-- description -->
+              </div><!-- content -->
+            </a><!-- ui fluid card -->
+          <% }); %>
+        </div><!-- ui three stackable cards -->
+        
+      </div><!-- one fluid column -->
+    </div><!-- row -->
 
   </div><!-- ui stackable vertically divided grid -->
 
-</div><!-- ui main text container -->
+<!--</div><!-- ui main text container -->
 
 <% include ./partials/js/default %>
 <% include ./partials/js/main %>

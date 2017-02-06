@@ -4,30 +4,49 @@
 <div class="ui main text container">
   <h1 class="ui header">Jimmy's Projects</h1>
   
-    <div class="ui segment">
-      <div class="ui divided items">
+    <!--<div class="ui segment">
+      <div class="ui divided items">-->
       
-        <% if (typeof allProjects !== "undefined" && allProjects.length > 0) { allProjects.forEach(function(project, index, array) { %>
-          <h2 class="ui header"><a href="/projects/<%= project.shortId%>"><%- project.title %></a></h2>
-          <div class="description">
-            <%- project.content %>
-          </div>
-          <%
-          if (index < array.length - 1)
+        <%
+        if (typeof allProjects !== "undefined" && allProjects.length > 0)
+        {
+          //var colors = ["red", "orange", "yellow", "olive", "green", "teal", "blue", "violet", "purple", "pink", "brown"];
+          
+          allProjects.forEach( function(project, index, array)
           {
           %>
-          <div class="ui divider"></div>
+            <a class="ui fluid raised card" href="/projects/<%= project.shortId%>">
+              <div class="image">
+                <img src="<%- project.image %>" />
+              </div><!-- image -->
+              <div class="content">
+                <div class="header"><%- project.title %></div>
+                <div class="meta">
+                  <p>
+                    <% if (project.current) { %>
+                      This project is <strong>Current</strong> and was started on <%= project.started.toDateString() %>
+                    <%
+                    } else { %>
+                      Project ran from <%= project.started.toDateString() + " to " + project.finished.toDateString() %>
+                    <% } %>
+                    by <strong><%= project.author.username %></strong>
+                  </p>
+                </div><!-- meta -->
+                <div class="description">
+                  <%- project.content %>
+                </div><!-- description -->
+              </div><!-- content -->
+            </a><!-- ui fluid card -->
           <%
-          }
-        });
+          });
         }
         else
-        { console.log("no blogs"); %>
+        {
+        %>
+          <div class="ui segment">
           <div class="description"><p>No Projects</p></div>
+          </div>
         <% } %>
-
-      </div>
-    </div>
 
 </div>
 

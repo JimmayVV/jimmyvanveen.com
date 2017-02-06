@@ -33,6 +33,11 @@ function getUrlParam( paramName )
 function returnFileUrl(fileUrl)
 {
   var funcNum = getUrlParam( 'CKEditorFuncNum' );
-  window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+  
+  if (funcNum !== null)
+    window.opener.CKEDITOR.tools.callFunction( funcNum, fileUrl );
+  else
+    window.opener.setImageUrl(fileUrl);
+  
   window.close();
 }

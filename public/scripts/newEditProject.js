@@ -14,6 +14,18 @@ $('#currentProject').checkbox(
 });
 
 
+function openImageSelector()
+{
+  window.open('/images','mywindow', 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=600');
+  return false;
+}
+
+function setImageUrl(fileUrl)
+{
+  $("input[name='image']").val(fileUrl);
+}
+
+
 function verifyDate()
 {
   // If the project is current, return true, because the back-end will take care of making the start & end dates valid

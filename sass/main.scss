@@ -20,7 +20,7 @@ h1#name
   margin-bottom: 0px;
 }
 
-h2#tagLine
+h2#tagline
 {
   margin-top: 0px;
   margin-bottom: 0px;
@@ -47,9 +47,9 @@ h2#tagLine
   }
 }
 
-.ui.container .ui.grid, .pusher
+.ui.container .ui.grid, .pusher, .ui.card
 {
-  .button, .ui.header, .ui.vertical.menu
+  .button, .ui.header, .content .header, .ui.vertical.menu
   {
     font-family: $font-stack
   }

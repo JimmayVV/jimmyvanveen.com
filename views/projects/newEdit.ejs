@@ -31,7 +31,16 @@ else
       
       <div class="field">
         <label>Project Image URL</label>
-        <input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">
+        
+        <div class="ui action fluid input">
+          <input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">
+          <a class="ui blue right labeled icon copy button" onclick="openImageSelector();">
+            <i class="image icon"></i>
+            Select
+          </a>
+        </div><!-- ui action fluid input -->
+        
+        <!--<input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">-->
       </div>
       
       <div class="field">
