@@ -30,22 +30,22 @@ router.get("/new", middleware.isLoggedIn, function(req, res)
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
-  var title   = middleware.sanitize(req.body.title);
-  var content = middleware.sanitize(req.body.content);
-  var current = (req.body.current === 'true') ? true : false;
-  var started = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
-  var finished = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
-  var author  = { id: req.user._id, username: req.user.username };
+  var title     = middleware.sanitize(req.body.title);
+  var content   = middleware.sanitize(req.body.content);
+  var image     = middleware.sanitize(req.body.image);
+  var current   = (req.body.current === 'true') ? true : false;
+  var started   = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
+  var finished  = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
+  var author    = { id: req.user._id, username: req.user.username };
   
-  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to started
+  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to equal started
   finished = (current || (finished.getTime() < started.getTime())) ? started : finished;
-  
-  console.log("Start Date: " + started.toDateString() + "   " + req.body.startDate.month + "\nEnd Date: " + finished.toDateString() + "    " + req.body.endDate.month);
   
   var newProject =
   {
     title:    title,
     content:  content,
+    image:    image, 
     started:  started,
     finished: finished,
     current:  current,
@@ -94,24 +94,36 @@ router.get("/:id/edit", middleware.checkUserProject, function(req, res)
 // UPDATE ROUTE
 router.put("/:id", middleware.checkUserProject, function(req, res)
 {
-  /*
-  var title = req.body.title;
-  var content = middleware.sanitize(req.body.content);
+  var title     = middleware.sanitize(req.body.title);
+  var content   = middleware.sanitize(req.body.content);
+  var image     = middleware.sanitize(req.body.image);
+  var current   = (req.body.current === 'true') ? true : false;
+  var started   = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
+  var finished  = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
+  var author    = { id: req.user._id, username: req.user.username };
+  
+  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to equal started
+  finished = (current || (finished.getTime() < started.getTime())) ? started : finished;
 
-  Blog.findOneAndUpdate(
+  Project.findOneAndUpdate(
   {
     shortId: req.params.id  // Find the blog by id
   },
   {
-    title: title, content: content // Update the title and content
+    title:    title,
+    content:  content,
+    image:    image, 
+    started:  started,
+    finished: finished,
+    current:  current
   },
   function(err, updatedBlog)
   {
     if(err)
-      res.redirect("/blogs");
+      res.redirect("/projects");
     else
-      res.redirect("/blogs/" + req.params.id);  // Send the user to the show page
-  });*/
+      res.redirect("/projects/" + req.params.id);  // Send the user to the show page
+  });
 });
 
 

@@ -8,6 +8,7 @@ var projectSchema = new mongoose.Schema(
   shortId:  {type: String, unique: true, default: shortId.generate},
   title:    String,
   content:  String,
+  image:    String,
   started:  Date,
   finished: Date,
   current:  Boolean,

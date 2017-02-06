@@ -1,5 +1,4 @@
-<% page = "projects" %>
-<% include ../partials/header %>
+<% page = "projects" %><% include ../partials/header %>
 <%
 var h2tag = 'Make New Project';
 var formAction = '/projects';
@@ -8,7 +7,7 @@ var months = ["January", "February", "March", "April", "May", "June",
 
 if (typeof project === 'undefined')
 {
-  var project = {title: '', content: '', started: new Date(2017, 1, 1), finished: new Date(2017, 1, 1)};
+  var project = {title: '', image: '', content: '', started: new Date(2017, 0, 1), finished: new Date(2017, 0, 1)};
 }
 else
 {
@@ -27,15 +26,28 @@ else
 
       <div class="field">
         <label>Project Title</label>
-        <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus>
+        <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus autocomplete="off">
+      </div>
+      
+      <div class="field">
+        <label>Project Image URL</label>
+        <input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">
       </div>
       
       <div class="field">
         <label>Date(s) of Project</label>
-        <div class="ui checkbox" id="currentProject">
-          <input name="current" value="false" id="currentVal" type="hidden">
-          <input tabindex="0" class="hidden" type="checkbox">
-          <label>Is this project still current?</label>
+        <%
+        var checked = "";
+        var hiddenStyle = "";
+        if (project.current) {
+          checked = " checked";
+          hiddenStyle = ' style="display: none"';
+        }
+        %>
+        <div class="ui checkbox<%= checked %>" id="currentProject">
+          <input name="current" value="<%= project.current %>" id="currentVal" type="hidden">
+          <input tabindex="0" class="hidden" type="checkbox"<%= checked %>>
+          <label for="current">Is this project still current?</label>
         </div>
         
 
@@ -46,22 +58,26 @@ else
               <div class="eight wide field">
                 <select name="startDate[month]" class="ui search dropdown">
                   <!-- Months are zero-based in JavaScript Date object, so this is factored into this select -->
-                  <% for (var i = 0; i < months.length; i++) { %>
-                  <option value="<%= i %>"><%= months[i] %></option>
+                  <%
+                  for (var i = 0; i < months.length; i++) {
+                    var selected = (project.started.getMonth() === i) ? "selected" : ""; %>
+                    <option value="<%= i %>" <%= selected %>><%= months[i] %></option>
                   <% } %>
                 </select>
               </div>
               <div class="three wide field">
                 <select name="startDate[day]" class="ui search dropdown">
-                  <% for(var i = 1; i <= 31; i++) { %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <% for(var i = 1; i <= 31; i++) {
+                    var selected = (project.started.getDate() === i) ? "selected" : ""; %>
+                    <option value="<%= i %>" <%= selected %>><%= i %></option>
                   <% } %>
                 </select>
               </div>
               <div class="five wide field">
                 <select name="startDate[year]" class="ui search dropdown">
-                  <% for(var i = 2017; i >= 2000; i--) { %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <% for(var i = 2017; i >= 2000; i--) {
+                    var selected = (project.started.getFullYear() === i) ? "selected" : ""; %>
+                  <option value="<%= i %>" <%= selected %>><%= i %></option>
                   <% } %>
                 </select>
               </div>
@@ -70,26 +86,29 @@ else
 
           <div class="field">
             <label>End Date:</label>
-            <div class="fields" id="endDate">
+            <div class="fields" id="endDate"<%- hiddenStyle %>>
               <div class="eight wide field">
                 <select name="endDate[month]" class="ui search dropdown">
                   <!-- Months are zero-based in JavaScript Date object, so this is factored into this select -->
-                  <% for (var i = 0; i < months.length; i++) { %>
-                  <option value="<%= i %>"><%= months[i] %></option>
+                  <% for (var i = 0; i < months.length; i++) {
+                    var selected = (project.finished.getMonth() === i) ? "selected" : ""; %>
+                  <option value="<%= i %>" <%= selected %>><%= months[i] %></option>
                   <% } %>
                 </select>
               </div>
               <div class="three wide field">
                 <select name="endDate[day]" class="ui search dropdown">
-                  <% for(var i = 1; i <= 31; i++) { %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <% for(var i = 1; i <= 31; i++) {
+                    var selected = (project.finished.getDate() === i) ? "selected" : ""; %>
+                  <option value="<%= i %>" <%= selected %>><%= i %></option>
                   <% } %>
                 </select>
               </div>
               <div class="five wide field">
                 <select name="endDate[year]" class="ui search dropdown">
-                  <% for(var i = 2017; i >= 2000; i--) { %>
-                  <option value="<%= i %>"><%= i %></option>
+                  <% for(var i = 2017; i >= 2000; i--) {
+                    var selected = (project.finished.getFullYear() === i) ? "selected" : ""; %>
+                  <option value="<%= i %>" <%= selected %>><%= i %></option>
                   <% } %>
                 </select>
               </div>

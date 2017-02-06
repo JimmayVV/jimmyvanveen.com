@@ -20,6 +20,7 @@ function verifyDate()
   if ($('input[name="current"]').val() === "true")
     return true;
   
+  // Make Date objects to be compared with
   var startDate = new Date(
     document.querySelector("select[name='startDate[year]']").value,
     document.querySelector("select[name='startDate[month]']").value,
@@ -32,11 +33,11 @@ function verifyDate()
     document.querySelector("select[name='endDate[day]']").value
   );
   
-  //alert("" + startDate.getTime() + " <= " + endDate.getTime() + " = " + (startDate.getTime() <= endDate.getTime()));
-  
+  // Verify that the start is less than or equal to the end date, if so return true
   if (startDate.getTime() <= endDate.getTime())
     return true;
   
+  // At this point, we know the dates are invalid, finish the function with an alert then return false
   alert("End date before start date - please choose valid dates");
   
   return false;
