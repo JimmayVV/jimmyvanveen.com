@@ -21,6 +21,7 @@ var indexRoutes   = require('./routes/index');
 var blogRoutes    = require('./routes/blogs');
 var imageUpload   = require('./routes/images');
 var projectRoutes = require('./routes/projects');
+var contactRoutes = require('./routes/contact');
 
 /*
 //allow cross origin requests
@@ -89,6 +90,7 @@ app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
 app.use('/images', imageUpload);
 app.use('/projects', projectRoutes);
+app.use('/contact', contactRoutes);
 
 
 // Start server

@@ -1,0 +1,55 @@
+<% page = "contact" %>
+<% include ../partials/header %>
+
+<div class="ui main text container">
+  <h1 class="ui header">Contact Jimmy</h1>
+
+  <div class="ui segment">
+    
+    <form action="/contact" method="post" class="ui form" id="commentForm">
+      
+      <div class="field">
+        <label>Subject</label>
+        <input type="text" name="title" placeholder="Message Subject" required autofocus autocomplete="off"
+               value="<%= (typeof contact !== "undefined") ? contact.title : '' %>">
+      </div>
+      
+      <div class="field">
+        <label>Message Body</label>
+        <textarea name="content" id="editContent" required><%= (typeof contact !== "undefined") ? contact.content : '' %></textarea>
+      </div>
+      
+      <div class="field">
+        <div class="g-recaptcha" data-sitekey="6Ld-sRQUAAAAALhT9SxLPj3T73bcYYaIgQ-NrmI3"></div>
+      </div>
+      
+      <button class="ui primary button" type="submit">Submit</button>
+    </form>
+    
+  </div><!-- ui segment -->
+
+</div>
+
+<% include ../partials/js/default %>
+<script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+/*$(document).ready(function() {
+  $('#commentForm').submit(function()
+  {
+    $(this).ajaxSubmit(
+    {
+      error: function(xhr)
+      {
+        status('Error: ' + xhr.status);
+      },
+      success: function(response)
+      {
+        console.log(response);
+      }
+    });
+    //Very important line, it disable the page refresh.
+    return false;
+  });
+});*/
+</script>
+<% include ../partials/footer %>
