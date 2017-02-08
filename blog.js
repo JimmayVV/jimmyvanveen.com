@@ -15,28 +15,17 @@ var express         = require("express"),
     
 
 //requiring routes
-//var commentRoutes    = require("./routes/comments");
-//var campgroundRoutes = require("./routes/campgrounds");
 var indexRoutes   = require('./routes/index');
 var blogRoutes    = require('./routes/blogs');
 var imageUpload   = require('./routes/images');
 var projectRoutes = require('./routes/projects');
-
-/*
-//allow cross origin requests
-app.use(function(req, res, next)
-{
-  res.setHeader("Access-Control-Allow-Methods", "POST, PUT, OPTIONS, DELETE, GET");
-  res.header("Access-Control-Allow-Origin", "http://localhost");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});*/
+var contactRoutes = require('./routes/contact');
 
 // Connect to mongo using mongoose
 mongoose.connect("mongodb://localhost/jimmy_blog_app");
 
 // Add/configure each of the above modules to the express app
-app.set('view engine', 'ejs');  // Don't need to provide 'ejs' extensions to those files
+app.set('view engine', 'ejs');  // Use EJS as the view engine
 app.use(flash());               // Enable the flash module to be used by the app
 // Configure body parser, so that we can get passed in parameters with req.body
 app.use(bodyParser.urlencoded({extended: true, limit: "10mb", parameterLimit: 50000}));
@@ -89,9 +78,11 @@ app.use('/', indexRoutes);
 app.use('/blogs', blogRoutes);
 app.use('/images', imageUpload);
 app.use('/projects', projectRoutes);
+app.use('/contact', contactRoutes);
 
 
 // Start server
-app.listen(3000, function(){
+app.listen(3000, function()
+{
     console.log("Blog app started");
 })

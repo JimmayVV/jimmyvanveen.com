@@ -20,11 +20,11 @@ var storage = multer.diskStorage(
   filename: function (req, file, cb)
   {
     cb(null, req.shortId + '_' + file.originalname);
-    /*var datetimestamp = Date.now();
-    cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1])*/
   }
 });
 
+
+// Set the multer upload process
 var upload = multer(
 {
   storage: storage
@@ -47,34 +47,38 @@ router.get('/', middleware.isLoggedIn, function(req, res)
 });
 
 
-// NEW route - will list all of the images we have stored
+// NEW route - manual form to upload images with - this will not be used for the most part,
+//             as the image upload form is contained within CKEDIT
 router.get('/upload', middleware.isLoggedIn, function(req, res)
 {
-  // Show the index of all the uploaded images, as well as the form to upload them
+  // Show the form to upload an image
   res.render('images/new');
 });
 
 
-// Simple post function to complete the upload
+// CREATE route - this will process the upload as well as log it within Mongo
 router.post('/upload', middleware.isLoggedIn, function(req, res)
 {
+  // Generate a shortid, which will be used to create a unique file name, as well as for storing in Mongo
   var imageId = shortid.generate();
-  req.shortId = imageId;
-
-  console.log("Trying to upload a file");
   
+  // By setting req.shortId outside of the 'upload' method call below, this will ensure that the file name will be set correctly with the shortId
+  // See the definition for 'var storage' above for how shortId is incorporated into the filename - we will use shortId below for mongo
+  req.shortId = imageId;
+  
+  // Start the upload process as defined above
   upload(req,res,function(err)
   {
     if(err)
     {
       console.log(err);
-      // If err, return out of function with error json
+      // If err, return out of the function to stop all code, and display the images index page
       return res.redirect('/images');
     }
-     
-    // If successful upload, then save data to mongo, and pass successful json
-    console.log(req.file);
+    // If we made it out of the 'if(err)' condition, then we can assume the file is uploaded to the server.
+    // We can now focus on storing the info into Mongo
     
+    // Make a JSON object to pass to mongo to store the file data
     var newImage = 
     {
       shortId:  imageId,

@@ -47,12 +47,17 @@ h2#tagline
   }
 }
 
-.ui.container .ui.grid, .pusher, .ui.card
+.ui.container, .ui.grid, .pusher, .ui.card
 {
   .button, .ui.header, .content .header, .ui.vertical.menu
   {
     font-family: $font-stack
   }
+}
+
+.ui.cards>.card>.content>.header
+{
+  font-family: $font-stack
 }
 
 .ui.footer

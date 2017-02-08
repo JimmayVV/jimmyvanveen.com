@@ -29,9 +29,10 @@ router.get("/new", middleware.isLoggedIn, function(req, res)
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
-  // Get all the title & content from the passed in parameters
-  var title = req.body.title;
+  // Get the title & content from the passed in parameters
+  var title = middleware.sanitize(req.body.title);
   var content = middleware.sanitize(req.body.content);
+  
   // Set author to the current id (and username)
   var author =
   {
@@ -56,7 +57,7 @@ router.post("/", middleware.isLoggedIn, function(req, res)
 // SHOW ROUTE
 router.get("/:id", function(req, res)
 {
-  // Get the blog
+  // Get the blog (find by shortId)
   Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
   {
     // If one doesn't exist, redirect to the main blogs page, otherwise, show it
@@ -71,7 +72,7 @@ router.get("/:id", function(req, res)
 // EDIT ROUTE
 router.get("/:id/edit", middleware.checkUserBlog, function(req, res)
 {
-  // Find the blog based on id, then send it to the edit page to be rendered for editing
+  // Find the blog based on shortId, then send it to the edit page to be rendered for editing
   Blog.findOne({shortId: req.params.id}, function(err, foundBlog)
   {
     if(err)
@@ -85,9 +86,11 @@ router.get("/:id/edit", middleware.checkUserBlog, function(req, res)
 // UPDATE ROUTE
 router.put("/:id", middleware.checkUserBlog, function(req, res)
 {
-  var title = req.body.title;
+  // Get the title & content from the passed in parameters
+  var title = middleware.sanitize(req.body.title);
   var content = middleware.sanitize(req.body.content);
 
+  // Find the blog by shortId, then update it
   Blog.findOneAndUpdate(
   {
     shortId: req.params.id  // Find the blog by id
@@ -97,6 +100,7 @@ router.put("/:id", middleware.checkUserBlog, function(req, res)
   },
   function(err, updatedBlog)
   {
+    // If there was an error, redirect to the main blogs page, otherwise send to the specific blog edited 'show' page
     if(err)
       res.redirect("/blogs");
     else
@@ -108,7 +112,7 @@ router.put("/:id", middleware.checkUserBlog, function(req, res)
 // DELETE ROUTE
 router.delete("/:id", middleware.checkUserBlog, function(req, res)
 {
-  //Destroy the blog
+  //Destroy the blog, find by shortId
   Blog.findOneAndRemove({shortId: req.params.id}, function(err)
   {
     if(err)

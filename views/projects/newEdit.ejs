@@ -7,7 +7,7 @@ var months = ["January", "February", "March", "April", "May", "June",
 
 if (typeof project === 'undefined')
 {
-  var project = {title: '', image: '', content: '', started: new Date(2017, 0, 1), finished: new Date(2017, 0, 1)};
+  var project = {title: '', image: '', content: '', repo: { url: '', location: 'Other' }, started: new Date(2017, 0, 1), finished: new Date(2017, 0, 1)};
 }
 else
 {
@@ -29,18 +29,37 @@ else
         <input type="text" name="title" placeholder="Project Title" value="<%= project.title %>" required autofocus autocomplete="off">
       </div>
       
+      <div class="fields">
+        <div class="twelve wide field">
+          <label>Repository URL</label>
+        
+          <div class="ui fluid input">
+            <input type="text" name="repo[url]" placeholder="Project Repository URL" value="<%= project.repo.url %>" autocomplete="off">
+          </div><!-- ui fluid input -->
+        </div>
+        
+        <div class="four wide field">
+          <label>Repository Location</label>
+          <select class="ui dropdown" name="repo[location]">
+            <option value="Bitbucket"<%= (project.repo.location === 'Bitbucket') ? ' selected' : '' %>>Bitbucket</option>
+            <option value="Github"<%= (project.repo.location === 'Github') ? ' selected' : '' %>>Github</option>
+            <option value="Other"<%= (project.repo.location === 'Other') ? ' selected' : '' %>>Other</option>
+          </select>
+        </div>
+        
+      </div><!-- fields -->
+      
+      
       <div class="field">
         <label>Project Image URL</label>
         
         <div class="ui action fluid input">
-          <input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">
+          <input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" autocomplete="off">
           <a class="ui blue right labeled icon copy button" onclick="openImageSelector();">
             <i class="image icon"></i>
             Select
           </a>
         </div><!-- ui action fluid input -->
-        
-        <!--<input type="text" name="image" placeholder="Project Image URL" value="<%= project.image %>" required autocomplete="off">-->
       </div>
       
       <div class="field">

@@ -27,7 +27,10 @@ h2#tagline {
     font-size: 1.2em;
     letter-spacing: 0.1em; }
 
-.ui.container .ui.grid .button, .ui.container .ui.grid .ui.header, .ui.container .ui.grid .content .header, .ui.container .ui.grid .ui.vertical.menu, .pusher .button, .pusher .ui.header, .pusher .content .header, .pusher .ui.vertical.menu, .ui.card .button, .ui.card .ui.header, .ui.card .content .header, .ui.card .ui.vertical.menu {
+.ui.container .button, .ui.container .ui.header, .ui.container .content .header, .ui.container .ui.vertical.menu, .ui.grid .button, .ui.grid .ui.header, .ui.grid .content .header, .ui.grid .ui.vertical.menu, .pusher .button, .pusher .ui.header, .pusher .content .header, .pusher .ui.vertical.menu, .ui.card .button, .ui.card .ui.header, .ui.card .content .header, .ui.card .ui.vertical.menu {
+  font-family: "Architects Daughter", cursive; }
+
+.ui.cards > .card > .content > .header {
   font-family: "Architects Daughter", cursive; }
 
 .ui.footer {

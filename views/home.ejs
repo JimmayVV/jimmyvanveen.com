@@ -51,7 +51,7 @@ if (typeof allProjects === "undefined")
       </div>
 
       <div class="column">
-        <a class="ui orange big fluid button" href="https://bitbucket.org/JimmayVV/" target="_blank">
+        <a class="ui orange big fluid button" href="/contact">
           <i class="talk icon"></i>
           Contact Page
         </a>
@@ -64,16 +64,6 @@ if (typeof allProjects === "undefined")
         </a>
       </div>
         
-        
-
-        
-        <!--<ul class="ui list">
-          <li>Email</li>
-          <li>Cell: <a href="tel:6038011131">(603) 801-1131</a></li>
-          <li>Contact Page</li>
-        </ul>-->
-        
-      <!--</div><!-- sixteen wide column -->
       
     </div><!-- row -->
     
@@ -83,31 +73,33 @@ if (typeof allProjects === "undefined")
         
         <h2 class="ui header">Jimmy's Projects:</h2>
         
-        <div class="ui three stackable cards">
+        <div class="ui two stackable cards">
+          
           <% allProjects.forEach( function(project, index, array) { %>
-            <a class="ui raised card" href="/projects/<%= project.shortId%>">
+            <div class="ui raised card">
               <div class="image">
                 <img src="<%- project.image %>" />
               </div><!-- image -->
               <div class="content">
-                <div class="header"><%- project.title %></div>
-                <div class="meta">
-                  <p>
-                    <% if (project.current) { %>
-                      This project is <strong>Current</strong> and was started on <%= project.started.toDateString() %>
-                    <%
-                    } else { %>
-                      Project ran from <%= project.started.toDateString() + " to " + project.finished.toDateString() %>
-                    <% } %>
-                    by <strong><%= project.author.username %></strong>
-                  </p>
-                </div><!-- meta -->
+                <a class="header" href="/projects/<%= project.shortId%>"><%- project.title %></a>
                 <div class="description">
                   <%- project.content %>
                 </div><!-- description -->
               </div><!-- content -->
-            </a><!-- ui fluid card -->
+              
+              <%
+              if (typeof project.repo !== "undefined" && typeof project.repo.url !== "undefined")
+              {
+              var color = (project.repo.location === "Github") ? 'green' : 'blue';
+              %>
+              <a class="ui bottom attached <%= color %> button" href="<%= project.repo.url %>" target="_blank">
+                <%= (typeof project.repo.location !== "undefined") ? "View on " + project.repo.location : "View Repository Online" %>
+              </a>
+              <% } %>
+              
+            </div><!-- ui fluid card -->
           <% }); %>
+          
         </div><!-- ui three stackable cards -->
         
       </div><!-- one fluid column -->

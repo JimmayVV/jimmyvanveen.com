@@ -30,26 +30,31 @@ router.get("/new", middleware.isLoggedIn, function(req, res)
 // CREATE ROUTE
 router.post("/", middleware.isLoggedIn, function(req, res)
 {
-  var title     = middleware.sanitize(req.body.title);
-  var content   = middleware.sanitize(req.body.content);
-  var image     = middleware.sanitize(req.body.image);
-  var current   = (req.body.current === 'true') ? true : false;
+  // Determine if the project is current, and set 'current' to true, or false
+  var current = (req.body.current === 'true') ? true : false;
+  
+  // Set started and finished to variables based on passed in params
   var started   = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
   var finished  = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
-  var author    = { id: req.user._id, username: req.user.username };
   
-  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to equal started
+  // Now set finished to the appropriate date if project is marked as current, or is less than the start date (can't end before it started)
   finished = (current || (finished.getTime() < started.getTime())) ? started : finished;
   
+  // Make the newProject JSON to be passed into Mongo
   var newProject =
   {
-    title:    title,
-    content:  content,
-    image:    image, 
+    title:    middleware.sanitize(req.body.title),
+    content:  middleware.sanitize(req.body.content),
+    image:    middleware.sanitize(req.body.image),
+    repo:
+    {
+      url:      middleware.sanitize(req.body.repo.url),
+      location: middleware.sanitize(req.body.repo.location)
+    },
+    current:  current,
     started:  started,
     finished: finished,
-    current:  current,
-    author:   author
+    author:   { id: req.user._id, username: req.user.username }
   };
   
   Project.create(newProject, function(err, createdProject)
@@ -94,15 +99,14 @@ router.get("/:id/edit", middleware.checkUserProject, function(req, res)
 // UPDATE ROUTE
 router.put("/:id", middleware.checkUserProject, function(req, res)
 {
-  var title     = middleware.sanitize(req.body.title);
-  var content   = middleware.sanitize(req.body.content);
-  var image     = middleware.sanitize(req.body.image);
+  // Determine if the project is current, and set 'current' to true, or false
   var current   = (req.body.current === 'true') ? true : false;
+  
+  // Set started and finished to variables based on passed in params
   var started   = new Date(req.body.startDate.year, req.body.startDate.month, req.body.startDate.day);
   var finished  = new Date(req.body.endDate.year, req.body.endDate.month, req.body.endDate.day);
-  var author    = { id: req.user._id, username: req.user.username };
   
-  // Check if current is true, or if finished time is less than start time (can't end before it started), if so, set finished to equal started
+  // Now set finished to the appropriate date if project is marked as current, or is less than the start date (can't end before it started)
   finished = (current || (finished.getTime() < started.getTime())) ? started : finished;
 
   Project.findOneAndUpdate(
@@ -110,9 +114,14 @@ router.put("/:id", middleware.checkUserProject, function(req, res)
     shortId: req.params.id  // Find the blog by id
   },
   {
-    title:    title,
-    content:  content,
-    image:    image, 
+    title:    middleware.sanitize(req.body.title),
+    content:  middleware.sanitize(req.body.content),
+    image:    middleware.sanitize(req.body.image),
+    repo:
+    {
+      url:      middleware.sanitize(req.body.repo.url),
+      location: middleware.sanitize(req.body.repo.location)
+    },
     started:  started,
     finished: finished,
     current:  current
