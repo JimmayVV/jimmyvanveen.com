@@ -1,5 +1,4 @@
-<% page = "projects" %>
-<% include ../partials/header %>
+<% page = "projects" %><% include ../partials/header %>
 
 <div class="ui main text container">
   <h1 class="ui header">Jimmy's Projects</h1>
@@ -40,6 +39,17 @@
         <%- project.content %>
       </div><!-- description -->
     </div><!-- content -->
+    
+    <%
+    if (typeof project.repo !== "undefined" && typeof project.repo.url !== "undefined")
+    {
+    var color = (project.repo.location === "Github") ? 'green' : 'blue';
+    %>
+    <a class="ui bottom attached <%= color %> button" href="<%= project.repo.url %>" target="_blank">
+      <%= (typeof project.repo.location !== "undefined") ? "View on " + project.repo.location : "View Repository Online" %>
+    </a>
+    <% } %>
+    
   </div><!-- ui fluid card -->
 
 </div><!-- ui main text container -->

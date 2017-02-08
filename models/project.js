@@ -9,6 +9,11 @@ var projectSchema = new mongoose.Schema(
   title:    String,
   content:  String,
   image:    String,
+  repo:
+  {
+    url:      String,
+    location: String
+  },
   started:  Date,
   finished: Date,
   current:  Boolean,

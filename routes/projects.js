@@ -46,6 +46,11 @@ router.post("/", middleware.isLoggedIn, function(req, res)
     title:    middleware.sanitize(req.body.title),
     content:  middleware.sanitize(req.body.content),
     image:    middleware.sanitize(req.body.image),
+    repo:
+    {
+      url:      middleware.sanitize(req.body.repo.url),
+      location: middleware.sanitize(req.body.repo.location)
+    },
     current:  current,
     started:  started,
     finished: finished,
@@ -111,7 +116,12 @@ router.put("/:id", middleware.checkUserProject, function(req, res)
   {
     title:    middleware.sanitize(req.body.title),
     content:  middleware.sanitize(req.body.content),
-    image:    middleware.sanitize(req.body.image), 
+    image:    middleware.sanitize(req.body.image),
+    repo:
+    {
+      url:      middleware.sanitize(req.body.repo.url),
+      location: middleware.sanitize(req.body.repo.location)
+    },
     started:  started,
     finished: finished,
     current:  current
