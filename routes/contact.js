@@ -39,18 +39,18 @@ router.post("/", function(req, res)
   
   // Validate recaptcha
   recaptcha.validateRequest(req)
-  .then(function()
+  .then(function()  // Valid recaptcha
   {
-    // Process the message, and send it
+    // Create the message
     var message =
     {
       from: '"JimmyVanVeen.com" <jimmy@jimmyvanveen.com>',  // sender address
       to: 'jimmy.van.veen@gmail.com',                       // list of receivers
-      subject: 'WEB PAGE CONTACT: ' + contact.title,         // Subject line
+      subject: 'WEB PAGE CONTACT: ' + contact.title,        // Subject line
       text: contact.content                                 // plain text body
     };
     
-    
+    // Now send the email
     transporter.sendMail(message, (error, info) =>
     {
       if (error)
@@ -60,19 +60,18 @@ router.post("/", function(req, res)
         console.log(error.message);
         return;
       }
-      var message = 'Message sent successfully!';
       
-      console.log(message);
-      req.flash("success", message);
+      var flash = 'Message sent successfully!';
+      
+      console.log(flash);
+      req.flash("success", flash);
       console.log('Server responded with "%s"', info.response);
       transporter.close();
+      res.redirect('/');
     });
-    
-    res.redirect('/');
   })
   .catch(function(errorCodes)
-  {
-    // invalid
+  { // invalid recaptcha
     req.flash("error", "Captcha not verified successfully");// translate error codes to human readable text
     res.render('contact/index', {contact: contact});
   });

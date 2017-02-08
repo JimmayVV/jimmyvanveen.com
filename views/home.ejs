@@ -64,16 +64,6 @@ if (typeof allProjects === "undefined")
         </a>
       </div>
         
-        
-
-        
-        <!--<ul class="ui list">
-          <li>Email</li>
-          <li>Cell: <a href="tel:6038011131">(603) 801-1131</a></li>
-          <li>Contact Page</li>
-        </ul>-->
-        
-      <!--</div><!-- sixteen wide column -->
       
     </div><!-- row -->
     
@@ -84,6 +74,7 @@ if (typeof allProjects === "undefined")
         <h2 class="ui header">Jimmy's Projects:</h2>
         
         <div class="ui three stackable cards">
+          
           <% allProjects.forEach( function(project, index, array) { %>
             <a class="ui raised card" href="/projects/<%= project.shortId%>">
               <div class="image">
@@ -108,6 +99,7 @@ if (typeof allProjects === "undefined")
               </div><!-- content -->
             </a><!-- ui fluid card -->
           <% }); %>
+          
         </div><!-- ui three stackable cards -->
         
       </div><!-- one fluid column -->
