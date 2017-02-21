@@ -22,7 +22,7 @@ var projectRoutes = require('./routes/projects');
 var contactRoutes = require('./routes/contact');
 
 // Connect to mongo using mongoose
-mongoose.connect("mongodb://localhost/jimmy_blog_app");
+mongoose.connect("mongodb://heroku_hlnhpkzm:Nomar88$@ds157559.mlab.com:57559/heroku_hlnhpkzm");
 
 // Add/configure each of the above modules to the express app
 app.set('view engine', 'ejs');  // Use EJS as the view engine
