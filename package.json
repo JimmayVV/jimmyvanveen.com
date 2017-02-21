@@ -4,7 +4,8 @@
   "description": "Jimmy Van Veen's Blog Site",
   "main": "blog.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node blog.js"
   },
   "author": "Jimmy Van Veen",
   "license": "ISC",
