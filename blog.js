@@ -22,7 +22,8 @@ var projectRoutes = require('./routes/projects');
 var contactRoutes = require('./routes/contact');
 
 // Connect to mongo using mongoose
-mongoose.connect("mongodb://heroku_hlnhpkzm:Nomar88$@ds157559.mlab.com:57559/heroku_hlnhpkzm");
+var mongoConnect = process.env.PROD_MONGODB || "mongodb://localhost/jimmy_blog_app";
+mongoose.connect(mongoConnect);
 
 // Add/configure each of the above modules to the express app
 app.set('view engine', 'ejs');  // Use EJS as the view engine
@@ -80,9 +81,11 @@ app.use('/images', imageUpload);
 app.use('/projects', projectRoutes);
 app.use('/contact', contactRoutes);
 
+// Set port to env variable, or 3000 if on devel station
+var port = process.env.PORT || 3000;
 
 // Start server
-app.listen(3000, function()
+app.listen(port, function()
 {
     console.log("Blog app started");
 })
