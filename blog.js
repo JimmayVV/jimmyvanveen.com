@@ -88,5 +88,5 @@ var ip_addr = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 // Start server
 app.listen(port, ip_addr, function()
 {
-    console.log("Blog app started");
-})
+    console.log("Blog app started, running at: " + ip_addr + ":" + port);
+});
