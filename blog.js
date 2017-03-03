@@ -82,10 +82,11 @@ app.use('/projects', projectRoutes);
 app.use('/contact', contactRoutes);
 
 // Set port to env variable, or 3000 if on devel station
-var port = process.env.PORT || 3000;
+var port    = process.env.OPENSHIFT_NODEJS_PORT || 3000;
+var ip_addr = process.env.OPENSHIFT_NODEJS_IP || '127.0.0.1';
 
 // Start server
-app.listen(port, function()
+app.listen(port, ip_addr, function()
 {
     console.log("Blog app started");
 })
