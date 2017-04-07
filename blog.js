@@ -36,7 +36,7 @@ app.use('/stylesheets', sass(
 {
   src:    __dirname + '/sass', 
   dest:   __dirname + '/public/stylesheets',
-  debug:  true,       
+  debug:  false,       
 })); 
 // Configure the "public" folder to contain static files such as CSS & JS (or images)
 app.use(express.static(__dirname + "/public"));
@@ -82,9 +82,11 @@ app.use('/projects', projectRoutes);
 app.use('/contact', contactRoutes);
 
 // Set port to env variable, or 3000 if on devel station
-var port = process.env.PORT || process.env.OPENSHIFT_NODEJS_PORT || 8080;
-var ip = process.env.IP || process.env.OPENSHIFT_NODEJS_IP || '0.0.0.0';
+var port = process.env.PORT || 3000;
+var ip = process.env.IP || '127.0.0.1';
 
 // Start server
-app.listen(port, ip);
-console.log('Server running on http://%s:%s', ip, port);
+app.listen(port, ip, function()
+{
+  console.log('Server running on http://%s:%s', ip, port);
+});

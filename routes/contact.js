@@ -11,7 +11,7 @@ var transporter = nodemailer.createTransport(
   service: 'gmail',
   auth: {
     user: 'jimmy.van.veen@gmail.com',
-    pass: 'ovuyhibwbrtddcmd'
+    pass: process.env.GMAIL_PASS
   }
 });
 
@@ -72,7 +72,7 @@ router.post("/", function(req, res)
   })
   .catch(function(errorCodes)
   { // invalid recaptcha
-    req.flash("error", "Captcha not verified successfully");// translate error codes to human readable text
+    req.flash("error", "Captcha not verified successfully");
     res.render('contact/index', {contact: contact});
   });
 });
