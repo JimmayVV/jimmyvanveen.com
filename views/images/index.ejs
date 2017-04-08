@@ -13,7 +13,7 @@
       
         <div class="ui card">
           <div class="image">
-            <img class="image" src='/uploads/<%= image.filename %>' />
+            <img class="image" src='<%= image.filename %>' />
           </div>
           
           <!--<div class="content">
@@ -31,7 +31,7 @@
           <!--</div><!-- content -->
           
           <div class="ui two bottom attached buttons">
-            <button class="ui primary button" onclick="returnFileUrl('/uploads/<%= image.filename %>')">
+            <button class="ui primary button" onclick="returnFileUrl('<%= image.filename %>')">
               Select This Image
             </button>
             <form

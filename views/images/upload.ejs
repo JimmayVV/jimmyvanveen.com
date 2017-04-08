@@ -12,7 +12,7 @@
         <div class="ui divided items">
           <div class="item">
             <div class="ui tiny image">
-              <img src="/uploads/<%= image.filename %>" alt="<%= image.filename %>">
+              <img src="<%= image.filename %>" alt="<%= image.filename %>">
             </div>
             <div class="middle aligned content">
               <p>
@@ -48,7 +48,7 @@
       window.close();
     }
     
-    returnFileUrl('/uploads/<%= image.filename %>');
+    returnFileUrl('<%= image.filename %>');
     </script>
 
  <% include ./partials/footer %>

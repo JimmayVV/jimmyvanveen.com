@@ -1,37 +1,47 @@
 var express     = require('express');
 var router      = express.Router();
 var passport    = require('passport');
-var multer      = require('multer');
 var shortid     = require('shortid');
 var fs          = require('fs');
+var aws         = require('aws-sdk');
+var multer      = require('multer');
+var multerS3    = require('multer-s3');
+const bucket    = 'jimmyvanveen-bucket';
 var middleware  = require('../middleware');
 var User        = require('../models/user');
 var Image       = require('../models/image');
 
 
-// Set up multer variables
-// multers disk storage settings
-var storage = multer.diskStorage(
-{ 
-  destination: function (req, file, cb)
-  {
-    cb(null, './public/uploads');
-  },
-  filename: function (req, file, cb)
-  {
-    cb(null, req.shortId + '_' + file.originalname);
-  }
-});
+// Set up the AWS credentials, then spin up a S3 object (must set credentials first, or else it won't work)
+aws.config.update({ accessKeyId: process.env.AWS_ACCESS_KEY, secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY });
+
+// Spin up a aws.S3 object from aws-sdk
+var s3 = new aws.S3();
 
 
-// Set the multer upload process
+// MULTER setup
 var upload = multer(
 {
-  storage: storage
+  storage: multerS3(
+  {
+    s3: s3,
+    bucket: bucket,
+    acl: 'public-read',
+    metadata: function (req, file, cb)
+    {
+      cb(null, {fieldName: file.fieldname});
+    },
+    key: function (req, file, cb)
+    {
+      // This is where we will set the filename - using Date.now() to ensure uniquness
+      cb(null, Date.now() + '_' + file.originalname);
+    }
+  })
 }).single('upload');
 
 
 
+// Start routes
 // Path prefix '/images'
 
 // INDEX route - will list all of the images we have stored
@@ -59,45 +69,44 @@ router.get('/upload', middleware.isLoggedIn, function(req, res)
 // CREATE route - this will process the upload as well as log it within Mongo
 router.post('/upload', middleware.isLoggedIn, function(req, res)
 {
-  // Generate a shortid, which will be used to create a unique file name, as well as for storing in Mongo
+  // Generate a shortid, which will be used to ensure a unique file name, as well as for storing in Mongo
   var imageId = shortid.generate();
   
-  // By setting req.shortId outside of the 'upload' method call below, this will ensure that the file name will be set correctly with the shortId
-  // See the definition for 'var storage' above for how shortId is incorporated into the filename - we will use shortId below for mongo
-  req.shortId = imageId;
-  
-  // Start the upload process as defined above
-  upload(req,res,function(err)
+  // We can now focus on storing the info into Mongo and sending to AWS S3
+  // Thanks to: http://webrocom.net/aws-nodejs-sdk-upload-image-s3-bucket/
+  upload(req, res, function (err)
   {
-    if(err)
+    if (err)
     {
-      console.log(err);
-      // If err, return out of the function to stop all code, and display the images index page
-      return res.redirect('/images');
+      console.log("Error uploading data: ", err);
+      res.status(400).send("Failed to upload file - check logs");
     }
-    // If we made it out of the 'if(err)' condition, then we can assume the file is uploaded to the server.
-    // We can now focus on storing the info into Mongo
-    
-    // Make a JSON object to pass to mongo to store the file data
-    var newImage = 
+    else
     {
-      shortId:  imageId,
-      filename: req.file.filename,
-      author:
+      // Everything went fine
+      // Make a JSON object to pass to mongo to store the file data
+      var newImage = 
       {
-        id: req.user._id,
-        username: req.user.username
-      }
-    };
-    
-    // Make the image in mongodb
-    Image.create(newImage, function(err, createdImage)
-    {
-      if (err)
-        console.log(err);
-      console.log(req.body);
-      res.render('images/upload', {image: createdImage});
-    });
+        shortId:  imageId,
+        filename: 'https://' + bucket + '.s3.amazonaws.com/' + req.file.key,
+        author:
+        {
+          id: req.user._id,
+          username: req.user.username
+        }
+      };
+
+      // Make the image in mongodb
+      Image.create(newImage, function(err, createdImage)
+      {
+        if (err)
+          console.log(err);
+        console.log(req.body);
+        // Send the image object to the upload page - which will send the data back to CKEDITOR for immediate use
+        res.render('images/upload', {image: createdImage});
+      });
+    }
+
   });
 });
 
@@ -111,11 +120,13 @@ router.delete('/:id', middleware.isLoggedIn, function(req, res)
     if (err)
       return res.redirect('/images');
     
+    // Delete the file from AWS S3
+    
     // Delete the file from the server using the URL
-    fs.unlink('./public/uploads/' + foundImage.filename, function(err)
+    /*fs.unlink('./public/uploads/' + foundImage.filename, function(err)
     {
       if (err) console.log("There was a problem deleting the file");
-    });
+    });*/
     
     // Now remove the entry from the DB
     foundImage.remove();
