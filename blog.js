@@ -85,8 +85,19 @@ app.use('/contact', contactRoutes);
 var port = process.env.PORT || 3000;
 var ip = process.env.IP || '127.0.0.1';
 
-// Start server
-app.listen(port, ip, function()
+// Change how to start app based on devel or production
+if (process.env.NODE_ENV === 'production')
 {
-  console.log('Server running on http://%s:%s', ip, port);
-});
+  app.listen(port, function()
+  {
+    console.log('Server running on port %s', port);
+  });
+}
+else
+{
+  // Start server
+  app.listen(port, ip, function()
+  {
+    console.log('Server running on http://%s:%s', ip, port);
+  });
+}
