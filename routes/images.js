@@ -69,9 +69,6 @@ router.get('/upload', middleware.isLoggedIn, function(req, res)
 // CREATE route - this will process the upload as well as log it within Mongo
 router.post('/upload', middleware.isLoggedIn, function(req, res)
 {
-  // Generate a shortid, which will be used to ensure a unique file name, as well as for storing in Mongo
-  var imageId = shortid.generate();
-  
   // We can now focus on storing the info into Mongo and sending to AWS S3
   // Thanks to: http://webrocom.net/aws-nodejs-sdk-upload-image-s3-bucket/
   upload(req, res, function (err)
@@ -87,7 +84,7 @@ router.post('/upload', middleware.isLoggedIn, function(req, res)
       // Make a JSON object to pass to mongo to store the file data
       var newImage = 
       {
-        shortId:  imageId,
+        shortId:  shortid.generate(),
         filename: 'https://' + bucket + '.s3.amazonaws.com/' + req.file.key,
         author:
         {
