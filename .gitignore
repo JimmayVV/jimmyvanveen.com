@@ -6,3 +6,4 @@ resources/js/google-map-api-key.json
 
 # ignore node_modules, so a fresh copy can be installed by whoever clones the repo
 node_modules
+dist
