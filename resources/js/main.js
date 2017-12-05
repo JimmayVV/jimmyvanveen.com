@@ -25,7 +25,7 @@ $(document).ready(function(){
       nav.className = '';
       nav.className = fixed;
       
-      $('body').css("margin-top", $('#main-nav').height() + 4);
+      $('body').css("margin-top", $('#main-nav').height());
       
       // Add padding to the top of the page to account for the nav being removed from the flow
       //docTop.className = 'nav-padding'
@@ -78,6 +78,12 @@ $(document).ready(function(){
       }
     }
   );
+
+
+  /* Enable Tooltips Everywhere */
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip()
+  });
   
   
   
