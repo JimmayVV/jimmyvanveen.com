@@ -12,9 +12,15 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.js$/,
+                test: /\.js?$/,
                 exclude: /node_modules/,
-                loader: 'babel-loader'
+                loader: 'babel-loader',
+                query: {
+                    presets: [ 'babel-preset-env', 'react' ]
+                }/*,
+                options: {
+                    presets: ['@babel/preset-env']                    
+                }*/
             },
             {
                 test: /\.scss$/,

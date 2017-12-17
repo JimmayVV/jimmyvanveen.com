@@ -1,6 +1,6 @@
-$(document).ready(function(){
+/*$(document).ready(function(){
 
-  /* Set Scrollspy */
+  // Set Scrollspy
   $('body').scrollspy({
     target: '#main-nav',
     offset: 52
@@ -41,7 +41,7 @@ $(document).ready(function(){
     }
   });
   
-  /* Smooth Scroll To Hash Link */
+  // Smooth Scroll To Hash Link
   // Select all links with hashes
   $('a[href*="#"]')
     // Remove links that don't actually link to anything
@@ -80,15 +80,15 @@ $(document).ready(function(){
   );
 
 
-  /* Enable Tooltips Everywhere */
+  // Enable Tooltips Everywhere
   $(function () {
     $('[data-toggle="tooltip"]').tooltip()
   });
   
   
   
-  /* Throttle scrolling */
-  /*
+  // Throttle scrolling
+  //
   var didScroll = false;
   
   $(window).scroll(function() {
@@ -101,14 +101,14 @@ $(document).ready(function(){
       // Check your page position and then
       // Load in more results
     }
-  }, 250);*/
+  }, 250);
   
   
   
-});
+});*/
 
 
-window.initMap = function initMap() {
+window.initMap = () => {
   var lonlat = { lat: 42.666398, lng: -71.588338 };
   var mapCenter = {lat: 42.409486, lng: -71.208822};
   
@@ -285,14 +285,6 @@ window.initMap = function initMap() {
       }
     ]
   });
-
-  /*var img = new google.maps.MarkerImage(
-    'https://s3.amazonaws.com/jimmyvanveen-bucket/map-marker.svg',
-    new google.maps.Size(20,26),
-    new google.maps.Point(0,0),
-    new google.maps.Point(10,26)
-  );*/
-
     
   var marker = new google.maps.Marker({
     position: lonlat,

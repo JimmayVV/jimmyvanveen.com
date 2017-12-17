@@ -7,12 +7,15 @@
 
     <title>Jimmy Van Veen | Portfolio</title>
     
-    <!-- Custom Device Mockups   https://github.com/pixelsign/html5-device-mockups --
-    <link rel="stylesheet" type="text/css" href="./node_modules/html5-device-mockups/dist/device-mockups.min.css">-->
+    <!-- Custom Device Mockups   https://github.com/pixelsign/html5-device-mockups -->
+    <!--<link rel="stylesheet" type="text/css" href="./node_modules/html5-device-mockups/dist/device-mockups.min.css">-->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+          rel="stylesheet"
+          integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
+          crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="./dist/styles.css">
 
-    <!-- Custom Bundled Scripts - Thanks Webpack! -->
-    <script src="./dist/bundle.js"></script>
+    
   </head>
 
 
@@ -21,36 +24,36 @@
     <div id="bg">
     </div>
 		
-		<nav class="navbar navbar-expand navbar-dark" id="main-nav">
-			<div class="container">
-				<a class="navbar-brand" href="/"><i class="fa fa-code" aria-hidden="true"></i>JVV</a>
-
-				<!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-					<span class="navbar-toggler-icon"></span>
-				</button>-->
-
-				<div class="collapse navbar-collapse" id="navbarSupportedContent">
-					<ul class="nav navbar-nav ml-auto">
-						<li class="nav-item">
-							<a class="nav-link" href="#top">Home</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#projects">Projects</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#skills">Skills</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#contact">Contact</a>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</nav>
+    <nav class="navbar navbar-expand navbar-dark" id="main-nav">
+      <div class="container">
+        <a class="navbar-brand" href="/">
+          <i class="fa fa-code" aria-hidden="true"></i>JVV</a>
+    
+        <!--<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    					<span class="navbar-toggler-icon"></span>
+    				</button>-->
+    
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="nav navbar-nav ml-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#top">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#projects">Projects</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#skills">Skills</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#contact">Contact</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
 
     <!-- Jumbotron -->
     <div class="jumbotron jumbotron-fluid vCenterMe">
-			
       <div class="container">
         <h1>Jimmy Van Veen</h1>
         <h2>Front End Web Developer</h2>
@@ -60,160 +63,7 @@
 		
     <div class="wrapper">
       <div class="container">
-				<a id="projects"></a>
-        <h1>Projects</h1>
-
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-
-              <div class="col-12 col-md-5">
-                <div class="device-wrapper houdana">
-                  <div class="device" data-device="iMac" data-orientation="portrait" data-color="black">
-                    <div class="screen">
-                      <!-- PUT CONTENTS HERE -->
-                    </div>
-                    <div class="button">
-                      <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <h4 class="card-title">Houdana.com</h4>
-                <p class="card-text">Public facing website for Houdana, the magician.</p>
-                <p>
-                  <a href="#" class="btn btn-primary">Visit Site</a>
-                  <button class="btn btn-primary" data-toggle="collapse" data-target="#readMoreHoudana" aria-expanded="false" aria-controls="readMoreHoudana">Read More</button>
-                </p>
-
-                <div class="collapse" id="readMoreHoudana">
-                  <p>
-                    Houdana, the magician, was in need of a website to direct clients and perspective clients to,
-                    and I was more than happy to provide a basic website to support his needs. Over the years there
-                    have been minor changes to the layout and content, but in the end of 2016 the site was converted
-                    to Bootstrap, and pushed to Github for use of their free Github Pages program.
-                  </p>
-                  <p>
-                    Due to the service Github offers, this repository can be found on my profile with Github.
-                  </p>
-                </div>
-
-              </div>
-              
-            </div><!-- .row -->
-          </div><!-- .card-body -->
-        </div><!-- .card -->
-        
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-
-              <div class="col-12 col-md-5">
-                <div class="device-wrapper epic">
-                  <div class="device" data-device="iMac" data-orientation="portrait" data-color="black">
-                    <div class="screen">
-                      <!-- PUT CONTENTS HERE -->
-                    </div>
-                    <div class="button">
-                      <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <h4 class="card-title">EPIC Viewer</h4>
-                <p class="card-text">Custom, combined front-end for multiple back-end tools</p>
-                <p>
-                  <a href="#" class="btn btn-primary">Visit Site</a>
-                  <button class="btn btn-primary" data-toggle="collapse" data-target="#readMoreEpic" aria-expanded="false" aria-controls="readMoreEpic">Read More</button>
-                </p>
-
-                <div class="collapse" id="readMoreEpic">
-                  <p>
-                    Upon entering the Design Services department with Deluxe Corporation, I quickly identified several web-based tools that could be consolidated and improved upon with front end web development.
-                  </p>
-                  <p>
-                    While the back-ends of all services were isolated from my department, I was able to reverse-engineer all the main API routes to the back-end services, and coded an improved version of a primary tool which was called "EPIC Viewer" (to this day, I still do not know why the original author called it that).
-                  </p>
-                  <p>
-                    Using a combination of vanilla JavaScript, jQuery, and plugins such as Data Tables and a keyboard shortcut helper library, I was able to consolidate the several tools into one improved web app.
-                  </p>
-                  <p>
-                    In addition to the improved web app, I was able to introduce several new tools to this app specifically designed to improve productivity of the entire team of 40+ individuals.
-                  </p>
-                  <p>
-                    This project is source controlled by Git, and is viewable on my Bitbucket profile page.
-                  </p>
-                </div>
-
-              </div>
-              
-            </div><!-- .row -->
-          </div><!-- .card-body -->
-        </div><!-- .card -->
-
-
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-
-              <div class="col-12 col-md-5">
-                <div class="device-wrapper cardgames">
-                  <div class="device" data-device="iMac" data-orientation="portrait" data-color="black">
-                    <div class="screen">
-                      <!-- PUT CONTENTS HERE -->
-                    </div>
-                    <div class="button">
-                      <!-- You can hook the "home button" to some JavaScript events or just remove it -->
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col">
-                <h4 class="card-title">CardGames</h4>
-                <p class="card-text">Front-end only card game score-keeper</p>
-                <p>
-                  <a href="#" class="btn btn-primary">Visit Site</a>
-                  <button class="btn btn-primary" data-toggle="collapse" data-target="#readMoreCardGames" aria-expanded="false" aria-controls="readMoreCardGames">Read More</button>
-                </p>
-
-                <div class="collapse" id="readMoreCardGames">
-                  <p>
-                    This project started as my way of escaping responsibilities of being score keeper in my family's favorite card games. One such example is 3-13. This game as 11 pre-defined rounds, with scores being kept for each round, the winner being the person with the lowest score.
-                  </p>
-                  <p>
-                    Here is some info from the readme:
-                  </p>
-                  <p>
-                    This app will keep track of scores for several card games. At the moment, these games are supported by the app:
-                  </p>
-                  <ul>
-                    <li>Three-Thirteen</li>
-                  </ul>
-                  <p>
-                    Each of these games has its own page to be used to interact with the app. Each game has a pop-up which will display the rules of the game, and you can configure the number of players for each game, the names, and add scores for each round.
-                  </p>
-                  <p>
-                    The app will take care of keeping a running score, keep track of which level each person is on, as well as determine a winner (or winners, if there is a tie).
-                  </p>
-                  <p>
-                    I am working separately on a Node version, which will allow other people to view the scorecard, while the scorekeeper is left with the ability to enter the scores.
-                  </p>
-                  <p>
-                    This project is listed under the TwilightCoders Github account due to my relationship with that organization started by my best friend, and mentor, Dale.
-                  </p>
-
-                </div>
-
-              </div>
-              
-            </div><!-- .row -->
-          </div><!-- .card-body -->
-        </div><!-- .card -->
+				<div id="projects"></div>
 				
 				<a id="skills"></a>
 			
@@ -346,6 +196,9 @@
 		<!-- Make Nav Bar switch between static & fixed without page jump 
 		<script src="http://acch.github.io/scrollpos-styler/scrollPosStyler.js"></script>-->
     
+    <!-- Custom Bundled Scripts - Thanks Webpack! -->
+    <script src="./dist/bundle.js"></script>
+
     <!-- Init Google Map -->
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCndjunRNFKCSAhaWy-_bUQ2g4NcFJUEHE&callback=initMap"></script>
