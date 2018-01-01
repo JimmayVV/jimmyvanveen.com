@@ -4,6 +4,12 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry:  './resources/js/entry.js',
+    devServer: {
+        publicPath: '/dist',
+        watchContentBase: true,
+        inline: true,
+        hot: true
+    },
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, 'dist'),
@@ -17,10 +23,7 @@ module.exports = {
                 loader: 'babel-loader',
                 query: {
                     presets: [ 'babel-preset-env', 'react' ]
-                }/*,
-                options: {
-                    presets: ['@babel/preset-env']                    
-                }*/
+                }
             },
             {
                 test: /\.scss$/,

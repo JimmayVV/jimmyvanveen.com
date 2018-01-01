@@ -99,8 +99,12 @@ h2 {
   background: $lightBg;
   padding-top: 20px;
   padding-bottom: 20px;
-  h1 /*.jumbotron + .wrapper*/ {
+  h1:not(:first-child) /*.jumbotron + .wrapper*/ {
     margin-top: 75px;
+  }
+  h2:first-child {
+    margin-top: 10px;
+    padding-top: 0px;
   }
   h3 {
     padding-top: 25px;
@@ -130,6 +134,12 @@ h2 {
 
 .device-wrapper.cardgames .screen {
   background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1492011369969_three-thirteen.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.jimmy .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491674895484_jimmyvanveen.com_screen.jpg");
   background-size: cover;
   background-position: top center;
 }

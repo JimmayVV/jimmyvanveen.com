@@ -2,8 +2,8 @@
 require('../css/site.scss');
 
 // JavaScript
-//window.jQuery = window.$ = require('jquery');
-//import 'jquery';
+window.jQuery = window.$ = require('jquery');
+//import $ from 'jquery';
 //import 'popper.js';
 //import 'bootstrap';
 //import 'bootstrap/js/dist/util';
