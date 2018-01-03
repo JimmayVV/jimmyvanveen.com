@@ -2,6 +2,16 @@ import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import Marked from 'marked';
+let Renderer = new Marked.Renderer();
+
+// Set a custom heading renderer
+Renderer.heading = function(text, level) {
+  level = (level > 3) ? 6 : level + 2;
+  return `<h${level}>${text}</h${level}>`;
+  console.log('Header function');
+};
+
+Marked.setOptions({renderer: Renderer});
 
 class ProjectDetail extends Component {
   constructor(props) {
@@ -36,8 +46,8 @@ class ProjectDetail extends Component {
             </div>
 
             <div className="col">
-              <h4 className="card-title">{repo.displayName}</h4>
-              <p className="card-text">{repo.repo.description && repo.repo.description}</p>
+              <h2 className="card-title">{repo.displayName}</h2>
+              <p className="card-text">{repo.repo.description || ''}</p>
               <p>
                 <a href="#" className="btn btn-primary mr-2">Visit Site</a>
                 <Button color="primary" onClick={() => this.toggle()}>Read More</Button>
