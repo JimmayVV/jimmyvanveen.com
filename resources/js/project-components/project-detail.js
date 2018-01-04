@@ -6,6 +6,7 @@ let Renderer = new Marked.Renderer();
 
 // Set a custom heading renderer
 Renderer.heading = function(text, level) {
+  // Todo - remove this, and change the CSS Styling of H1 tags, rather then demoting them
   level = (level > 3) ? 6 : level + 2;
   return `<h${level}>${text}</h${level}>`;
   console.log('Header function');

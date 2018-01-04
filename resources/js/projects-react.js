@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import ProjectDetail from './project-components/project-detail'
-import Marked from 'marked';
+import ProjectDetail from './project-components/project-detail';
 const LocalStorage = 'jimmy-homepage';
 const StorageTime = 'jimmy-homepage-time';
 
@@ -67,7 +66,6 @@ class Projects extends Component {
         console.log(`readme DOES exist for ${obj.repo.name}`);
 
         this.getJson(data.download_url, (readme) => {
-          console.log(Marked(readme, {sanitize: true}));
           let repos = this.state.repos;
           repos[index].readme = readme;
           this.setState({repos});
