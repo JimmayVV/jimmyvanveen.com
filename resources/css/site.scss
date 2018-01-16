@@ -138,6 +138,12 @@ h2 {
   background-position: top center;
 }
 
+.device-wrapper.card-games .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1492011369969_three-thirteen.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
 .row.skills img {
   @include filter(grayscale(100%));
   transition-property: all;

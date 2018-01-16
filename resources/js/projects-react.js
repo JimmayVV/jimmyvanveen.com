@@ -20,7 +20,12 @@ class Projects extends Component {
       repos: [
         { repo: { owner: { login: 'JimmayVV' }, name: 'JimmyVanVeen.com' }, displayName: 'JimmyVanVeen.com', deviceClass: 'jimmy', readme: null },
         { repo: { owner: { login: 'JimmayVV' }, name: 'Houdana' }, displayName: 'Houdana', deviceClass: 'houdana', readme: null },
-        { repo: { owner: { login: 'JimmayVV' }, name: 'Epic-Viewer' }, displayName: 'Epic Viewer', deviceClass: 'epic', readme: null }
+        { repo: { owner: { login: 'JimmayVV' }, name: 'Epic-Viewer' }, displayName: 'Epic Viewer', deviceClass: 'epic', readme: null },
+        { repo: { owner: { login: 'TwilightCoders' }, name: 'Card-Games' }, displayName: 'Card Games', deviceClass: 'card-games', readme: null },
+        { repo: { owner: { login: 'JimmayVV' }, name: 'freeCodeCamp-work' }, displayName: 'Free Code Camp', deviceClass: 'fccWork', readme: null },
+        { repo: { owner: { login: 'JimmayVV' }, name: 'LogoDesignARNs' }, displayName: 'Logo Design ARN\'s', deviceClass: 'logo-design-arns', readme: null },
+        { repo: { owner: { login: 'JimmayVV' }, name: 'Feedback-Application' }, displayName: 'Feedback Application', deviceClass: 'feedback-application', readme: null },
+        { repo: { owner: { login: 'JimmayVV' }, name: 'List-Generator' }, displayName: 'List Generator', deviceClass: 'list-generator', readme: null }
       ]
     };
 
