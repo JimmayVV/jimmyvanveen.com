@@ -109,6 +109,11 @@ h2 {
   }
 }
 
+#nav-change {
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
 .device-wrapper, .device {
   width: 100%;
   max-width: none;
@@ -126,12 +131,6 @@ h2 {
   background-position: top center;
 }
 
-.device-wrapper.cardgames .screen {
-  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1492011369969_three-thirteen.jpg");
-  background-size: cover;
-  background-position: top center;
-}
-
 .device-wrapper.jimmy .screen {
   background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491674895484_jimmyvanveen.com_screen.jpg");
   background-size: cover;
@@ -140,6 +139,30 @@ h2 {
 
 .device-wrapper.card-games .screen {
   background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1492011369969_three-thirteen.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.fccWork .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1516143220616_freeCodeCamp-solutions.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.logo-design-arns .screen {
+  background: url("https://s3.amazonaws.com/jimmyvanveen-bucket/1516143235600_LogoDesignARNs.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.feedback-application .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675452549_internal_feedback.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.list-generator .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675414168_label_creator.jpg");
   background-size: cover;
   background-position: top center;
 }

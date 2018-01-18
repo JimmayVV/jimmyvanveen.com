@@ -29,15 +29,14 @@ class Projects extends Component {
       ]
     };
 
-    // If the localStorage exists, then pull from it
-    if (storage) this.state.repos = JSON.parse(storage);
-
     // If the last updated time is too old (or was never set) then pull data using AJAX from github
     if (!time || time < then) {
       console.log('updating Git data due to being out of date');
       this.state.repos.map((obj, index) => {
         this.getRepoData(obj, index);
       });
+    } else if (storage) {
+      this.state.repos = JSON.parse(storage);
     }
   }
 
