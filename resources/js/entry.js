@@ -2,7 +2,6 @@
 require('../css/site.scss');
 
 // JavaScript
-//require('./scrollPosStyler.js');
-require('./main.js');
+require('./site.js');
 
 require('./projects-react');
