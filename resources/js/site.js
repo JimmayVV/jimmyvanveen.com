@@ -1,4 +1,5 @@
 let _ = require('lodash');
+require('smoothscroll-polyfill').polyfill();
 
 let navChange = document.getElementById('nav-change');
 let mainNav = document.getElementById('main-nav');
@@ -67,11 +68,15 @@ let smoothScroll = event => {
   let targetId = event.target.getAttribute('href');
   // Get the target element, and check if it exists before continuing
   let target = document.querySelector(targetId);
+
   if (!target) return;
+
   // Polyfill to process the smooth scroll:
   const distanceToTop = elem => Math.floor(elem.getBoundingClientRect().top);
   const originalTop = distanceToTop(target);
   window.scrollBy({ top: originalTop, left: 0, behavior: "smooth" });
+
+  //console.log(window.scrollBy);
 };
 
 // Add event listener on the scroll event, and apply the changeNav function to it to set the 'active' link

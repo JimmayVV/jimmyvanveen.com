@@ -5,3 +5,4 @@ require('../css/site.scss');
 require('./site.js');
 
 require('./projects-react');
+require('./bio-react');
