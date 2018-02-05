@@ -24,6 +24,7 @@ $lightBg:     $lightText;
 $bgColor:     #333;
 $accentColor: #C00;
 $semiWhite:   rgba(255, 255, 255, 0.9);
+$semiDark:    rgba(0, 0, 0, 0.7);
 
 #bg {
   position: fixed;
@@ -54,11 +55,12 @@ body {
   //font-family: 'Architects Daughter', cursive;
 }
 
-nav {
+#main-nav nav {
+  background: $semiDark;
   &.fixed-top { transition: all 0.5s ease; }
   &.navbar.hidden { opacity: 0; }
   &.bg-semi { background: $semiWhite; }
-  &#main-nav a.nav-link {
+  a.nav-link {
     border-bottom: 2px solid transparent;
     &.active { border-bottom: 2px solid $accentColor; }
   }

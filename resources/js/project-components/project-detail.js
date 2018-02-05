@@ -50,11 +50,11 @@ class ProjectDetail extends Component {
               <h2 className="card-title">{repo.displayName}</h2>
               <p className="card-text">{repo.repo.description || ''}</p>
               <p>
-                <a href={repo.repo.html_url} className="btn btn-success mr-2" target="_blank">Github Repo</a>
+                <a href={repo.repo.html_url} className="btn btn-success mr-1" target="_blank">Github Repo</a>
                 {repo.repo.homepage &&
-                  <a href={repo.repo.homepage} target='_blank' className="btn btn-primary mr-2">Visit Site</a>
+                  <a href={repo.repo.homepage} target='_blank' className="btn btn-primary mr-1">Visit Site</a>
                 }
-                <Button color="info" className="mr-2" onClick={() => this.toggle()}>Read {!this.state.collapse ? 'More' : 'Less'}</Button>
+                <Button color="info" onClick={() => this.toggle()}>Read {!this.state.collapse ? 'More' : 'Less'}</Button>
               </p>
 
               <Collapse isOpen={this.state.collapse} id={`readMore${repo.deviceClass}`}>
