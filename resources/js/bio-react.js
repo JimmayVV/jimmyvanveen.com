@@ -58,7 +58,12 @@ class Bio extends Component {
       <div>
         <h1>{this.state.name}</h1>
         <h2>Front End Web Developer</h2>
-        <p>{this.state.blurb}</p>
+        <p>
+          {this.state.blurb}
+        </p>
+        <p>
+          <a className="btn btn-lg btn-info" href="/resources/static/jvanveen.pdf" target="_blank">Read my Resume &raquo;</a>
+        </p>
       </div>
     );
   }

@@ -109,3 +109,9 @@ window.initMap = () => {
   });
 
 }
+/*
+let thanks = getParameterByName('thanks');
+
+if (thanks === 'true') {
+  alert("Thanks for contacting me!")
+}*/

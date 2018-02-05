@@ -9,8 +9,9 @@
     <title>Jimmy Van Veen | Portfolio</title>
     
     <!-- Custom Device Mockups   https://github.com/pixelsign/html5-device-mockups -->
-    <!--<link rel="stylesheet" type="text/css" href="./node_modules/html5-device-mockups/dist/device-mockups.min.css">-->
-    <link rel="stylesheet" href="https://pixelsign.github.io/html5-device-mockups/dist/device-mockups.min.css">
+    <!--<link rel="stylesheet" type="text/css" href="./node_modules/html5-device-mockups/dist/device-mockups.min.css">--
+    <link rel="stylesheet" href="https://pixelsign.github.io/html5-device-mockups/dist/device-mockups.min.css">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/html5-device-mockups@3.2.0/dist/device-mockups.min.css">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
           rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
@@ -75,51 +76,51 @@
 				<!--<h3>Strong:</h3>-->
 				
 				<div class="row skills">
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/HTML5.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="HTML5">
 						<!--HTML5-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/CSS3.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="CSS3">
 						<!--CSS3-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/JavaScript.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="JavaScript">
 						<!--JavaScript-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/jQuery.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="jQuery">
 						<!--jQuery-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/nodejs.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Node.JS">
 						<!--NodeJS-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/git.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Git">
 						<!--Git-->
           </div>
-          <div class="col-4 col-md-2 text-center">
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
             <img src="./resources/img/logos/github.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Github">
             <!--Github-->
           </div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/bootstrap.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Bootstrap">
 						<!--Bootstrap-->
 					</div>
-					<div class="col-4 col-md-2 text-center">
+					<div class="col-6 col-sm-4 col-lg-2 text-center">
 						<img src="./resources/img/logos/MongoDB.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="MongoDB">
 						<!--MongoDB-->
           </div>
-          <div class="col-4 col-md-2 text-center">
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
             <img src="./resources/img/logos/webpack.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Webpack">
             <!--Webpack-->
           </div>
-          <div class="col-4 col-md-2 text-center">
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
             <img src="./resources/img/logos/reactjs.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="React JS">
             <!--React JS-->
           </div>
-          <div class="col-4 col-md-2 text-center">
+          <div class="col-6 col-sm-4 col-lg-2 text-center">
             <img src="./resources/img/logos/babel.svg" alt="" class="img-fluid" data-toggle="tooltip" data-placement="bottom" title="Babel">
             <!--Babel-->
           </div>
@@ -154,28 +155,29 @@
 
           <div class="col">
             <h3>Contact Me</h3>
-            <form onsubmit="return false">
+            <!--<form action="#" id="contactForm">-->
+            <form action="https://formspree.io/jimmy.van.veen@gmail.com" method="POST">
 
               <div class="row">
                 
                 <div class="col-12 col-md-4">
                   <div class="form-group">
                     <label for="contactName">Name</label>
-                    <input class="form-control" type="text" id="contactName" name="name" placeholder="Enter Name">
+                    <input class="form-control" type="text" id="contactName" name="Name" placeholder="Enter Name" required>
                   </div>
                 </div>
                 
                 <div class="col-12 col-md-4">
                   <div class="form-group">
                     <label for="emailAddress">Email address</label>
-                    <input type="email" class="form-control" id="emailAddress" placeholder="Enter email">
+                    <input type="email" class="form-control" id="emailAddress" name="_replyto" placeholder="Enter email" required>
                   </div>
                 </div>
 
                 <div class="col-12 col-md-4">
                   <div class="form-group">
                     <label for="contactPhone">Phone Number</label>
-                    <input class="form-control" type="text" id="contactPhone" name="name" placeholder="Enter Phone #">
+                    <input class="form-control" type="tel" id="contactPhone" name="PhoneNum" placeholder="Enter Phone #" required>
                   </div>
                 </div>
 
@@ -185,8 +187,16 @@
                 <div class="col">
                   <div class="form-group">
                     <label for="contactMessage">Contact Message</label>
-                    <textarea class="form-control" id="contactMessage" name="contactMessage" rows="3"></textarea>
+                    <textarea class="form-control" id="contactMessage" name="Message" rows="3" required></textarea>
                   </div>
+                </div>
+              </div>
+
+              <div class="row justify-content-center">
+                <div class="col col-lg-8">
+                  <!--<input type="hidden" name="_next" value="//www.jimmyvanveen.com?thanks=true">-->
+                  <input type="hidden" name="_next" value="//localhost:8080?thanks=true">
+                  <button class="btn btn-block btn-primary">Contact Me!</button>
                 </div>
               </div>
 
@@ -194,7 +204,7 @@
           </div>
         </div>
 
-        <div class="row">
+        <div class="row" id="alertModal">
           
         </div>
 
