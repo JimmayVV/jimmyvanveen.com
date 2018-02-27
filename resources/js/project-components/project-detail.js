@@ -51,11 +51,11 @@ class ProjectDetail extends Component {
                 <h2 className="card-title">{repo.displayName}</h2>
                 <p className="card-text">{repo.repo.description || ''}</p>
                 <p className="row no-gutters">
-                  <div className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.html_url} className="btn btn-success btn-block mb-1" target="_blank">Github Repo</a></div>
+                  <span className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.html_url ? repo.repo.html_url : '#top'} className="btn btn-success btn-block mb-1" target="_blank">Github Repo</a></span>
                   {repo.repo.homepage &&
-                    <div className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.homepage} target='_blank' className="btn btn-primary btn-block mb-1">Visit Site</a></div>
+                    <span className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.homepage} target='_blank' className="btn btn-primary btn-block mb-1">Visit Site</a></span>
                   }
-                  <div className="col-12 col-md-3"><Button block color="info" onClick={() => this.toggle()}>Read {!this.state.collapse ? 'More' : 'Less'}</Button></div>
+                  <span className="col-12 col-md-3"><Button block color="info" onClick={() => this.toggle()}>Read {!this.state.collapse ? 'More' : 'Less'}</Button></span>
                 </p>
 
                 <Collapse isOpen={this.state.collapse} id={`readMore${repo.deviceClass}`}>
