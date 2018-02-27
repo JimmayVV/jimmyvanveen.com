@@ -18,7 +18,7 @@ class Projects extends Component {
 
     this.state = {
       repos: [
-        { repo: { owner: { login: 'JimmayVV' }, name: 'JimmyVanVeen.com' }, displayName: 'JimmyVanVeen.com', deviceClass: 'jimmy', readme: null },
+        { repo: { owner: { login: 'JimmayVV' }, name: 'JimmyVanVeen.com' }, displayName: 'Jimmy\'s Home Page', deviceClass: 'jimmy', readme: null },
         { repo: { owner: { login: 'JimmayVV' }, name: 'Houdana' }, displayName: 'Houdana', deviceClass: 'houdana', readme: null },
         { repo: { owner: { login: 'JimmayVV' }, name: 'Epic-Viewer' }, displayName: 'Epic Viewer', deviceClass: 'epic', readme: null },
         { repo: { owner: { login: 'TwilightCoders' }, name: 'Card-Games' }, displayName: 'Card Games', deviceClass: 'card-games', readme: null },
