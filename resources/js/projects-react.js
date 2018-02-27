@@ -106,7 +106,10 @@ class Projects extends Component {
   }
 
   render() {
-    return ( this.state.repos.map((repo, index) => <ProjectDetail key={index} repo={repo} />) );
+    return (
+      <div className="row">
+        { this.state.repos.map((repo, index) => <ProjectDetail key={index} repo={repo} />)}
+      </div> );
   }
 }
 
