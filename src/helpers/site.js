@@ -93,6 +93,7 @@ window.initMap = () => {
   const lonlat = { lat: 42.666398, lng: -71.588338 };
   const mapCenter = { lat: 42.409486, lng: -71.208822 };
   const styles = require('./map-style.json');
+  const google = window.google;
 
   const map = new google.maps.Map(document.getElementById('map'), {
     zoom: 9,
@@ -100,6 +101,7 @@ window.initMap = () => {
     styles: styles
   });
 
+  // eslint-disable-next-line
   var marker = new google.maps.Marker({
     position: lonlat,
     map: map,
@@ -112,3 +114,24 @@ window.initMap = () => {
   });
 
 }
+
+/*
+// Mozilla, Opera, Webkit 
+if (document.addEventListener) {
+  document.addEventListener("DOMContentLoaded", function () {
+    // eslint-disable-next-line
+    document.removeEventListener("DOMContentLoaded", arguments.callee, false);
+    window.domReady();
+  }, false);
+
+  // If IE event model is used
+} else if (document.attachEvent) {
+  // ensure firing before onload
+  document.attachEvent("onreadystatechange", function () {
+    if (document.readyState === "complete") {
+      // eslint-disable-next-line
+      document.detachEvent("onreadystatechange", arguments.callee);
+      window.domReady();
+    }
+  });
+}*/
