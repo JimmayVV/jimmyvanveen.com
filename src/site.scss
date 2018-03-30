@@ -1,0 +1,201 @@
+/* https://designschool.canva.com/blog/website-color-schemes/ */
+
+/* Import Node_Module CSS */
+// Import custom variables to theme Bootstrap with
+@import 'custom';
+@import "node_modules/bootstrap/scss/bootstrap";
+
+///* Google Fonts */
+//@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
+//@import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
+
+@import 'flexboxVCenter';
+
+@mixin filter($val) {
+  -webkit-filter: $val;
+     -moz-filter: $val;
+       -o-filter: $val;
+      -ms-filter: $val;
+          filter: $val;
+}
+
+$lightText:   #FDFDFD;
+$lightBg:     $lightText;
+$bgColor:     #333;
+$accentColor: #C00;
+$semiWhite:   rgba(255, 255, 255, 0.9);
+$semiDark:    rgba(0, 0, 0, 0.7);
+
+#bg {
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: -100;
+  background-image: url("../img/code-background.jpg");
+  background-size: cover;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  @extend html;
+  background: $bgColor;
+  position: relative;
+
+  &.nav-padding {
+    margin-top: 60px;
+  }
+  //background-attachment: fixed;
+  //font-family: 'Architects Daughter', cursive;
+}
+
+#main-nav nav {
+  background: $semiDark;
+  &.fixed-top { transition: all 0.5s ease; }
+  &.navbar.hidden { opacity: 0; }
+  &.bg-semi { background: $semiWhite; }
+  a.nav-link {
+    border-bottom: 2px solid transparent;
+    &.active { border-bottom: 2px solid $accentColor; }
+  }
+  .navbar-brand i.fa {
+    color: $accentColor;
+  }
+  /*
+  opacity: 1;
+  transition:opacity 1s linear;*/
+}
+
+h2 {
+  padding-top: 40px;
+}
+
+.jumbotron {
+  background: none;
+  color: $lightText;
+  min-height: 60%;  /* Fallback for vh unit */
+  min-height: 60vh;
+  &.vCenterMe { @include flexboxVCenter; }
+}
+
+#top {
+  width:0;
+  height:0;
+}
+
+.wrapper {
+  position: relative;
+  width: 100%;
+  background: $lightBg;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  h1:not(:first-child) /*.jumbotron + .wrapper*/ {
+    margin-top: 75px;
+  }
+  h2:first-child {
+    margin-top: 10px;
+    padding-top: 0px;
+  }
+  h3 {
+    padding-top: 25px;
+    padding-bottom: 10px;
+  }
+  .card {
+    margin-top: 20px;
+  }
+}
+
+#nav-change {
+  margin-top: 30px;
+  padding-top: 20px;
+}
+
+.device-wrapper, .device {
+  width: 100%;
+  max-width: none;
+}
+
+.device-wrapper.houdana .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675502575_houdana.com.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.epic .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675569074_epic.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.jimmy .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491674895484_jimmyvanveen.com_screen.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.card-games .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1492011369969_three-thirteen.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.fccWork .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1516143220616_freeCodeCamp-solutions.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.logo-design-arns .screen {
+  background: url("https://s3.amazonaws.com/jimmyvanveen-bucket/1516143235600_LogoDesignARNs.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.feedback-application .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675452549_internal_feedback.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.device-wrapper.list-generator .screen {
+  background: url("https://jimmyvanveen-bucket.s3.amazonaws.com/1491675414168_label_creator.jpg");
+  background-size: cover;
+  background-position: top center;
+}
+
+.row.skills img {
+  @include filter(grayscale(100%));
+  transition-property: all;
+  transition-duration: 0.5s;
+  opacity: 0.5;
+
+  &:hover {
+    @include filter(none);
+    opacity: 1.0;
+  }
+}
+
+#map {
+  width: 100%;
+  height: 425px;
+}
+
+#footer {
+  position: relative;
+  padding-top: 0;
+  margin-top: 0;
+
+  .profilePic {
+    transform: translateY(-50%);
+    z-index: 5;
+    margin-bottom: -40%;
+  }
+
+  h3 { padding-top: 20px; }
+}
