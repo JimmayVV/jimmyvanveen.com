@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 
+# css (we will include SCSS files, so we can still see what the source is)
+/src/**/*.css
+
 # testing
 /coverage
 
@@ -15,6 +18,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
+.env
 /.vscode
 
 npm-debug.log*
