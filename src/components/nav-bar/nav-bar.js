@@ -21,10 +21,6 @@ export default class MyNavBar extends React.Component {
     this.state = { isOpen: false };
   }
 
-  componentDidMount() {
-    window.domReady();
-  }
-
   toggle() {
     this.setState({ isOpen: !this.state.isOpen });
   }

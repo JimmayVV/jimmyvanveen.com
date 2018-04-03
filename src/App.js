@@ -3,9 +3,15 @@ import Bio from './components/bio/bio';
 import NavBar from './components/nav-bar/nav-bar';
 import Projects from './components/projects/projects';
 import Skills from './components/skills/skills';
+import GoogleMap from './components/map/map';
+import ContactFooter from './components/contact-footer/contact-footer';
 import './site.css';
 
 class App extends Component {
+  componentDidMount() {
+    window.domReady();
+  }
+
   render() {
     return (
       <Fragment>
@@ -27,6 +33,8 @@ class App extends Component {
             <Skills />
           </div>
         </div>
+        <GoogleMap />
+        <ContactFooter />
       </Fragment>
     );
   }

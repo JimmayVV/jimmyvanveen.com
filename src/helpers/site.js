@@ -22,6 +22,8 @@ window.domReady = () => {
     anchorLinks.forEach((link) => {
       // Remove any 'active' classes on the link (we will add it back later if necessary)
       link.classList.remove('active');
+      // Check if the current link has an href, if not, return out to skip this one
+      if (!link.getAttribute('href')) return;
       // Get the element targetted by the link
       let target = document.querySelector(link.getAttribute('href'));
       // If no target was found, return out of this call
@@ -86,52 +88,3 @@ window.domReady = () => {
   // Impliment smooth scrolling on each of the links
   anchorLinks.forEach(link => link.addEventListener('click', link => smoothScroll(link)));
 }
-
-
-// Get the Google Map working
-window.initMap = () => {
-  const lonlat = { lat: 42.666398, lng: -71.588338 };
-  const mapCenter = { lat: 42.409486, lng: -71.208822 };
-  const styles = require('./map-style.json');
-  const google = window.google;
-
-  const map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 9,
-    center: mapCenter,
-    styles: styles
-  });
-
-  // eslint-disable-next-line
-  var marker = new google.maps.Marker({
-    position: lonlat,
-    map: map,
-    icon: {
-      url: 'https://s3.amazonaws.com/jimmyvanveen-bucket/map-marker.svg',
-      anchor: new google.maps.Point(18, 50),
-      scaledSize: new google.maps.Size(40, 50),
-      zIndex: -20
-    }
-  });
-
-}
-
-/*
-// Mozilla, Opera, Webkit 
-if (document.addEventListener) {
-  document.addEventListener("DOMContentLoaded", function () {
-    // eslint-disable-next-line
-    document.removeEventListener("DOMContentLoaded", arguments.callee, false);
-    window.domReady();
-  }, false);
-
-  // If IE event model is used
-} else if (document.attachEvent) {
-  // ensure firing before onload
-  document.attachEvent("onreadystatechange", function () {
-    if (document.readyState === "complete") {
-      // eslint-disable-next-line
-      document.detachEvent("onreadystatechange", arguments.callee);
-      window.domReady();
-    }
-  });
-}*/

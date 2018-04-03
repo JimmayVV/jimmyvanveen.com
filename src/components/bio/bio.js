@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
+import Resume from '../../static/jvanveen.pdf';
 const LocalStorage = 'jimmy-bio';
 
 export default class Bio extends Component {
@@ -62,7 +63,7 @@ export default class Bio extends Component {
           {this.state.blurb}
         </p>
         <p>
-          <a className="btn btn-lg btn-info" href="/resources/static/jvanveen.pdf" target="_blank">Read my Resume &raquo;</a>
+          <a className="btn btn-lg btn-info" href={Resume} target="_blank">Read my Resume &raquo;</a>
         </p>
       </div>
     );
