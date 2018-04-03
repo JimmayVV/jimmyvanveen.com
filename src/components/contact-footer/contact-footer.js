@@ -22,21 +22,21 @@ export default class ContactFooter extends Component {
                   <div className="col-12 col-md-4">
                     <div className="form-group">
                       <label for="contactName">Name</label>
-                      <input className="form-control" type="text" id="contactName" name="Name" placeholder="Enter Name" required />
+                      <input className="form-control" type="text" id="contactName" name="Name" placeholder="Enter Name" required="true" />
                     </div>
                   </div>
 
                   <div className="col-12 col-md-4">
                     <div className="form-group">
                       <label for="emailAddress">Email address</label>
-                      <input type="email" className="form-control" id="emailAddress" name="_replyto" placeholder="Enter email" required />
+                      <input type="email" className="form-control" id="emailAddress" name="_replyto" placeholder="Enter email" required="true" />
                     </div>
                   </div>
 
                   <div className="col-12 col-md-4">
                     <div className="form-group">
                       <label for="contactPhone">Phone Number</label>
-                      <input className="form-control" type="tel" id="contactPhone" name="PhoneNum" placeholder="Enter Phone #" required />
+                      <input className="form-control" type="tel" id="contactPhone" name="PhoneNum" placeholder="Enter Phone #" required="true" />
                     </div>
                   </div>
 
@@ -46,7 +46,7 @@ export default class ContactFooter extends Component {
                   <div className="col">
                     <div className="form-group">
                       <label for="contactMessage">Contact Message</label>
-                      <textarea className="form-control" id="contactMessage" name="Message" rows="3" required></textarea>
+                      <textarea className="form-control" id="contactMessage" name="Message" rows="3" required="true"></textarea>
                     </div>
                   </div>
                 </div>
