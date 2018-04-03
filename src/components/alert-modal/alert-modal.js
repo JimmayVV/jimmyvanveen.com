@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //import ReactDOM from 'react-dom';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Button, Modal, /*ModalHeader,*/ ModalBody, ModalFooter } from 'reactstrap';
 
 export default class AlertModal extends Component {
   constructor(props) {
@@ -20,7 +20,7 @@ export default class AlertModal extends Component {
 
   getParameterByName(name, url) {
     if (!url) url = window.location.href;
-    name = name.replace(/[\[\]]/g, "\\$&");
+    name = name.replace(/[[\]]/g, "\\$&");
     var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
       results = regex.exec(url);
     if (!results) return null;
@@ -37,12 +37,14 @@ export default class AlertModal extends Component {
 
   render() {
     return (
-      <Modal isOpen={this.state.modal} toggle={() => this.toggle()}>
-        <ModalBody>{this.state.message}</ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={() => this.toggle()}>OK</Button>
-        </ModalFooter>
-      </Modal>
+      <div class="row" id="alertModal">
+        <Modal isOpen={this.state.modal} toggle={() => this.toggle()}>
+          <ModalBody>{this.state.message}</ModalBody>
+          <ModalFooter>
+            <Button color="primary" onClick={() => this.toggle()}>OK</Button>
+          </ModalFooter>
+        </Modal>
+      </div>
     );
   }
 }

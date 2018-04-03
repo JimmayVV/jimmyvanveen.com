@@ -5,6 +5,7 @@ import Projects from './components/projects/projects';
 import Skills from './components/skills/skills';
 import GoogleMap from './components/map/map';
 import ContactFooter from './components/contact-footer/contact-footer';
+import AlertModal from './components/alert-modal/alert-modal';
 import './site.css';
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
         </div>
         <GoogleMap />
         <ContactFooter />
+        <AlertModal message="Thank you for sending me a comment!" />
       </Fragment>
     );
   }
