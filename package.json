@@ -28,8 +28,8 @@
     "start": "npm-run-all -p watch-css start-js",
     "build-js": "node ./setup && react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "relay": "node ./fetch-schema && relay-compiler --src ./src --schema ./src/graphql.json",
-    "fetch-schema": "node ./fetch-schema.js",
+    "relay": "relay-compiler --src ./src --schema ./src/graphql.json",
+    "relay-fetch": "node ./fetch-schema",
     "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },

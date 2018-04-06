@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
+import { graphql, createFragmentContainer } from 'react-relay';
+//import environment from '../../relay';
 import Resume from '../../static/jvanveen.pdf';
-const LocalStorage = 'jimmy-bio';
+//const LocalStorage = 'jimmy-bio';
 
-export default class Bio extends Component {
-  constructor(props) {
+class Bio extends Component {
+  /*constructor(props) {
     super(props);
 
     const minutesOld = 15;
@@ -52,15 +53,46 @@ export default class Bio extends Component {
     request.open('GET', url + bustCache, async);
     //request.responseType = 'json';
     request.send();
-  }
+  }*/
 
   render() {
+    if (!this.props) return <div>Loading...</div>;
+
+    const { name, bio } = this.props.bio;
+    /*return (
+      <div className="container" id="bio">
+        <QueryRenderer
+          environment={environment}
+          query={graphql`
+            query {
+              user(login:"JimmayVV") {
+                name
+                bio
+              }
+            }
+          `}
+          variables={{}}
+          render={({error, props}) => {
+            if (error) {
+              return <div>Error!</div>
+            }
+            if (!props) {
+              return <div>Loading...</div>
+            }
+            return (
+              <h1>{props.user.name}</h1>
+            );
+          }}
+        />
+      </div>
+    );*/
+
     return (
       <div className="container" id="bio">
-        <h1>{this.state.name}</h1>
+        <h1>{name}</h1>
         <h2>Front End Web Developer</h2>
         <p>
-          {this.state.blurb}
+          {bio}
         </p>
         <p>
           <a className="btn btn-lg btn-info" href={Resume} target="_blank">Read my Resume &raquo;</a>
@@ -70,4 +102,13 @@ export default class Bio extends Component {
   }
 }
 
-//ReactDOM.render(<Bio />, document.getElementById('bio'));
+
+export default createFragmentContainer(
+  Bio, {
+  bio: graphql`
+    fragment bio_bio on User {
+      name
+      bio
+    }
+  `}
+);

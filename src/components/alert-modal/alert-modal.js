@@ -37,7 +37,7 @@ export default class AlertModal extends Component {
 
   render() {
     return (
-      <div class="row" id="alertModal">
+      <div className="row" id="alertModal">
         <Modal isOpen={this.state.modal} toggle={() => this.toggle()}>
           <ModalBody>{this.state.message}</ModalBody>
           <ModalFooter>

@@ -6,11 +6,13 @@ import Skills from './components/skills/skills';
 import GoogleMap from './components/map/map';
 import ContactFooter from './components/contact-footer/contact-footer';
 import AlertModal from './components/alert-modal/alert-modal';
+import { graphql, QueryRenderer } from 'react-relay';
+import environment from './relay';
 import './site.css';
 
 class App extends Component {
   componentDidMount() {
-    window.domReady();
+    //window.domReady();
   }
 
   render() {
@@ -20,7 +22,23 @@ class App extends Component {
         </div>
         <NavBar />
         <div className="jumbotron jumbotron-fluid vCenterMe">
-          <Bio />
+          <QueryRenderer 
+            environment={environment}
+            query={graphql`
+              query AppQuery {
+                bio: user(login:"JimmayVV") {
+                  ...bio_bio
+                }
+              }
+            `}
+            variables={{}}
+            render={({error, props}) => {
+              if (error) return <div>Error!</div>
+              if (!props) return <div>Loading...</div>
+              console.log(props);
+              return <Bio bio={props.bio} />
+            }}
+          />
         </div>
         <div className="wrapper" id="nav-change">
           <div className="container">
@@ -35,7 +53,11 @@ class App extends Component {
           </div>
         </div>
         <GoogleMap />
-        <ContactFooter />
+        <div id="footer" className="wrapper">
+          <div className="container" id="contact">
+            <ContactFooter />
+          </div>
+        </div>
         <AlertModal message="Thank you for sending me a comment!" />
       </Fragment>
     );
