@@ -13,8 +13,10 @@
     "npm-run-all": "^4.1.2",
     "react": "^16.3.0",
     "react-dom": "^16.3.0",
+    "react-relay": "^1.5.0",
     "react-scripts": "1.1.1",
     "reactstrap": "^5.0.0",
+    "relay-runtime": "^1.5.0",
     "smoothscroll-polyfill": "^0.4.3"
   },
   "scripts": {
@@ -22,11 +24,17 @@
     "deploy": "gh-pages -d build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "yarn build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start-js": "react-scripts start",
+    "start-js": "node ./setup && react-scripts start",
     "start": "npm-run-all -p watch-css start-js",
-    "build-js": "react-scripts build",
+    "build-js": "node ./setup && react-scripts build",
     "build": "npm-run-all build-css build-js",
-    "test": "react-scripts test --env=jsdom",
+    "relay": "node ./fetch-schema && relay-compiler --src ./src --schema ./src/graphql.json",
+    "fetch-schema": "node ./fetch-schema.js",
+    "test": "node ./setup && react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
+  },
+  "devDependencies": {
+    "babel-plugin-relay": "^1.5.0",
+    "relay-compiler": "^1.5.0"
   }
 }
