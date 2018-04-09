@@ -88,3 +88,5 @@ window.domReady = () => {
   // Impliment smooth scrolling on each of the links
   anchorLinks.forEach(link => link.addEventListener('click', link => smoothScroll(link)));
 }
+
+window.onload=() => {window.domReady()};
