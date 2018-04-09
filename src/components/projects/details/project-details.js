@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import ReactDOM from 'react-dom';
+import { graphql, createFragmentContainer } from 'react-relay';
 import { Collapse, Button, CardBody, Card } from 'reactstrap';
 import Marked from 'marked';
 const Renderer = new Marked.Renderer();
@@ -13,7 +13,7 @@ Renderer.heading = function (text, level) {
 
 Marked.setOptions({ renderer: Renderer });
 
-export default class ProjectDetail extends Component {
+class ProjectDetail extends Component {
   constructor(props) {
     super(props);
     this.state = { collapse: false };
@@ -24,9 +24,10 @@ export default class ProjectDetail extends Component {
   }
 
   render() {
-    let repo = this.props.repo;
-    let readme = (<div dangerouslySetInnerHTML={repo.readme ? { __html: Marked(repo.readme) } : { __html: 'No readme' }}></div>);
-    //console.log(repo);
+    let { project, repo } = this.props;
+    //console.log(`Project Detail (repo): ${JSON.stringify(repo)}`);
+    let readme = (<div dangerouslySetInnerHTML={project.readme ? { __html: Marked(project.readme.text) } : { __html: 'No readme' }}></div>);
+    
     return (
       <div className="col col-md-6">
         <Card>
@@ -48,11 +49,11 @@ export default class ProjectDetail extends Component {
 
               <div className="col">
                 <h2 className="card-title">{repo.displayName}</h2>
-                <p className="card-text">{repo.repo.description || ''}</p>
+                <p className="card-text">{project.description || ''}</p>
                 <p className="row no-gutters">
-                  <span className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.html_url ? repo.repo.html_url : '#top'} className="btn btn-success btn-block mb-1" target="_blank">Github Repo</a></span>
-                  {repo.repo.homepage &&
-                    <span className="col-12 col-md-3 mr-1 mb-1"><a href={repo.repo.homepage} target='_blank' className="btn btn-primary btn-block mb-1">Visit Site</a></span>
+                  <span className="col-12 col-md-3 mr-1 mb-1"><a href={project.url ? project.url : '#top'} className="btn btn-success btn-block mb-1" target="_blank">Github Repo</a></span>
+                  {project.homepageUrl &&
+                    <span className="col-12 col-md-3 mr-1 mb-1"><a href={project.homepageUrl} target='_blank' className="btn btn-primary btn-block mb-1">Visit Site</a></span>
                   }
                   <span className="col-12 col-md-3"><Button block color="info" onClick={() => this.toggle()}>Read {!this.state.collapse ? 'More' : 'Less'}</Button></span>
                 </p>
@@ -70,3 +71,21 @@ export default class ProjectDetail extends Component {
     );
   }
 }
+
+export default createFragmentContainer(
+  ProjectDetail,
+  graphql`
+    fragment projectDetails_project on Repository {
+      name
+      id
+      homepageUrl
+      description
+      url
+      readme: object(expression: "master:README.md") {
+        ... on Blob {
+          text
+        }
+      }
+    }
+  `
+);
