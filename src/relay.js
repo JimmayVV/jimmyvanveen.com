@@ -26,7 +26,6 @@ function fetchQuery(operation, variables) {
         variables,
       }),
     }).then(response => {
-      console.log(`Token: ${token}`);
       return response.json();
     });
   }
