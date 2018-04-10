@@ -6,25 +6,40 @@ import {
 } from 'relay-runtime';
 
 function fetchQuery(operation, variables) {
-  let token = process.env.NODE_ENV === 'development' ?
-    process.env.REACT_APP_GRAPHQL_TOKEN :
-    process.env.REACT_APP_GRAPHQL_TOKEN1 + process.env.REACT_APP_GRAPHQL_TOKEN2;
+  let token = process.env.NODE_ENV === 'development' ? process.env.REACT_APP_GRAPHQL_TOKEN : null;
 
-  console.log(token);
+  let getToken = fetch('https://s3.amazonaws.com/jimmyvanveen-bucket/gh_token.txt')
+    .then(response => {
+      return response.text();
+    });
 
-  return fetch('https://api.github.com/graphql', {
-    method: 'POST',
-    headers: {
-      'User-Agent': 'JimmayVV',
-      'Authorization': `token ${token}`
-    },
-    body: JSON.stringify({
-      query: operation.text,
-      variables,
-    }),
-  }).then(response => {
-    return response.json();
-  });
+
+  const fetchGithub = newToken => {
+    return fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'User-Agent': 'JimmayVV',
+        'Authorization': `token ${newToken || token}`
+      },
+      body: JSON.stringify({
+        query: operation.text,
+        variables,
+      }),
+    }).then(response => {
+      console.log(`Token: ${token}`);
+      return response.json();
+    });
+  }
+
+  if (!token) {
+    return getToken
+    .then(newToken => {
+      token = newToken;
+      return fetchGithub(newToken);
+    });
+  } else {
+    return fetchGithub();
+  }
 }
 
 export default new Environment({
