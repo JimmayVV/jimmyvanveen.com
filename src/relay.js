@@ -6,7 +6,11 @@ import {
 } from 'relay-runtime';
 
 function fetchQuery(operation, variables) {
-  const token = process.env.REACT_APP_GRAPHQL_TOKEN || 'NULL';
+  let token = process.env.NODE_ENV === 'development' ?
+    process.env.REACT_APP_GRAPHQL_TOKEN :
+    process.env.REACT_APP_GRAPHQL_TOKEN1 + process.env.REACT_APP_GRAPHQL_TOKEN2;
+
+  console.log(token);
 
   return fetch('https://api.github.com/graphql', {
     method: 'POST',
