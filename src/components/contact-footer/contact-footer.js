@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ProfilePic from './jimmy.vanveen.jpg';
+import ProfilePic from './jimmy.vanveen.png';
 
 export default class ContactFooter extends Component {
   render() {
