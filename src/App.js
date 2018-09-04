@@ -32,8 +32,7 @@ class App extends Component {
   render() {
     return (
       <Fragment>
-        <div id="bg">
-        </div>
+        <div id="bg" />
         <NavBar />
         <QueryRenderer 
           environment={environment}
