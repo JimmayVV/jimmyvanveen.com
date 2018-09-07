@@ -13,9 +13,9 @@ import './site.css';
 
 const repos = [
   { id: 'MDEwOlJlcG9zaXRvcnk4MTM4NjM5Mg==', displayName: 'Jimmy\'s Home Page', deviceClass: 'jimmy' },
+  { id: 'MDEwOlJlcG9zaXRvcnk4MTQ4MTM4Nw==', displayName: 'Card Games', deviceClass: 'card-games' },
   { id: 'MDEwOlJlcG9zaXRvcnk3NDA5ODIyNw==', displayName: 'Houdana', deviceClass: 'houdana' },
   //{ id: 'MDEwOlJlcG9zaXRvcnk4MTQ3NzU2MQ==', displayName: 'Epic Viewer', deviceClass: 'epic' },
-  { id: 'MDEwOlJlcG9zaXRvcnk4MTQ4MTM4Nw==', displayName: 'Card Games', deviceClass: 'card-games' },
   { id: 'MDEwOlJlcG9zaXRvcnkxMDA0MjI3Mjk=', displayName: 'Free Code Camp', deviceClass: 'fccWork' },
   //{ id: 'MDEwOlJlcG9zaXRvcnkxMDI2NjQ4NjE=', displayName: 'Logo Design ARN\'s', deviceClass: 'logo-design-arns' },
   //{ id: 'MDEwOlJlcG9zaXRvcnk4MTQ4MTI0Mg==', displayName: 'Feedback Application', deviceClass: 'feedback-application' },
