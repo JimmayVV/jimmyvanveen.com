@@ -2,7 +2,7 @@
   "name": "jimmyvanveen.com",
   "version": "2.1.0",
   "private": true,
-  "homepage": "http://www.jimmyvanveen.com",
+  "homepage": "https://www.jimmyvanveen.com",
   "dependencies": {
     "bootstrap": "^4.0.0",
     "font-awesome": "^4.7.0",
