@@ -17,18 +17,18 @@ import Webpack      from './logos/webpack.svg';
 // React Component
 export default class Skills extends Component {
   logos = [
+    { label: 'React',       file: ReactJS },
     { label: 'HTML5',       file: HTML5 },
     { label: 'CSS3',        file: CSS3 },
     { label: 'JavaScript',  file: JavaScript },
-    { label: 'jQuery',      file: jQuery },
+    { label: 'Webpack',     file: Webpack },
+    { label: 'Babel',       file: Babel },
     { label: 'nodeJS',      file: NodeJS },
     { label: 'Git',         file: Git },
     { label: 'GitHub',      file: GitHub },
-    { label: 'Bootstrap',   file: BootstrapSVG },
     { label: 'MongoDB',     file: MongoDB },
-    { label: 'Webpack',     file: Webpack },
-    { label: 'React',       file: ReactJS },
-    { label: 'Babel',       file: Babel }
+    { label: 'Bootstrap',   file: BootstrapSVG },
+    { label: 'jQuery',      file: jQuery },
   ];
 
   render() {

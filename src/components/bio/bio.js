@@ -15,7 +15,15 @@ class Bio extends Component {
           {bio}
         </p>
         <p>
-          <a className="btn btn-lg btn-info" href={Resume} target="_blank">Read my Resume &raquo;</a>
+          <a className="btn btn-lg btn-info" href={Resume} download="jvanveen.pdf">
+            <i class="fa fa-file-pdf-o" aria-hidden="true"></i> Read my Resume
+          </a>{' '}
+          <a className="btn btn-lg btn-primary btn-linkedin" href="https://www.linkedin.com/in/jimmyvanveen/" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-linkedin-square" aria-hidden="true"></i> LinkedIn
+          </a>{' '}
+          <a className="btn btn-lg btn-success" href="https://github.com/JimmayVV" target="_blank" rel="noopener noreferrer">
+            <i class="fa fa-github" aria-hidden="true"></i> GitHub
+          </a>
         </p>
       </div>
     );
@@ -30,4 +38,4 @@ export default createFragmentContainer(
       bio
     }
   `
-);
+)

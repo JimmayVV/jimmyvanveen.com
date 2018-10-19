@@ -2,29 +2,31 @@
 
 /* Import Node_Module CSS */
 // Import custom variables to theme Bootstrap with
-@import 'custom';
+@import "custom";
 @import "node_modules/bootstrap/scss/bootstrap";
 
 ///* Google Fonts */
 //@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700');
 //@import url('https://fonts.googleapis.com/css?family=Architects+Daughter');
 
-@import 'flexboxVCenter';
+@import "flexboxVCenter";
 
 @mixin filter($val) {
   -webkit-filter: $val;
-     -moz-filter: $val;
-       -o-filter: $val;
-      -ms-filter: $val;
-          filter: $val;
+  -moz-filter: $val;
+  -o-filter: $val;
+  -ms-filter: $val;
+  filter: $val;
 }
 
-$lightText:   #FDFDFD;
-$lightBg:     $lightText;
-$bgColor:     #333;
-$accentColor: #C00;
-$semiWhite:   rgba(255, 255, 255, 0.9);
-$semiDark:    rgba(0, 0, 0, 0.7);
+$lightText: #fdfdfd;
+$lightBg: $lightText;
+$bgColor: #333;
+$accentColor: #c00;
+$semiWhite: rgba(255, 255, 255, 0.9);
+$semiDark: rgba(0, 0, 0, 0.7);
+$linkedIn: #4875b4;
+$linkedInDark: darken($linkedIn, 7.5%);
 
 #bg {
   position: fixed;
@@ -55,14 +57,32 @@ body {
   //font-family: 'Architects Daughter', cursive;
 }
 
+.btn-primary.btn-linkedin {
+  background: $linkedIn;
+  border-color: $linkedIn;
+}
+
+.btn-primary.btn-linkedin:hover {
+  background: $linkedInDark;
+  border-color: $linkedInDark;
+}
+
 #main-nav nav {
   background: $semiDark;
-  &.fixed-top { transition: all 0.5s ease; }
-  &.navbar.hidden { opacity: 0; }
-  &.bg-semi { background: $semiWhite; }
+  &.fixed-top {
+    transition: all 0.5s ease;
+  }
+  &.navbar.hidden {
+    opacity: 0;
+  }
+  &.bg-semi {
+    background: $semiWhite;
+  }
   a.nav-link {
     border-bottom: 2px solid transparent;
-    &.active { border-bottom: 2px solid $accentColor; }
+    &.active {
+      border-bottom: 2px solid $accentColor;
+    }
   }
   .navbar-brand i.fa {
     color: $accentColor;
@@ -79,14 +99,16 @@ h2 {
 .jumbotron {
   background: none;
   color: $lightText;
-  min-height: 60%;  /* Fallback for vh unit */
+  min-height: 60%; /* Fallback for vh unit */
   min-height: 60vh;
-  &.vCenterMe { @include flexboxVCenter; }
+  &.vCenterMe {
+    @include flexboxVCenter;
+  }
 }
 
 #top {
-  width:0;
-  height:0;
+  width: 0;
+  height: 0;
 }
 
 .wrapper {
@@ -116,7 +138,8 @@ h2 {
   padding-top: 20px;
 }
 
-.device-wrapper, .device {
+.device-wrapper,
+.device {
   width: 100%;
   max-width: none;
 }
@@ -177,7 +200,7 @@ h2 {
 
   &:hover {
     @include filter(none);
-    opacity: 1.0;
+    opacity: 1;
   }
 }
 
@@ -198,5 +221,7 @@ h2 {
     margin-bottom: -40%;
   }
 
-  h3 { padding-top: 20px; }
+  h3 {
+    padding-top: 20px;
+  }
 }

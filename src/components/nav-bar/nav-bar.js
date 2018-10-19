@@ -13,7 +13,6 @@ import {
   //DropdownItem
 } from 'reactstrap';
 //import ReactDOM from 'react-dom';
-import 'font-awesome/css/font-awesome.min.css';
 
 export default class MyNavBar extends React.Component {
   constructor(props) {
