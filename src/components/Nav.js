@@ -22,9 +22,9 @@ export default function Nav({ onMenuToggle = () => {} }) {
               onClick={e => {
                 onMenuToggle();
               }}
-              to="/Generic"
+              to="/blogs"
             >
-              Generic Page
+              Blog
             </Link>
           </li>
           {/* We will still want to display available elements when developing for our use, but not when building for production */}

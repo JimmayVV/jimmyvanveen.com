@@ -5,7 +5,7 @@ import Layout from '../components/Layout';
 import Projects from "../components/Projects";
 
 // import pic1 from '../assets/images/pic01.jpg';
-import pic2 from '../assets/images/pic02.jpg';
+// import pic2 from '../assets/images/pic02.jpg';
 import pic3 from '../assets/images/pic03.jpg';
 
 import JimmyCar from '../assets/images/jimmy_car.png'
@@ -85,13 +85,13 @@ function IndexPage() {
               <img src={pic3} alt="" />
             </a>
             <div className="content">
-              <h2 className="major">Nullam dignissim</h2>
+              <h2 className="major">Our Tech Stack</h2>
               <p>
-                Lorem ipsum dolor sit amet, etiam lorem adipiscing elit. Cras
-                turpis ante, nullam sit amet turpis non, sollicitudin posuere
-                urna. Mauris id tellus arcu. Nunc vehicula id nulla dignissim
-                dapibus. Nullam ultrices, neque et faucibus viverra, ex nulla
-                cursus.
+                Our current tech stack consists of consuming dozens of microservice API's across a persistent
+                and secure socket.io websocket tunnel. The core BetaUI application is a complex React & Redux
+                architecture, running inside a custom Electron application container in constant communication
+                with a locally installed microservice application serving as the portal between the iRacing
+                simulation executable, and this web application.
               </p>
               <a href="/#" className="special">
                 Learn more
