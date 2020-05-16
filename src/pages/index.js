@@ -72,7 +72,7 @@ function IndexPage() {
                 I will endeavor to keep the most pertinent blog posts up to date if any minor changes
                 occur that would otherwise prevent the topic from keeping fresh.
               </p>
-              <a href="/#" className="special">
+              <a href="/blogs" className="special">
                 Learn more
               </a>
             </div>
@@ -93,7 +93,12 @@ function IndexPage() {
                 with a locally installed microservice application serving as the portal between the iRacing
                 simulation executable, and this web application.
               </p>
-              <a href="/#" className="special">
+              <a
+                href="https://www.iracing.com/category/all-news/blog/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="special"
+              >
                 Learn more
               </a>
             </div>

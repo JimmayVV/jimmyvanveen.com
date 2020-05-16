@@ -2,12 +2,12 @@ import React from 'react';
 import { graphql } from 'gatsby'
 
 import Layout from '../components/Layout';
+import { MDXRenderer } from "gatsby-plugin-mdx"
 
 export default function BlogTemplate({
   data,
 }) {
-  const { markdownRemark } = data // data.markdownRemark holds your post data
-  const { frontmatter, html } = markdownRemark
+  const { frontmatter, body } = data.mdx
 
   return (
     <Layout fullMenu>
@@ -21,10 +21,9 @@ export default function BlogTemplate({
         </header>
 
         <div className="wrapper">
-          <div
-            className="inner"
-            dangerouslySetInnerHTML={{ __html: html }}
-          />
+          <div className="inner">
+            <MDXRenderer>{body}</MDXRenderer>
+          </div>
         </div>
       </section>
     </Layout>
@@ -34,12 +33,13 @@ export default function BlogTemplate({
 
 export const pageQuery = graphql`
   query($slug: String!) {
-    markdownRemark(frontmatter: { slug: { eq: $slug } }) {
-      html
+    mdx(fields: { slug: { eq: $slug } }) {
+      id
+      excerpt(pruneLength: 160)
+      body
       frontmatter {
-        date(formatString: "MMMM DD, YYYY")
-        slug
         title
+        date(formatString: "MMMM DD, YYYY")
       }
     }
   }

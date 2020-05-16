@@ -1,4 +1,5 @@
 const config = require('./config');
+const emoji = require(`remark-emoji`)
 
 module.exports = {
   pathPrefix: config.pathPrefix,
@@ -8,16 +9,34 @@ module.exports = {
   plugins: [
     'gatsby-plugin-react-helmet',
     {
-      resolve: `gatsby-plugin-mdx`,
-      options: {
-        extensions: [`.mdx`, `.md`],
-      },
-    },
-    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `blogs`,
         path: `${__dirname}/src/blogs`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-mdx`,
+      options: {
+        extensions: [".mdx", ".md"],
+        gatsbyRemarkPlugins: [
+          {
+            resolve: `gatsby-remark-images`,
+            options: {
+              maxWidth: 590,
+            },
+          },
+          {
+            resolve: `gatsby-remark-responsive-iframe`,
+            options: {
+              wrapperStyle: `margin-bottom: 1.0725rem`,
+            },
+          },
+          `gatsby-remark-prismjs`,
+          `gatsby-remark-copy-linked-files`,
+          `gatsby-remark-smartypants`,
+        ],
+        remarkPlugins: [emoji],
       },
     },
     {
@@ -32,7 +51,7 @@ module.exports = {
         icon: config.manifestIcon, // This path is relative to the root of the site.
       },
     },
-    `gatsby-transformer-remark`,
+    `gatsby-plugin-feed-mdx`,
     'gatsby-plugin-sass',
     'gatsby-plugin-offline',
   ],

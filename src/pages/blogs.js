@@ -1,10 +1,14 @@
+// Libraries
 import React from "react"
+import { graphql } from 'gatsby'
+
+// Components
 import Layout from '../components/Layout'
 import PostLink from "../components/post-link"
 
 const BlogsPage = ({
   data: {
-    allMarkdownRemark: { edges },
+    allMdx: { edges },
   },
 }) => {
   return (
@@ -39,14 +43,15 @@ export default BlogsPage
 
 export const pageQuery = graphql`
   query {
-    allMarkdownRemark(sort: { order: DESC, fields: [frontmatter___date] }) {
+    allMdx(sort: { order: DESC, fields: [frontmatter___date] }) {
       edges {
         node {
           id
-          excerpt(pruneLength: 250)
+          fields {
+            slug
+          }
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
-            slug
             title
           }
         }
