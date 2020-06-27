@@ -16,7 +16,7 @@ export default function BlogTemplate({
           <div className="inner">
             <h2>{frontmatter.title}</h2>
             <h3>{frontmatter.date}</h3>
-            <p>Phasellus non pulvinar erat. Fusce tincidunt nisl eget ipsum.</p>
+            <p>{frontmatter.description}</p>
           </div>
         </header>
 
@@ -40,6 +40,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        description
       }
     }
   }
