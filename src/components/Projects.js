@@ -45,7 +45,7 @@ export default function Projects() {
                     src={
                       project?.screenshot ?
                         project.screenshot :
-                        pictures[(Math.floor(Math.random() * 4))]
+                        pictures[(Math.floor(Math.random() * pictures.length))]
                     }
                     alt={`${project.name} project screenshot`}
                   />
