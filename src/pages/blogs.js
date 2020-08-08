@@ -11,6 +11,7 @@ const BlogsPage = ({
     allMdx: { edges },
   },
 }) => {
+  console.log("edges", edges)
   return (
     <Layout fullMenu>
       <section id="wrapper">
@@ -27,12 +28,12 @@ const BlogsPage = ({
         </header>
 
         <div className="wrapper">
-          <ul className="inner">
+          <div className="inner">
             {edges
               .filter(edge => !!edge.node.frontmatter.date) // You can filter your posts based on some criteria
-              .map(edge => <li key={edge.node.id}><PostLink post={edge.node} /></li>)
+              .map(edge => <PostLink post={edge.node} key={edge.node.id} />)
             }
-          </ul>
+          </div>
         </div>
       </section>
     </Layout>
@@ -53,6 +54,7 @@ export const pageQuery = graphql`
           frontmatter {
             date(formatString: "MMMM DD, YYYY")
             title
+            description
           }
         }
       }
