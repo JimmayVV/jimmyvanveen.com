@@ -1,4 +1,4 @@
-const config = require('./config');
+const config = require("./config")
 const emoji = require(`remark-emoji`)
 
 module.exports = {
@@ -9,7 +9,7 @@ module.exports = {
     siteUrl: config.siteUrl,
   },
   plugins: [
-    'gatsby-plugin-react-helmet',
+    "gatsby-plugin-react-helmet",
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -54,7 +54,7 @@ module.exports = {
       },
     },
     `gatsby-plugin-feed-mdx`,
-    'gatsby-plugin-sass',
-    'gatsby-plugin-offline',
+    "gatsby-plugin-sass",
+    "gatsby-plugin-offline",
   ],
-};
+}

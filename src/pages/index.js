@@ -1,17 +1,17 @@
-import React from 'react';
+import React from "react"
 
-import Layout from '../components/Layout';
+import Layout from "../components/Layout"
 
-import Projects from "../components/Projects";
+import Projects from "../components/Projects"
 
 // import pic1 from '../assets/images/pic01.jpg';
 // import pic2 from '../assets/images/pic02.jpg';
-import pic3 from '../assets/images/pic03.jpg';
+import pic3 from "../assets/images/pic03.jpg"
 
-import JimmyCar from '../assets/images/jimmy_car.png'
-import BlogScreenshot from '../assets/images/blog_vscode.jpg'
+import JimmyCar from "../assets/images/jimmy_car.png"
+import BlogScreenshot from "../assets/images/blog_vscode.jpg"
 
-import config from '../../config';
+import config from "../../config"
 
 function IndexPage() {
   return (
@@ -33,17 +33,18 @@ function IndexPage() {
               href="https://members.iracing.com/membersite/member/CareerStats.do"
               target="_blank"
               rel="noopener noreferrer"
-              style={{borderRadius: 0}}
+              style={{ borderRadius: 0 }}
               className="image"
             >
-              <img src={JimmyCar} style={{borderRadius: 0}} alt="" />
+              <img src={JimmyCar} style={{ borderRadius: 0 }} alt="" />
             </a>
             <div className="content">
               <h2 className="major">Watch out for me in sim!</h2>
               <p>
-                You can find me in the sim racing a Beta UI (BUI) paint scheme, or if you're lucky,
-                you'll find me as one of your AI opponents if you happen to let the BUI create a
-                roster for you. Be gentle with me when you find me, and be sure to let me win!
+                You can find me in the sim racing a Beta UI (BUI) paint scheme,
+                or if you&apos;re lucky, you&apos;ll find me as one of your AI
+                opponents if you happen to let the BUI create a roster for you.
+                Be gentle with me when you find me, and be sure to let me win!
               </p>
               <a
                 href="https://members.iracing.com/membersite/member/CareerStats.do"
@@ -65,11 +66,13 @@ function IndexPage() {
             <div className="content">
               <h2 className="major">My Blog</h2>
               <p>
-                My blog, documenting basically whatever I feel like. I am intending on using this
-                space to document some tricky, non-proprietary patterns I needed to discover/develop
-                for my work at iRacing. Some of these patterns are very time sensitive, meaning the
-                value may very well be outdated in some not so distant future. Even knowing that this
-                I will endeavor to keep the most pertinent blog posts up to date if any minor changes
+                My blog, documenting basically whatever I feel like. I am
+                intending on using this space to document some tricky,
+                non-proprietary patterns I needed to discover/develop for my
+                work at iRacing. Some of these patterns are very time sensitive,
+                meaning the value may very well be outdated in some not so
+                distant future. Even knowing that this I will endeavor to keep
+                the most pertinent blog posts up to date if any minor changes
                 occur that would otherwise prevent the topic from keeping fresh.
               </p>
               <a href="/blogs" className="special">
@@ -87,11 +90,13 @@ function IndexPage() {
             <div className="content">
               <h2 className="major">Our Tech Stack</h2>
               <p>
-                Our current tech stack consists of consuming dozens of microservice API's across a persistent
-                and secure socket.io websocket tunnel. The core BetaUI application is a complex React & Redux
-                architecture, running inside a custom Electron application container in constant communication
-                with a locally installed microservice application serving as the portal between the iRacing
-                simulation executable, and this web application.
+                Our current tech stack consists of consuming dozens of
+                microservice API&apos;s across a persistent and secure socket.io
+                websocket tunnel. The core BetaUI application is a complex React
+                & Redux architecture, running inside a custom Electron
+                application container in constant communication with a locally
+                installed microservice application serving as the portal between
+                the iRacing simulation executable, and this web application.
               </p>
               <a
                 href="https://www.iracing.com/category/all-news/blog/"
@@ -106,11 +111,9 @@ function IndexPage() {
         </section>
 
         <Projects />
-
-
       </section>
     </Layout>
-  );
+  )
 }
 
-export default IndexPage;
+export default IndexPage

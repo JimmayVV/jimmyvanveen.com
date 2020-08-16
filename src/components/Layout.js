@@ -1,30 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
+import React, { useEffect, useState } from "react"
+import PropTypes from "prop-types"
+import Helmet from "react-helmet"
+import { StaticQuery, graphql } from "gatsby"
 
-import '../assets/sass/main.scss';
-import Footer from './Footer';
-import SideBar from './Sidebar';
+import "../assets/sass/main.scss"
+import Footer from "./Footer"
+import SideBar from "./Sidebar"
 
-const Layout = ({
-  children,
-  fullMenu,
-}) => {
-  const [isPreloaded, setIsPreloaded] = useState(true);
+const Layout = ({ children, fullMenu }) => {
+  const [isPreloaded, setIsPreloaded] = useState(true)
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
-      setIsPreloaded(false);
-    }, 100);
+      setIsPreloaded(false)
+    }, 100)
 
     return () => {
       if (timeoutId) {
-        clearTimeout(timeoutId);
+        clearTimeout(timeoutId)
       }
     }
-  }, []);
-
+  }, [])
 
   return (
     <StaticQuery
@@ -42,15 +38,13 @@ const Layout = ({
           <Helmet
             title={data.site.siteMetadata.title}
             meta={[
-              { name: 'description', content: 'Solid State' },
-              { name: 'keywords', content: 'site, web' },
+              { name: "description", content: "Solid State" },
+              { name: "keywords", content: "site, web" },
             ]}
           >
             <html lang="en" />
           </Helmet>
-          <div
-            className={isPreloaded ? 'main-body is-preload' : 'main-body'}
-          >
+          <div className={isPreloaded ? "main-body is-preload" : "main-body"}>
             <div id="page-wrapper">
               <SideBar fullMenu={fullMenu} />
               {children}
@@ -60,11 +54,12 @@ const Layout = ({
         </>
       )}
     />
-  );
+  )
 }
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-};
+  fullMenu: PropTypes.bool,
+}
 
-export default Layout;
+export default Layout

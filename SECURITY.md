@@ -9,5 +9,5 @@
 
 ## Reporting a Vulnerability
 
-If you see a vulnerability, feel free to file an issue and/or a pull request, and I'll review it
-to see if it's a sensible add to the repository.
+If you see a vulnerability, feel free to file an issue and/or a pull request,
+and I'll review it to see if it's a sensible add to the repository.

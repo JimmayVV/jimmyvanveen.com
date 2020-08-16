@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
-import Nav from './Nav';
-import { Link } from 'gatsby';
+import React, { useState } from "react"
+import PropTypes from "prop-types"
+
+import Nav from "./Nav"
+import { Link } from "gatsby"
+
 export default function SideBar({ fullMenu }) {
-  const [headerOpen, toggleHeader] = useState(false);
+  const [headerOpen, toggleHeader] = useState(false)
   return (
     <>
-      <header id="header" className={`${fullMenu ? '' : 'alt'}`}>
+      <header id="header" className={`${fullMenu ? "" : "alt"}`}>
         <h1>
           <Link to="/">JimmyVanVeen.com</Link>
         </h1>
@@ -14,8 +17,8 @@ export default function SideBar({ fullMenu }) {
           <a
             href="#menu"
             onClick={e => {
-              e.preventDefault();
-              toggleHeader(!headerOpen);
+              e.preventDefault()
+              toggleHeader(!headerOpen)
             }}
             className="menuToggle"
           >
@@ -23,9 +26,13 @@ export default function SideBar({ fullMenu }) {
           </a>
         </nav>
       </header>
-      <div className={`${headerOpen && 'is-menu-visible'}`}>
+      <div className={`${headerOpen && "is-menu-visible"}`}>
         <Nav onMenuToggle={() => toggleHeader(!headerOpen)} />
       </div>
     </>
-  );
+  )
+}
+
+SideBar.propTypes = {
+  fullMenu: PropTypes.bool,
 }

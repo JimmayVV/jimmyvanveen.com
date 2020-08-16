@@ -1,17 +1,20 @@
-import React from 'react';
-import config from '../../config';
+import React from "react"
+import config from "../../config"
 export default function Footer() {
   return (
     <section id="footer">
       <div className="inner">
         <h2 className="major">Get in touch</h2>
         <p>
-          If you would like to get in touch with me, you may feel free to contact me
-          via this web form below. I cannot guarantee I will promptly respond, as I am
-          not currently soliciting employment opportunities, and life with a toddler
-          can be quite hectic!
+          If you would like to get in touch with me, you may feel free to
+          contact me via this web form below. I cannot guarantee I will promptly
+          respond, as I am not currently soliciting employment opportunities,
+          and life with a toddler can be quite hectic!
         </p>
-        <form method="post" action="https://formspree.io/jimmy.van.veen@gmail.com">
+        <form
+          method="post"
+          action="https://formspree.io/jimmy.van.veen@gmail.com"
+        >
           <div className="fields">
             <div className="field">
               <label htmlFor="Name">Name</label>
@@ -40,12 +43,14 @@ export default function Footer() {
           <li className="fa-home">{config.address}</li>
 
           {config.socialLinks.map(social => {
-            const { icon, url } = social;
+            const { icon, url } = social
             return (
               <li className={`${icon}`} key={url}>
-                <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+                <a href={url} target="_blank" rel="noopener noreferrer">
+                  {url}
+                </a>
               </li>
-            );
+            )
           })}
         </ul>
         <ul className="copyright">
@@ -56,5 +61,5 @@ export default function Footer() {
         </ul>
       </div>
     </section>
-  );
+  )
 }

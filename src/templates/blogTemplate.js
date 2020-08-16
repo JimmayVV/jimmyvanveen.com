@@ -1,12 +1,11 @@
-import React from 'react';
-import { graphql } from 'gatsby'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
 
-import Layout from '../components/Layout';
+import Layout from "../components/Layout"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-export default function BlogTemplate({
-  data,
-}) {
+export default function BlogTemplate({ data }) {
   const { frontmatter, body } = data.mdx
 
   return (
@@ -27,9 +26,21 @@ export default function BlogTemplate({
         </div>
       </section>
     </Layout>
-  );
+  )
 }
 
+BlogTemplate.propTypes = {
+  data: PropTypes.shape({
+    mdx: PropTypes.shape({
+      frontmatter: PropTypes.shape({
+        title: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+      }).isRequired,
+      body: PropTypes.string.isRequired,
+    }).isRequired,
+  }).isRequired,
+}
 
 export const pageQuery = graphql`
   query($slug: String!) {

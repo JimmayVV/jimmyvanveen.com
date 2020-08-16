@@ -1,8 +1,8 @@
-import React from 'react';
+import React from "react"
 
-import Layout from '../components/Layout';
-import pic4 from '../assets/images/pic04.jpg';
-import pic5 from '../assets/images/pic05.jpg';
+import Layout from "../components/Layout"
+import pic4 from "../assets/images/pic04.jpg"
+import pic5 from "../assets/images/pic05.jpg"
 
 function IndexPage() {
   return (
@@ -22,24 +22,24 @@ function IndexPage() {
               Morbi mattis mi consectetur tortor elementum, varius pellentesque
               velit convallis. Aenean tincidunt lectus auctor mauris maximus, ac
               scelerisque ipsum tempor. Duis vulputate ex et ex tincidunt, quis
-              lacinia velit aliquet. Duis non efficitur nisi, id malesuada justo.
-              Maecenas sagittis felis ac sagittis semper. Curabitur purus leo
-              donec vel dolor at arcu tincidunt bibendum. Interdum et malesuada
-              fames ac ante ipsum primis in faucibus. Fusce ut aliquet justo.
-              Donec id neque ipsum. Integer eget ultricies odio. Nam vel ex a orci
-              fringilla tincidunt. Aliquam eleifend ligula non velit accumsan
-              cursus. Etiam ut gravida sapien.
+              lacinia velit aliquet. Duis non efficitur nisi, id malesuada
+              justo. Maecenas sagittis felis ac sagittis semper. Curabitur purus
+              leo donec vel dolor at arcu tincidunt bibendum. Interdum et
+              malesuada fames ac ante ipsum primis in faucibus. Fusce ut aliquet
+              justo. Donec id neque ipsum. Integer eget ultricies odio. Nam vel
+              ex a orci fringilla tincidunt. Aliquam eleifend ligula non velit
+              accumsan cursus. Etiam ut gravida sapien.
             </p>
 
             <p>
               Vestibulum ultrices risus velit, sit amet blandit massa auctor sit
-              amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor mollis
-              id vel diam. Praesent sit amet posuere risus, eu faucibus lectus.
-              Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta quam.
-              Proin nec commodo, vel scelerisque nisi scelerisque. Suspendisse id
-              quam vel tortor tincidunt suscipit. Nullam auctor orci eu dolor
-              consectetur, interdum ullamcorper ante tincidunt. Mauris felis nec
-              felis elementum varius.
+              amet. Sed eu lectus sem. Phasellus in odio at ipsum porttitor
+              mollis id vel diam. Praesent sit amet posuere risus, eu faucibus
+              lectus. Vivamus ex ligula, tempus pulvinar ipsum in, auctor porta
+              quam. Proin nec commodo, vel scelerisque nisi scelerisque.
+              Suspendisse id quam vel tortor tincidunt suscipit. Nullam auctor
+              orci eu dolor consectetur, interdum ullamcorper ante tincidunt.
+              Mauris felis nec felis elementum varius.
             </p>
 
             <h3 className="major">Vitae phasellus</h3>
@@ -82,7 +82,7 @@ function IndexPage() {
         </div>
       </section>
     </Layout>
-  );
+  )
 }
 
-export default IndexPage;
+export default IndexPage
