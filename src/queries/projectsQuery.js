@@ -61,11 +61,14 @@ export async function fetchRepos() {
 
   // Perform the operations
   try {
+    const api_token_response = await fetch(process.env.API_TOKEN_URL)
+    const api_token = await api_token_response.text()
+
     const response = await fetch("https://api.github.com/graphql", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `bearer ${process.env.GATSBY_GITHUB_API_KEY}`,
+        Authorization: `bearer ${api_token}`,
       },
       body: JSON.stringify({ query }),
     })
