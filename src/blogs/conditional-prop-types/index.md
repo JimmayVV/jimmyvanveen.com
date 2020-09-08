@@ -1,6 +1,6 @@
 ---
 date: "2020-05-14"
-title: "My first blog post"
+title: "Conditional Prop Types"
 description: "In React, props are the lifeblood of an application. PropTypes are an industry standard
 way to enforce types within those props. What should you do when a given prop is required in order to
 use a sibling prop? Well, conditional Prop Types of course! I'll explain how I solved this problem
