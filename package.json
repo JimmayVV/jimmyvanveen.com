@@ -27,7 +27,7 @@
     "gatsby-remark-responsive-iframe": "^2.4.2",
     "gatsby-remark-smartypants": "^2.3.1",
     "gatsby-source-filesystem": "^2.3.3",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "prism-react-renderer": "^1.1.0",
     "prismjs": "^1.20.0",
     "prop-types": "^15.7.2",
