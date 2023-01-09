@@ -33,7 +33,7 @@ export default function SliceContent({
 }: SliceContentProps) {
   return (
     <div
-      className={`flex flex-col md:flex-row text-white font-raleway w-[55em] my-0 mx-auto relative ${
+      className={`flex flex-col md:flex-row text-white font-raleway lg:w-[55em] my-0 mx-auto relative ${
         flip ? "flipped-slice" : "md:flex-row-reverse"
       }`}
     >
