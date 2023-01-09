@@ -1,5 +1,6 @@
 {
   "private": true,
+  "version": "4.0",
   "sideEffects": false,
   "scripts": {
     "build": "npm run build:css && remix build",
