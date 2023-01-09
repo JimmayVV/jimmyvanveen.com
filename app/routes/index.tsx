@@ -121,7 +121,7 @@ export default function Index() {
             be more recent. Feel free to take any inspiration you wish from
             these codebases.
           </p>
-          <section className="grid grid-cols-2 gap-8 pb-10">
+          <section className="md:grid md:gap-8 pb-10 md:grid-cols-2">
             {repos.map(repo => {
               return (
                 <Project
