@@ -1,12 +1,16 @@
 import * as React from "react"
 import { useFetcher } from "@remix-run/react"
+import ReCAPTCHA from "react-google-recaptcha"
 
-export default function Footer() {
+export default function Footer({ recaptchaKey }: { recaptchaKey: string }) {
   const fetcher = useFetcher()
+  const recaptchaRef = React.createRef<ReCAPTCHA>()
 
   React.useEffect(() => {
-    if (fetcher.data) {
-      console.log("data", fetcher.data)
+    if (fetcher.data?.success === true) {
+      // Reset the form
+      const form = document.getElementById("contact-form") as HTMLFormElement
+      form.reset()
     }
   }, [fetcher.data])
 
@@ -39,7 +43,15 @@ export default function Footer() {
             </div>
           ) : null}
 
-          <fetcher.Form method="post" action="/email">
+          <fetcher.Form
+            method="post"
+            action="/email"
+            id="contact-form"
+            onSubmit={e => {
+              e.preventDefault()
+              recaptchaRef.current?.execute()
+            }}
+          >
             <div className="flex flex-col md:flex-row mt-4">
               <div className="flex flex-1 flex-col pr-6">
                 <label className="uppercase text-sm font-bold font-raleway tracking-widest">
@@ -165,6 +177,30 @@ export default function Footer() {
                 </div>
               </div>
             </div>
+
+            <ReCAPTCHA
+              ref={recaptchaRef}
+              size="invisible"
+              sitekey={recaptchaKey}
+              onChange={captchaCode => {
+                // If the reCAPTCHA code is null or undefined indicating that
+                // the reCAPTCHA was expired then return early
+                if (!captchaCode) {
+                  return
+                }
+                // Get the formdata
+                const formData = new FormData(
+                  document.getElementById("contact-form") as HTMLFormElement,
+                )
+
+                formData.append("captcha", captchaCode)
+
+                fetcher.submit(formData, { method: "post", action: "/email" })
+                // Reset the reCAPTCHA so that it can be executed again if user
+                // submits another contact form.
+                recaptchaRef.current?.reset()
+              }}
+            />
           </fetcher.Form>
         </div>
       </div>
