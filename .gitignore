@@ -5,3 +5,6 @@ node_modules
 /.netlify
 .env
 !.env.example
+
+# Hide the Tailwind build CSS
+/app/styles/**/*.css
